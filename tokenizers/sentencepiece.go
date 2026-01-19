@@ -1,4 +1,4 @@
-package model
+package tokenizers
 
 import (
 	"container/heap"
@@ -17,7 +17,7 @@ type SentencePiece struct {
 	vocab       *Vocabulary
 }
 
-var _ TextProcessor = (*SentencePiece)(nil)
+var _ Tokenizer = (*SentencePiece)(nil)
 
 func (spm SentencePiece) Vocabulary() *Vocabulary {
 	return spm.vocab

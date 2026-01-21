@@ -72,7 +72,7 @@ index a833756f9..93eb8e511 100644
  
      struct ggml_backend {
 diff --git a/ggml/src/ggml-backend.cpp b/ggml/src/ggml-backend.cpp
-index 096f52790..c12e83cc0 100644
+index 9e0f5916f..6261c5066 100644
 --- a/ggml/src/ggml-backend.cpp
 +++ b/ggml/src/ggml-backend.cpp
 @@ -36,11 +36,25 @@ const char * ggml_backend_buft_name(ggml_backend_buffer_type_t buft) {
@@ -223,7 +223,7 @@ index 096f52790..c12e83cc0 100644
  
  void ggml_backend_sched_set_tensor_backend(ggml_backend_sched_t sched, struct ggml_tensor * node, ggml_backend_t backend) {
 diff --git a/ggml/src/ggml-cuda/common.cuh b/ggml/src/ggml-cuda/common.cuh
-index 9516d8ec8..e37e6d8fb 100644
+index 179522d83..12f3154de 100644
 --- a/ggml/src/ggml-cuda/common.cuh
 +++ b/ggml/src/ggml-cuda/common.cuh
 @@ -37,6 +37,41 @@
@@ -268,7 +268,7 @@ index 9516d8ec8..e37e6d8fb 100644
  #define STRINGIZE_IMPL(...) #__VA_ARGS__
  #define STRINGIZE(...) STRINGIZE_IMPL(__VA_ARGS__)
  
-@@ -977,6 +1012,9 @@ struct ggml_cuda_pool {
+@@ -1061,6 +1096,9 @@ struct ggml_cuda_pool {
  
      virtual void * alloc(size_t size, size_t * actual_size) = 0;
      virtual void free(void * ptr, size_t size) = 0;
@@ -278,7 +278,7 @@ index 9516d8ec8..e37e6d8fb 100644
  };
  
  template<typename T>
-@@ -1283,11 +1321,15 @@ struct ggml_backend_cuda_context {
+@@ -1368,11 +1406,15 @@ struct ggml_backend_cuda_context {
      // pool
      std::unique_ptr<ggml_cuda_pool> pools[GGML_CUDA_MAX_DEVICES][GGML_CUDA_MAX_STREAMS];
  
@@ -296,7 +296,7 @@ index 9516d8ec8..e37e6d8fb 100644
          }
          return *pools[device][curr_stream_no];
      }
-@@ -1295,6 +1337,22 @@ struct ggml_backend_cuda_context {
+@@ -1380,6 +1422,22 @@ struct ggml_backend_cuda_context {
      ggml_cuda_pool & pool() {
          return pool(device);
      }

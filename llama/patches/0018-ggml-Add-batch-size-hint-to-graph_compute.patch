@@ -63,7 +63,7 @@ index 59190b7c4..a833756f9 100644
          // (optional) event synchronization
          // record an event on this stream
 diff --git a/ggml/src/ggml-backend.cpp b/ggml/src/ggml-backend.cpp
-index 259e10257..096f52790 100644
+index 20b37a0b3..9e0f5916f 100644
 --- a/ggml/src/ggml-backend.cpp
 +++ b/ggml/src/ggml-backend.cpp
 @@ -353,14 +353,14 @@ enum ggml_status ggml_backend_graph_plan_compute(ggml_backend_t backend, ggml_ba
@@ -139,7 +139,7 @@ index 259e10257..096f52790 100644
      if (sched == NULL) {
          return;
 diff --git a/ggml/src/ggml-blas/ggml-blas.cpp b/ggml/src/ggml-blas/ggml-blas.cpp
-index 84956cbb9..39920ec19 100644
+index 2e9ddf224..6a399bdb1 100644
 --- a/ggml/src/ggml-blas/ggml-blas.cpp
 +++ b/ggml/src/ggml-blas/ggml-blas.cpp
 @@ -220,7 +220,7 @@ static void ggml_backend_blas_free(ggml_backend_t backend) {
@@ -151,7 +151,7 @@ index 84956cbb9..39920ec19 100644
      ggml_backend_blas_context * ctx = (ggml_backend_blas_context *)backend->context;
  
      for (int i = 0; i < cgraph->n_nodes; i++) {
-@@ -250,6 +250,7 @@ static enum ggml_status ggml_backend_blas_graph_compute(ggml_backend_t backend,
+@@ -254,6 +254,7 @@ static enum ggml_status ggml_backend_blas_graph_compute(ggml_backend_t backend,
      return GGML_STATUS_SUCCESS;
  
      GGML_UNUSED(backend);
@@ -160,10 +160,10 @@ index 84956cbb9..39920ec19 100644
  
  static struct ggml_backend_i blas_backend_i = {
 diff --git a/ggml/src/ggml-cann/ggml-cann.cpp b/ggml/src/ggml-cann/ggml-cann.cpp
-index 51bf8bc55..60e955640 100644
+index db33e0bc0..4cc07d2c8 100644
 --- a/ggml/src/ggml-cann/ggml-cann.cpp
 +++ b/ggml/src/ggml-cann/ggml-cann.cpp
-@@ -2191,8 +2191,10 @@ static void evaluate_and_capture_cann_graph(ggml_backend_cann_context * cann_ctx
+@@ -2187,8 +2187,10 @@ static void evaluate_and_capture_cann_graph(ggml_backend_cann_context * cann_ctx
   * @return enum ggml_status Returns GGML_STATUS_SUCCESS if computation
   *         completes successfully, otherwise an appropriate error status.
   */
@@ -198,10 +198,10 @@ index f4713a421..92ba577a5 100644
  
  static const struct ggml_backend_i ggml_backend_cpu_i = {
 diff --git a/ggml/src/ggml-cuda/ggml-cuda.cu b/ggml/src/ggml-cuda/ggml-cuda.cu
-index a4dce694b..49f9c2b56 100644
+index 2409a8978..08e497694 100644
 --- a/ggml/src/ggml-cuda/ggml-cuda.cu
 +++ b/ggml/src/ggml-cuda/ggml-cuda.cu
-@@ -3789,9 +3789,11 @@ static bool ggml_cuda_graph_set_enabled(ggml_backend_cuda_context * cuda_ctx) {
+@@ -3800,9 +3800,11 @@ static bool ggml_cuda_graph_set_enabled(ggml_backend_cuda_context * cuda_ctx) {
  #endif // USE_CUDA_GRAPH
  }
  
@@ -215,10 +215,10 @@ index a4dce694b..49f9c2b56 100644
  
      bool use_cuda_graph             = false;
 diff --git a/ggml/src/ggml-hexagon/ggml-hexagon.cpp b/ggml/src/ggml-hexagon/ggml-hexagon.cpp
-index 365a24b49..fc9b6a7f5 100644
+index 5b835c11c..91378c551 100644
 --- a/ggml/src/ggml-hexagon/ggml-hexagon.cpp
 +++ b/ggml/src/ggml-hexagon/ggml-hexagon.cpp
-@@ -2468,9 +2468,11 @@ static inline int last_compute_op(ggml_cgraph * graph) {
+@@ -2481,9 +2481,11 @@ static inline int last_compute_op(ggml_cgraph * graph) {
      return last;
  }
  
@@ -249,10 +249,10 @@ index 516d74064..5f8d6c175 100644
  }
  
 diff --git a/ggml/src/ggml-opencl/ggml-opencl.cpp b/ggml/src/ggml-opencl/ggml-opencl.cpp
-index d010ca00e..1f0bc8e85 100644
+index e6370671f..70b1fde64 100644
 --- a/ggml/src/ggml-opencl/ggml-opencl.cpp
 +++ b/ggml/src/ggml-opencl/ggml-opencl.cpp
-@@ -2998,9 +2998,11 @@ static void ggml_opencl_op_rms_norm_fused(ggml_backend_t backend, ggml_tensor *
+@@ -3043,9 +3043,11 @@ static void ggml_opencl_op_rms_norm_fused(ggml_backend_t backend, ggml_tensor *
  static void ggml_opencl_op_norm_fused(ggml_backend_t backend, ggml_tensor * norm_tensor, ggml_tensor * mul_tensor, ggml_tensor * add_tensor);
  static void ggml_opencl_op_group_norm_fused(ggml_backend_t backend, ggml_tensor * gn_tensor, ggml_tensor * mul_tensor, ggml_tensor * add_tensor);
  
@@ -283,10 +283,10 @@ index 281fa1bdb..b5f7adf89 100644
      bool reuse = rpc_ctx->gc.is_cached(cgraph);
      if (reuse) {
 diff --git a/ggml/src/ggml-sycl/ggml-sycl.cpp b/ggml/src/ggml-sycl/ggml-sycl.cpp
-index 5f8f3c210..d0e3d5412 100644
+index 14523759d..134313141 100644
 --- a/ggml/src/ggml-sycl/ggml-sycl.cpp
 +++ b/ggml/src/ggml-sycl/ggml-sycl.cpp
-@@ -4171,9 +4171,11 @@ static bool check_graph_compatibility(ggml_cgraph * cgraph) {
+@@ -4174,9 +4174,11 @@ static bool check_graph_compatibility(ggml_cgraph * cgraph) {
  }
  #endif
  
@@ -300,10 +300,10 @@ index 5f8f3c210..d0e3d5412 100644
      bool use_sycl_graph = !g_ggml_sycl_disable_graph && check_graph_compatibility(cgraph);
      if (use_sycl_graph) {
 diff --git a/ggml/src/ggml-vulkan/ggml-vulkan.cpp b/ggml/src/ggml-vulkan/ggml-vulkan.cpp
-index 885864111..58de820f2 100644
+index cc9b38b54..3bae1a449 100644
 --- a/ggml/src/ggml-vulkan/ggml-vulkan.cpp
 +++ b/ggml/src/ggml-vulkan/ggml-vulkan.cpp
-@@ -13540,8 +13540,9 @@ static uint32_t ggml_vk_fuse_multi_add(ggml_backend_vk_context * ctx, const stru
+@@ -13648,8 +13648,9 @@ static uint32_t ggml_vk_fuse_multi_add(ggml_backend_vk_context * ctx, const stru
      return num_adds;
  }
  
@@ -315,10 +315,10 @@ index 885864111..58de820f2 100644
  
      if (vk_instance.debug_utils_support) {
 diff --git a/ggml/src/ggml-webgpu/ggml-webgpu.cpp b/ggml/src/ggml-webgpu/ggml-webgpu.cpp
-index 5b8f7f72d..7b928fb5f 100644
+index 584cea769..b37ab522c 100644
 --- a/ggml/src/ggml-webgpu/ggml-webgpu.cpp
 +++ b/ggml/src/ggml-webgpu/ggml-webgpu.cpp
-@@ -1616,8 +1616,9 @@ static std::optional<webgpu_command> ggml_webgpu_encode_node(webgpu_context ctx,
+@@ -2067,8 +2067,9 @@ static std::optional<webgpu_command> ggml_webgpu_encode_node(webgpu_context ctx,
      }
  }
  
@@ -330,10 +330,10 @@ index 5b8f7f72d..7b928fb5f 100644
      ggml_backend_webgpu_context * backend_ctx = static_cast<ggml_backend_webgpu_context *>(backend->context);
      webgpu_context                ctx         = backend_ctx->webgpu_ctx;
 diff --git a/ggml/src/ggml-zdnn/ggml-zdnn.cpp b/ggml/src/ggml-zdnn/ggml-zdnn.cpp
-index edbeb8eef..a90066365 100644
+index 906d25417..caa2f7480 100644
 --- a/ggml/src/ggml-zdnn/ggml-zdnn.cpp
 +++ b/ggml/src/ggml-zdnn/ggml-zdnn.cpp
-@@ -407,7 +407,8 @@ static void ggml_backend_zdnn_free(ggml_backend_t backend) {
+@@ -411,7 +411,8 @@ static void ggml_backend_zdnn_free(ggml_backend_t backend) {
      free(backend);
  }
  
@@ -344,7 +344,7 @@ index edbeb8eef..a90066365 100644
  }
  
 diff --git a/ggml/src/ggml-zendnn/ggml-zendnn.cpp b/ggml/src/ggml-zendnn/ggml-zendnn.cpp
-index fd07f983d..954a64e37 100644
+index afbecde7a..19fce68c7 100644
 --- a/ggml/src/ggml-zendnn/ggml-zendnn.cpp
 +++ b/ggml/src/ggml-zendnn/ggml-zendnn.cpp
 @@ -205,9 +205,11 @@ static void ggml_backend_zendnn_free(ggml_backend_t backend) {

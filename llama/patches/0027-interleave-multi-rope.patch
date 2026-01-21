@@ -13,10 +13,10 @@ interleaved version used for qwen3vl
  4 files changed, 16 insertions(+), 16 deletions(-)
 
 diff --git a/ggml/src/ggml-cpu/ops.cpp b/ggml/src/ggml-cpu/ops.cpp
-index 7d1733adb..f4aae5332 100644
+index 1dc99297a..cd6cedf70 100644
 --- a/ggml/src/ggml-cpu/ops.cpp
 +++ b/ggml/src/ggml-cpu/ops.cpp
-@@ -5599,14 +5599,14 @@ static void ggml_mrope_cache_init(
+@@ -5598,14 +5598,14 @@ static void ggml_mrope_cache_init(
  
          float theta = theta_t;
          if (is_imrope) { // qwen3vl apply interleaved mrope
@@ -59,7 +59,7 @@ index 88ed79111..71ca60214 100644
      } else {
          if (sector < sections.v[0]) {
 diff --git a/ggml/src/ggml-metal/ggml-metal.metal b/ggml/src/ggml-metal/ggml-metal.metal
-index ff1afa291..21b51cc8d 100644
+index 2e463bd99..e669995f0 100644
 --- a/ggml/src/ggml-metal/ggml-metal.metal
 +++ b/ggml/src/ggml-metal/ggml-metal.metal
 @@ -4243,14 +4243,14 @@ kernel void kernel_rope_multi(

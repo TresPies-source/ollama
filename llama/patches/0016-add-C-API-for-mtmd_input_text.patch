@@ -10,7 +10,7 @@ Signed-off-by: Gabe Goodhart <ghart@us.ibm.com>
  2 files changed, 13 insertions(+)
 
 diff --git a/tools/mtmd/mtmd.cpp b/tools/mtmd/mtmd.cpp
-index b68de7429..743f892a1 100644
+index 32a24bfce..7de8dfe56 100644
 --- a/tools/mtmd/mtmd.cpp
 +++ b/tools/mtmd/mtmd.cpp
 @@ -87,6 +87,16 @@ enum mtmd_slice_tmpl {
@@ -31,7 +31,7 @@ index b68de7429..743f892a1 100644
      return "<__media__>";
  }
 diff --git a/tools/mtmd/mtmd.h b/tools/mtmd/mtmd.h
-index 44d05ceae..5f2e579e1 100644
+index a12c28ef2..9f5e176b4 100644
 --- a/tools/mtmd/mtmd.h
 +++ b/tools/mtmd/mtmd.h
 @@ -83,6 +83,9 @@ typedef struct mtmd_input_chunk  mtmd_input_chunk;

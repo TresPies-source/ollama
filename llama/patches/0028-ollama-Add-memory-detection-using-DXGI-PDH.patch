@@ -27,10 +27,10 @@ index 47d7ea9ce..755ea86a7 100644
  
  set_target_properties(ggml-base PROPERTIES
 diff --git a/ggml/src/ggml-impl.h b/ggml/src/ggml-impl.h
-index 9549d0495..eacabb191 100644
+index f19417bd7..e2a4c990a 100644
 --- a/ggml/src/ggml-impl.h
 +++ b/ggml/src/ggml-impl.h
-@@ -680,6 +680,9 @@ GGML_API void ggml_nvml_release();
+@@ -683,6 +683,9 @@ GGML_API void ggml_nvml_release();
  GGML_API int ggml_hip_mgmt_init();
  GGML_API int ggml_hip_get_device_memory(const char *id, size_t *free, size_t *total, bool is_integrated_gpu);
  GGML_API void ggml_hip_mgmt_release();
@@ -41,7 +41,7 @@ index 9549d0495..eacabb191 100644
  #ifdef __cplusplus
  }
 diff --git a/ggml/src/ggml-vulkan/ggml-vulkan.cpp b/ggml/src/ggml-vulkan/ggml-vulkan.cpp
-index b3eea31af..5dbe20e21 100644
+index c0d0763dc..9fe4238a8 100644
 --- a/ggml/src/ggml-vulkan/ggml-vulkan.cpp
 +++ b/ggml/src/ggml-vulkan/ggml-vulkan.cpp
 @@ -74,6 +74,7 @@ DispatchLoaderDynamic & ggml_vk_default_dispatcher();
@@ -52,7 +52,7 @@ index b3eea31af..5dbe20e21 100644
  
  typedef struct VkPhysicalDeviceShaderBfloat16FeaturesKHR {
      VkStructureType                       sType;
-@@ -14294,6 +14295,7 @@ struct ggml_backend_vk_device_context {
+@@ -14403,6 +14404,7 @@ struct ggml_backend_vk_device_context {
      std::string pci_id;
      std::string id;
      std::string uuid;
@@ -60,7 +60,7 @@ index b3eea31af..5dbe20e21 100644
      int major;
      int minor;
      int driver_major;
-@@ -14318,6 +14320,20 @@ static const char * ggml_backend_vk_device_get_id(ggml_backend_dev_t dev) {
+@@ -14427,6 +14429,20 @@ static const char * ggml_backend_vk_device_get_id(ggml_backend_dev_t dev) {
  
  static void ggml_backend_vk_device_get_memory(ggml_backend_dev_t device, size_t * free, size_t * total) {
      ggml_backend_vk_device_context * ctx = (ggml_backend_vk_device_context *)device->context;
@@ -81,7 +81,7 @@ index b3eea31af..5dbe20e21 100644
  
      // Use vendor specific management libraries for best VRAM reporting if available
      if (!ctx->is_integrated_gpu) {
-@@ -15090,6 +15106,14 @@ static ggml_backend_dev_t ggml_backend_vk_reg_get_device(ggml_backend_reg_t reg,
+@@ -15215,6 +15231,14 @@ static ggml_backend_dev_t ggml_backend_vk_reg_get_device(ggml_backend_reg_t reg,
                      }
                  }
                  ctx->uuid = oss.str();

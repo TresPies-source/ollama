@@ -8,6 +8,7 @@ import (
 
 	"github.com/TresPies-source/dgd/api"
 	"github.com/TresPies-source/dgd/database"
+	"github.com/TresPies-source/dgd/llm"
 	"github.com/gin-gonic/gin"
 )
 
@@ -30,8 +31,39 @@ func main() {
 
 	log.Println("Database initialized at:", dbPath)
 
-	// Create API server
-	server := api.NewServer(db)
+	// Initialize LLM client (optional)
+	var server *api.Server
+	llmProvider := os.Getenv("LLM_PROVIDER") // "ollama", "openai", or empty for keyword-based
+	if llmProvider != "" {
+		llmConfig := &llm.Config{
+			Provider: llm.Provider(llmProvider),
+			BaseURL:  os.Getenv("LLM_BASE_URL"),
+			APIKey:   os.Getenv("LLM_API_KEY"),
+			Model:    os.Getenv("LLM_MODEL"),
+		}
+
+		// Set defaults
+		if llmConfig.Model == "" {
+			if llmConfig.Provider == llm.ProviderOllama {
+				llmConfig.Model = "llama3.2:3b"
+			} else if llmConfig.Provider == llm.ProviderOpenAI {
+				llmConfig.Model = "gpt-4o-mini"
+			}
+		}
+
+		llmClient, err := llm.NewClient(llmConfig)
+		if err != nil {
+			log.Printf("Warning: Failed to initialize LLM client: %v", err)
+			log.Printf("Falling back to keyword-based classification")
+			server = api.NewServer(db)
+		} else {
+			log.Printf("LLM client initialized: %s (%s)", llmConfig.Provider, llmConfig.Model)
+			server = api.NewServerWithLLM(db, llmClient, llmConfig.Model)
+		}
+	} else {
+		log.Printf("No LLM provider configured, using keyword-based classification")
+		server = api.NewServer(db)
+	}
 
 	// Set up Gin router
 	router := gin.Default()
@@ -55,6 +87,7 @@ func main() {
 	router.POST("/api/chat", server.ChatHandler)
 	router.POST("/api/sessions", server.CreateSessionHandler)
 	router.GET("/api/sessions", server.ListSessionsHandler)
+	router.GET("/api/sessions/:id", server.GetSessionHandler)
 
 	// Start server
 	port := os.Getenv("PORT")
@@ -64,6 +97,7 @@ func main() {
 
 	addr := fmt.Sprintf(":%s", port)
 	log.Printf("Starting Dojo Genesis Desktop server on %s", addr)
+	log.Printf("Seeds directory: %s", filepath.Join(homeDir, ".dgd", "seeds"))
 	
 	if err := router.Run(addr); err != nil {
 		log.Fatal("Failed to start server:", err)

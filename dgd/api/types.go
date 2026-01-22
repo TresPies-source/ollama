@@ -2,9 +2,10 @@ package api
 
 // ChatRequest represents a chat request from the client
 type ChatRequest struct {
-	SessionID string    `json:"session_id"`
-	Message   string    `json:"message"`
-	Stream    *bool     `json:"stream,omitempty"`
+	SessionID    string   `json:"session_id"`
+	Message      string   `json:"message"`
+	Perspectives []string `json:"perspectives,omitempty"`
+	Stream       *bool    `json:"stream,omitempty"`
 }
 
 // ChatResponse represents a chat response to the client

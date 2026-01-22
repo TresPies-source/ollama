@@ -95,7 +95,20 @@ func (i *Instance) Readline() (string, error) {
 
 	var currentLineBuf []rune
 
+	// draining tracks if we're processing buffered input from cooked mode.
+	// In cooked mode Enter sends \n, but in raw mode Ctrl+J sends \n.
+	// We treat \n from cooked mode as submit, not multiline.
+	// We check Buffered() afterthe first read since the bufio buffer is
+	// empty until then.
+	var draining, stopDraining bool
+
 	for {
+		// Apply deferred state change from previous iteration
+		if stopDraining {
+			draining = false
+			stopDraining = false
+		}
+
 		// don't show placeholder when pasting unless we're in multiline mode
 		showPlaceholder := !i.Pasting || i.Prompt.UseAlt
 		if buf.IsEmpty() && showPlaceholder {
@@ -104,6 +117,15 @@ func (i *Instance) Readline() (string, error) {
 		}
 
 		r, err := i.Terminal.Read()
+
+		// After reading, check if there's more buffered data. If so, we're
+		// processing cooked-mode input. Once buffer empties, the current
+		// char is the last buffered one (still drain it), then stop next iteration.
+		if i.Terminal.reader.Buffered() > 0 {
+			draining = true
+		} else if draining {
+			stopDraining = true
+		}
 
 		if buf.IsEmpty() {
 			fmt.Print(ClearToEOL)
@@ -232,15 +254,20 @@ func (i *Instance) Readline() (string, error) {
 			fd := os.Stdin.Fd()
 			return handleCharCtrlZ(fd, i.Terminal.termios)
 		case CharCtrlJ:
-			i.pastedLines = append(i.pastedLines, buf.String())
-			buf.Buf.Clear()
-			buf.Pos = 0
-			buf.DisplayPos = 0
-			buf.LineHasSpace.Clear()
-			fmt.Println()
-			fmt.Print(i.Prompt.AltPrompt)
-			i.Prompt.UseAlt = true
-			continue
+			// If not draining cooked-mode input, treat as multiline
+			if !draining {
+				i.pastedLines = append(i.pastedLines, buf.String())
+				buf.Buf.Clear()
+				buf.Pos = 0
+				buf.DisplayPos = 0
+				buf.LineHasSpace.Clear()
+				fmt.Println()
+				fmt.Print(i.Prompt.AltPrompt)
+				i.Prompt.UseAlt = true
+				continue
+			}
+			// Draining cooked-mode input: treat \n as submit
+			fallthrough
 		case CharEnter:
 			output := buf.String()
 			if len(i.pastedLines) > 0 {

@@ -155,14 +155,14 @@ void rope_multi(const uint i0, const uint i1, rope_params p) {
 
     float theta_base = 0.0;
     if (p.is_imrope != 0) {
-        if (sector % 3 == 1 && sector < 1 + 3 * p.sections[1]) {
+        if (sector % 3 == 1 && sector < 3 * p.sections[1]) {
             theta_base = rope_data_pos[i02 + ne2 * 1]*pow(p.theta_scale, i0/2.0f);
-        } else if (sector % 3 == 2 && sector < 2 + 3 * p.sections[2]) {
+        } else if (sector % 3 == 2 && sector < 3 * p.sections[2]) {
             theta_base = rope_data_pos[i02 + ne2 * 2]*pow(p.theta_scale, i0/2.0f);
         } else if (sector % 3 == 0 && sector < 3 * p.sections[0]) {
             theta_base = rope_data_pos[i02]*pow(p.theta_scale, i0/2.0f);
-        //} else {
-        //    theta_base = rope_data_pos[i02 + ne2 * 3]*pow(p.theta_scale, i0/2.0f);
+        } else {
+            theta_base = rope_data_pos[i02 + ne2 * 3]*pow(p.theta_scale, i0/2.0f);
         }
     } else {
         if (sector < p.sections[0]) {

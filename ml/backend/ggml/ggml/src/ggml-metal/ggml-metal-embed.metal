@@ -7073,14 +7073,14 @@ kernel void kernel_rope_multi(
 
             float theta_base;
             if (FC_rope_is_imrope) {
-                if (sector % 3 == 1 && sector < 1 + 3 * args.sect_1) { // h
+                if (sector % 3 == 1 && sector < 3 * args.sect_1) { // h
                     theta_base = (float) pos[i2 + args.ne02 * 1];
-                } else if (sector % 3 == 2 && sector < 2 + 3 * args.sect_2) { // w
+                } else if (sector % 3 == 2 && sector < 3 * args.sect_2) { // w
                     theta_base = (float) pos[i2 + args.ne02 * 2];
                 } else if (sector % 3 == 0 && sector < 3 * args.sect_0) { // t
                     theta_base = (float) pos[i2 + args.ne02 * 0];
-                // } else { // e
-                //     theta_base = (float) pos[i2 + args.ne02 * 3];
+                } else { // e
+                    theta_base = (float) pos[i2 + args.ne02 * 3];
                 }
             } else {
                 if (sector < args.sect_0) {

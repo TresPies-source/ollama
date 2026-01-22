@@ -532,14 +532,6 @@ ggml_backend_t ggml_backend_dev_init(ggml_backend_dev_t device, const char * par
     return device->iface.init_backend(device, params);
 }
 
-void ggml_backend_dev_reset(ggml_backend_dev_t device) {
-    if (device->iface.reset == NULL) {
-        return;
-    }
-
-    device->iface.reset(device);
-}
-
 ggml_backend_buffer_type_t ggml_backend_dev_buffer_type(ggml_backend_dev_t device) {
     GGML_ASSERT(device);
     return device->iface.get_buffer_type(device);

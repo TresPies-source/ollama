@@ -7,21 +7,26 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/TresPies-source/dgd/agents/builder"
 	"github.com/TresPies-source/dgd/agents/dojo"
 	"github.com/TresPies-source/dgd/agents/librarian"
 	"github.com/TresPies-source/dgd/agents/supervisor"
 	"github.com/TresPies-source/dgd/database"
 	"github.com/TresPies-source/dgd/llm"
+	"github.com/TresPies-source/dgd/tools"
+	"github.com/TresPies-source/dgd/trace"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )
 
 // Server represents the API server
 type Server struct {
-	db         *database.DB
-	supervisor *supervisor.Supervisor
-	dojoAgent  *dojo.Dojo
-	llmClient  llm.Client
+	db           *database.DB
+	supervisor   *supervisor.Supervisor
+	dojoAgent    *dojo.Dojo
+	builderAgent *builder.Builder
+	llmClient    llm.Client
+	tracer       *trace.Tracer
 }
 
 // NewServer creates a new API server
@@ -29,16 +34,24 @@ func NewServer(db *database.DB) *Server {
 	return &Server{
 		db:         db,
 		supervisor: supervisor.NewSupervisor(),
+		tracer:     trace.NewTracer(),
 	}
 }
 
 // NewServerWithLLM creates a new API server with LLM integration
 func NewServerWithLLM(db *database.DB, llmClient llm.Client, model string) *Server {
+	// Create tool registry
+	homeDir, _ := os.UserHomeDir()
+	workingDir := filepath.Join(homeDir, "projects")
+	registry := tools.InitRegistry(workingDir)
+
 	return &Server{
-		db:         db,
-		supervisor: supervisor.NewSupervisorWithLLM(llmClient, model),
-		dojoAgent:  dojo.NewDojo(llmClient, model),
-		llmClient:  llmClient,
+		db:           db,
+		supervisor:   supervisor.NewSupervisorWithLLM(llmClient, model),
+		dojoAgent:    dojo.NewDojo(llmClient, model),
+		builderAgent: builder.NewBuilder(llmClient, model, registry),
+		llmClient:    llmClient,
+		tracer:       trace.NewTracer(),
 	}
 }
 
@@ -57,6 +70,10 @@ func (s *Server) ChatHandler(c *gin.Context) {
 		return
 	}
 
+	// Start trace
+	tr := s.tracer.StartTrace(req.SessionID)
+	ctx := trace.WithTrace(c.Request.Context(), tr)
+
 	// Save user message to database
 	userMessageID := uuid.New().String()
 	userMessage := &database.Message{
@@ -71,11 +88,20 @@ func (s *Server) ChatHandler(c *gin.Context) {
 	}
 
 	// Classify intent
-	intent, err := s.supervisor.ClassifyIntent(c.Request.Context(), req.Message)
+	trace.LogEvent(ctx, trace.EventAgentRouting, map[string]interface{}{
+		"query": req.Message,
+	}, nil, nil)
+
+	intent, err := s.supervisor.ClassifyIntent(ctx, req.Message)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 		return
 	}
+
+	trace.LogEvent(ctx, trace.EventAgentRouting, nil, map[string]interface{}{
+		"agent_type": string(intent.Type),
+		"confidence": intent.Confidence,
+	}, nil)
 
 	// Route to appropriate agent
 	var response string
@@ -84,13 +110,13 @@ func (s *Server) ChatHandler(c *gin.Context) {
 
 	switch intent.Type {
 	case supervisor.AgentDojo:
-		response, mode, err = s.handleDojoQuery(c, req.Message, req.Perspectives)
+		response, mode, err = s.handleDojoQuery(ctx, req.Message, req.Perspectives)
 		agentType = "dojo"
 	case supervisor.AgentLibrarian:
 		response, err = s.handleLibrarianQuery(c, session, req.Message)
 		agentType = "librarian"
 	case supervisor.AgentBuilder:
-		response = "[Builder Agent] Not yet implemented. Coming in Sprint 4!"
+		response, err = s.handleBuilderQuery(ctx, session, req.Message)
 		agentType = "builder"
 	default:
 		response = fmt.Sprintf("[Unknown Agent] Cannot process query: %s", req.Message)
@@ -98,6 +124,9 @@ func (s *Server) ChatHandler(c *gin.Context) {
 	}
 
 	if err != nil {
+		trace.LogEvent(ctx, trace.EventError, nil, nil, map[string]interface{}{
+			"error": err.Error(),
+		})
 		c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 		return
 	}
@@ -117,6 +146,9 @@ func (s *Server) ChatHandler(c *gin.Context) {
 		return
 	}
 
+	// End trace
+	s.tracer.EndTrace(req.SessionID)
+
 	// Return response
 	c.JSON(http.StatusOK, ChatResponse{
 		SessionID: req.SessionID,
@@ -129,11 +161,16 @@ func (s *Server) ChatHandler(c *gin.Context) {
 }
 
 // handleDojoQuery handles queries routed to the Dojo agent
-func (s *Server) handleDojoQuery(c *gin.Context, query string, perspectives []string) (string, string, error) {
+func (s *Server) handleDojoQuery(ctx context.Context, query string, perspectives []string) (string, string, error) {
 	// If no Dojo agent is configured, return placeholder
 	if s.dojoAgent == nil {
 		return fmt.Sprintf("[Dojo Agent] Processing query: %s", query), "", nil
 	}
+
+	trace.LogEvent(ctx, trace.EventPerspectiveIntegration, map[string]interface{}{
+		"query":        query,
+		"perspectives": perspectives,
+	}, nil, nil)
 
 	// Call Dojo agent
 	dojoReq := &dojo.Request{
@@ -141,10 +178,15 @@ func (s *Server) handleDojoQuery(c *gin.Context, query string, perspectives []st
 		Perspectives: perspectives,
 	}
 
-	dojoResp, err := s.dojoAgent.Process(c.Request.Context(), dojoReq)
+	dojoResp, err := s.dojoAgent.Process(ctx, dojoReq)
 	if err != nil {
 		return "", "", fmt.Errorf("dojo agent error: %w", err)
 	}
+
+	trace.LogEvent(ctx, trace.EventModeTransition, nil, map[string]interface{}{
+		"mode":    string(dojoResp.Mode),
+		"content": dojoResp.Content,
+	}, nil)
 
 	return dojoResp.Content, string(dojoResp.Mode), nil
 }
@@ -213,6 +255,50 @@ func (s *Server) handleLibrarianQuery(c *gin.Context, session *database.Session,
 	}
 
 	return fmt.Sprintf("[Librarian Agent] Processing query: %s", query), nil
+}
+
+// handleBuilderQuery handles queries routed to the Builder agent
+func (s *Server) handleBuilderQuery(ctx context.Context, session *database.Session, query string) (string, error) {
+	if s.builderAgent == nil {
+		return "[Builder Agent] Not yet implemented. Coming soon!", nil
+	}
+
+	trace.LogEvent(ctx, trace.EventToolInvocation, map[string]interface{}{
+		"query":       query,
+		"working_dir": session.WorkingDir,
+	}, nil, nil)
+
+	// Call Builder agent
+	builderReq := &builder.Request{
+		Query:      query,
+		WorkingDir: session.WorkingDir,
+	}
+
+	builderResp, err := s.builderAgent.Process(ctx, builderReq)
+	if err != nil {
+		return "", fmt.Errorf("builder agent error: %w", err)
+	}
+
+	trace.LogEvent(ctx, trace.EventToolInvocation, nil, map[string]interface{}{
+		"tools_used":    builderResp.ToolsUsed,
+		"files_created": builderResp.FilesCreated,
+		"success":       builderResp.Success,
+	}, nil)
+
+	return builderResp.Content, nil
+}
+
+// GetTraceHandler returns the trace for a session
+func (s *Server) GetTraceHandler(c *gin.Context) {
+	sessionID := c.Param("id")
+
+	tr, err := s.tracer.GetTrace(sessionID)
+	if err != nil {
+		c.JSON(http.StatusNotFound, ErrorResponse{Error: err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, tr)
 }
 
 // CreateSessionHandler handles session creation
@@ -315,7 +401,7 @@ func (s *Server) GetSessionHandler(c *gin.Context) {
 func (s *Server) HealthHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"status":  "ok",
-		"version": "0.0.3",
+		"version": "0.0.4",
 	})
 }
 

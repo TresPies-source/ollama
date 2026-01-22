@@ -21,7 +21,7 @@ func main() {
 
 	// Set up database path
 	dbPath := filepath.Join(homeDir, ".dgd", "dgd.db")
-	
+
 	// Open database
 	db, err := database.Open(dbPath)
 	if err != nil {
@@ -73,21 +73,23 @@ func main() {
 		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
 		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
 		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
-		
+
 		if c.Request.Method == "OPTIONS" {
 			c.AbortWithStatus(204)
 			return
 		}
-		
+
 		c.Next()
 	})
 
 	// API routes
 	router.GET("/health", server.HealthHandler)
 	router.POST("/api/chat", server.ChatHandler)
+	router.POST("/api/chat/stream", server.ChatStreamHandler)
 	router.POST("/api/sessions", server.CreateSessionHandler)
 	router.GET("/api/sessions", server.ListSessionsHandler)
 	router.GET("/api/sessions/:id", server.GetSessionHandler)
+	router.GET("/api/trace/:id", server.GetTraceHandler)
 
 	// Start server
 	port := os.Getenv("PORT")
@@ -98,7 +100,7 @@ func main() {
 	addr := fmt.Sprintf(":%s", port)
 	log.Printf("Starting Dojo Genesis Desktop server on %s", addr)
 	log.Printf("Seeds directory: %s", filepath.Join(homeDir, ".dgd", "seeds"))
-	
+
 	if err := router.Run(addr); err != nil {
 		log.Fatal("Failed to start server:", err)
 	}

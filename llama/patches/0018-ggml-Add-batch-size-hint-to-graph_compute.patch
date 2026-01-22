@@ -249,10 +249,10 @@ index 516d74064..5f8d6c175 100644
  }
  
 diff --git a/ggml/src/ggml-opencl/ggml-opencl.cpp b/ggml/src/ggml-opencl/ggml-opencl.cpp
-index e6370671f..70b1fde64 100644
+index 0ba07c814..c1274dead 100644
 --- a/ggml/src/ggml-opencl/ggml-opencl.cpp
 +++ b/ggml/src/ggml-opencl/ggml-opencl.cpp
-@@ -3043,9 +3043,11 @@ static void ggml_opencl_op_rms_norm_fused(ggml_backend_t backend, ggml_tensor *
+@@ -3070,9 +3070,11 @@ static void ggml_opencl_op_rms_norm_fused(ggml_backend_t backend, ggml_tensor *
  static void ggml_opencl_op_norm_fused(ggml_backend_t backend, ggml_tensor * norm_tensor, ggml_tensor * mul_tensor, ggml_tensor * add_tensor);
  static void ggml_opencl_op_group_norm_fused(ggml_backend_t backend, ggml_tensor * gn_tensor, ggml_tensor * mul_tensor, ggml_tensor * add_tensor);
  
@@ -330,10 +330,10 @@ index 584cea769..b37ab522c 100644
      ggml_backend_webgpu_context * backend_ctx = static_cast<ggml_backend_webgpu_context *>(backend->context);
      webgpu_context                ctx         = backend_ctx->webgpu_ctx;
 diff --git a/ggml/src/ggml-zdnn/ggml-zdnn.cpp b/ggml/src/ggml-zdnn/ggml-zdnn.cpp
-index 906d25417..caa2f7480 100644
+index 9b6938abf..9c5f3ae84 100644
 --- a/ggml/src/ggml-zdnn/ggml-zdnn.cpp
 +++ b/ggml/src/ggml-zdnn/ggml-zdnn.cpp
-@@ -411,7 +411,8 @@ static void ggml_backend_zdnn_free(ggml_backend_t backend) {
+@@ -412,7 +412,8 @@ static void ggml_backend_zdnn_free(ggml_backend_t backend) {
      free(backend);
  }
  

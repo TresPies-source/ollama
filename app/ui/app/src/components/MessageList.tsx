@@ -73,7 +73,9 @@ export default function MessageList({
                     ? String(args.url).trim()
                     : "";
               if (candidate) lastQuery = candidate;
-            } catch {}
+            } catch {
+              // Ignore JSON parsing errors
+            }
           }
         }
       }

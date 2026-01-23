@@ -11,11 +11,43 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as TraceNodeTestImport } from './routes/trace-node-test'
+import { Route as TraceGraphTestImport } from './routes/trace-graph-test'
+import { Route as TestSessionsImport } from './routes/test-sessions'
 import { Route as SettingsImport } from './routes/settings'
+import { Route as SessionsImport } from './routes/sessions'
+import { Route as SeedsTestImport } from './routes/seeds-test'
+import { Route as SeedsImport } from './routes/seeds'
+import { Route as FilesTestImport } from './routes/files-test'
+import { Route as FilesExplorerTestImport } from './routes/files-explorer-test'
+import { Route as FilesImport } from './routes/files'
+import { Route as FileTreeTestImport } from './routes/file-tree-test'
+import { Route as ComponentsImport } from './routes/components'
+import { Route as ChatDemoImport } from './routes/chat-demo'
 import { Route as IndexImport } from './routes/index'
+import { Route as TraceSessionIdImport } from './routes/trace.$sessionId'
+import { Route as ChatSessionIdImport } from './routes/chat.$sessionId'
 import { Route as CChatIdImport } from './routes/c.$chatId'
 
 // Create/Update Routes
+
+const TraceNodeTestRoute = TraceNodeTestImport.update({
+  id: '/trace-node-test',
+  path: '/trace-node-test',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const TraceGraphTestRoute = TraceGraphTestImport.update({
+  id: '/trace-graph-test',
+  path: '/trace-graph-test',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const TestSessionsRoute = TestSessionsImport.update({
+  id: '/test-sessions',
+  path: '/test-sessions',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const SettingsRoute = SettingsImport.update({
   id: '/settings',
@@ -23,9 +55,75 @@ const SettingsRoute = SettingsImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const SessionsRoute = SessionsImport.update({
+  id: '/sessions',
+  path: '/sessions',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SeedsTestRoute = SeedsTestImport.update({
+  id: '/seeds-test',
+  path: '/seeds-test',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const SeedsRoute = SeedsImport.update({
+  id: '/seeds',
+  path: '/seeds',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const FilesTestRoute = FilesTestImport.update({
+  id: '/files-test',
+  path: '/files-test',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const FilesExplorerTestRoute = FilesExplorerTestImport.update({
+  id: '/files-explorer-test',
+  path: '/files-explorer-test',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const FilesRoute = FilesImport.update({
+  id: '/files',
+  path: '/files',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const FileTreeTestRoute = FileTreeTestImport.update({
+  id: '/file-tree-test',
+  path: '/file-tree-test',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ComponentsRoute = ComponentsImport.update({
+  id: '/components',
+  path: '/components',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ChatDemoRoute = ChatDemoImport.update({
+  id: '/chat-demo',
+  path: '/chat-demo',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const TraceSessionIdRoute = TraceSessionIdImport.update({
+  id: '/trace/$sessionId',
+  path: '/trace/$sessionId',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ChatSessionIdRoute = ChatSessionIdImport.update({
+  id: '/chat/$sessionId',
+  path: '/chat/$sessionId',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -46,11 +144,95 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/chat-demo': {
+      id: '/chat-demo'
+      path: '/chat-demo'
+      fullPath: '/chat-demo'
+      preLoaderRoute: typeof ChatDemoImport
+      parentRoute: typeof rootRoute
+    }
+    '/components': {
+      id: '/components'
+      path: '/components'
+      fullPath: '/components'
+      preLoaderRoute: typeof ComponentsImport
+      parentRoute: typeof rootRoute
+    }
+    '/file-tree-test': {
+      id: '/file-tree-test'
+      path: '/file-tree-test'
+      fullPath: '/file-tree-test'
+      preLoaderRoute: typeof FileTreeTestImport
+      parentRoute: typeof rootRoute
+    }
+    '/files': {
+      id: '/files'
+      path: '/files'
+      fullPath: '/files'
+      preLoaderRoute: typeof FilesImport
+      parentRoute: typeof rootRoute
+    }
+    '/files-explorer-test': {
+      id: '/files-explorer-test'
+      path: '/files-explorer-test'
+      fullPath: '/files-explorer-test'
+      preLoaderRoute: typeof FilesExplorerTestImport
+      parentRoute: typeof rootRoute
+    }
+    '/files-test': {
+      id: '/files-test'
+      path: '/files-test'
+      fullPath: '/files-test'
+      preLoaderRoute: typeof FilesTestImport
+      parentRoute: typeof rootRoute
+    }
+    '/seeds': {
+      id: '/seeds'
+      path: '/seeds'
+      fullPath: '/seeds'
+      preLoaderRoute: typeof SeedsImport
+      parentRoute: typeof rootRoute
+    }
+    '/seeds-test': {
+      id: '/seeds-test'
+      path: '/seeds-test'
+      fullPath: '/seeds-test'
+      preLoaderRoute: typeof SeedsTestImport
+      parentRoute: typeof rootRoute
+    }
+    '/sessions': {
+      id: '/sessions'
+      path: '/sessions'
+      fullPath: '/sessions'
+      preLoaderRoute: typeof SessionsImport
+      parentRoute: typeof rootRoute
+    }
     '/settings': {
       id: '/settings'
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof SettingsImport
+      parentRoute: typeof rootRoute
+    }
+    '/test-sessions': {
+      id: '/test-sessions'
+      path: '/test-sessions'
+      fullPath: '/test-sessions'
+      preLoaderRoute: typeof TestSessionsImport
+      parentRoute: typeof rootRoute
+    }
+    '/trace-graph-test': {
+      id: '/trace-graph-test'
+      path: '/trace-graph-test'
+      fullPath: '/trace-graph-test'
+      preLoaderRoute: typeof TraceGraphTestImport
+      parentRoute: typeof rootRoute
+    }
+    '/trace-node-test': {
+      id: '/trace-node-test'
+      path: '/trace-node-test'
+      fullPath: '/trace-node-test'
+      preLoaderRoute: typeof TraceNodeTestImport
       parentRoute: typeof rootRoute
     }
     '/c/$chatId': {
@@ -60,6 +242,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CChatIdImport
       parentRoute: typeof rootRoute
     }
+    '/chat/$sessionId': {
+      id: '/chat/$sessionId'
+      path: '/chat/$sessionId'
+      fullPath: '/chat/$sessionId'
+      preLoaderRoute: typeof ChatSessionIdImport
+      parentRoute: typeof rootRoute
+    }
+    '/trace/$sessionId': {
+      id: '/trace/$sessionId'
+      path: '/trace/$sessionId'
+      fullPath: '/trace/$sessionId'
+      preLoaderRoute: typeof TraceSessionIdImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -67,42 +263,164 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/chat-demo': typeof ChatDemoRoute
+  '/components': typeof ComponentsRoute
+  '/file-tree-test': typeof FileTreeTestRoute
+  '/files': typeof FilesRoute
+  '/files-explorer-test': typeof FilesExplorerTestRoute
+  '/files-test': typeof FilesTestRoute
+  '/seeds': typeof SeedsRoute
+  '/seeds-test': typeof SeedsTestRoute
+  '/sessions': typeof SessionsRoute
   '/settings': typeof SettingsRoute
+  '/test-sessions': typeof TestSessionsRoute
+  '/trace-graph-test': typeof TraceGraphTestRoute
+  '/trace-node-test': typeof TraceNodeTestRoute
   '/c/$chatId': typeof CChatIdRoute
+  '/chat/$sessionId': typeof ChatSessionIdRoute
+  '/trace/$sessionId': typeof TraceSessionIdRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/chat-demo': typeof ChatDemoRoute
+  '/components': typeof ComponentsRoute
+  '/file-tree-test': typeof FileTreeTestRoute
+  '/files': typeof FilesRoute
+  '/files-explorer-test': typeof FilesExplorerTestRoute
+  '/files-test': typeof FilesTestRoute
+  '/seeds': typeof SeedsRoute
+  '/seeds-test': typeof SeedsTestRoute
+  '/sessions': typeof SessionsRoute
   '/settings': typeof SettingsRoute
+  '/test-sessions': typeof TestSessionsRoute
+  '/trace-graph-test': typeof TraceGraphTestRoute
+  '/trace-node-test': typeof TraceNodeTestRoute
   '/c/$chatId': typeof CChatIdRoute
+  '/chat/$sessionId': typeof ChatSessionIdRoute
+  '/trace/$sessionId': typeof TraceSessionIdRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/chat-demo': typeof ChatDemoRoute
+  '/components': typeof ComponentsRoute
+  '/file-tree-test': typeof FileTreeTestRoute
+  '/files': typeof FilesRoute
+  '/files-explorer-test': typeof FilesExplorerTestRoute
+  '/files-test': typeof FilesTestRoute
+  '/seeds': typeof SeedsRoute
+  '/seeds-test': typeof SeedsTestRoute
+  '/sessions': typeof SessionsRoute
   '/settings': typeof SettingsRoute
+  '/test-sessions': typeof TestSessionsRoute
+  '/trace-graph-test': typeof TraceGraphTestRoute
+  '/trace-node-test': typeof TraceNodeTestRoute
   '/c/$chatId': typeof CChatIdRoute
+  '/chat/$sessionId': typeof ChatSessionIdRoute
+  '/trace/$sessionId': typeof TraceSessionIdRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/settings' | '/c/$chatId'
+  fullPaths:
+    | '/'
+    | '/chat-demo'
+    | '/components'
+    | '/file-tree-test'
+    | '/files'
+    | '/files-explorer-test'
+    | '/files-test'
+    | '/seeds'
+    | '/seeds-test'
+    | '/sessions'
+    | '/settings'
+    | '/test-sessions'
+    | '/trace-graph-test'
+    | '/trace-node-test'
+    | '/c/$chatId'
+    | '/chat/$sessionId'
+    | '/trace/$sessionId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/settings' | '/c/$chatId'
-  id: '__root__' | '/' | '/settings' | '/c/$chatId'
+  to:
+    | '/'
+    | '/chat-demo'
+    | '/components'
+    | '/file-tree-test'
+    | '/files'
+    | '/files-explorer-test'
+    | '/files-test'
+    | '/seeds'
+    | '/seeds-test'
+    | '/sessions'
+    | '/settings'
+    | '/test-sessions'
+    | '/trace-graph-test'
+    | '/trace-node-test'
+    | '/c/$chatId'
+    | '/chat/$sessionId'
+    | '/trace/$sessionId'
+  id:
+    | '__root__'
+    | '/'
+    | '/chat-demo'
+    | '/components'
+    | '/file-tree-test'
+    | '/files'
+    | '/files-explorer-test'
+    | '/files-test'
+    | '/seeds'
+    | '/seeds-test'
+    | '/sessions'
+    | '/settings'
+    | '/test-sessions'
+    | '/trace-graph-test'
+    | '/trace-node-test'
+    | '/c/$chatId'
+    | '/chat/$sessionId'
+    | '/trace/$sessionId'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ChatDemoRoute: typeof ChatDemoRoute
+  ComponentsRoute: typeof ComponentsRoute
+  FileTreeTestRoute: typeof FileTreeTestRoute
+  FilesRoute: typeof FilesRoute
+  FilesExplorerTestRoute: typeof FilesExplorerTestRoute
+  FilesTestRoute: typeof FilesTestRoute
+  SeedsRoute: typeof SeedsRoute
+  SeedsTestRoute: typeof SeedsTestRoute
+  SessionsRoute: typeof SessionsRoute
   SettingsRoute: typeof SettingsRoute
+  TestSessionsRoute: typeof TestSessionsRoute
+  TraceGraphTestRoute: typeof TraceGraphTestRoute
+  TraceNodeTestRoute: typeof TraceNodeTestRoute
   CChatIdRoute: typeof CChatIdRoute
+  ChatSessionIdRoute: typeof ChatSessionIdRoute
+  TraceSessionIdRoute: typeof TraceSessionIdRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ChatDemoRoute: ChatDemoRoute,
+  ComponentsRoute: ComponentsRoute,
+  FileTreeTestRoute: FileTreeTestRoute,
+  FilesRoute: FilesRoute,
+  FilesExplorerTestRoute: FilesExplorerTestRoute,
+  FilesTestRoute: FilesTestRoute,
+  SeedsRoute: SeedsRoute,
+  SeedsTestRoute: SeedsTestRoute,
+  SessionsRoute: SessionsRoute,
   SettingsRoute: SettingsRoute,
+  TestSessionsRoute: TestSessionsRoute,
+  TraceGraphTestRoute: TraceGraphTestRoute,
+  TraceNodeTestRoute: TraceNodeTestRoute,
   CChatIdRoute: CChatIdRoute,
+  ChatSessionIdRoute: ChatSessionIdRoute,
+  TraceSessionIdRoute: TraceSessionIdRoute,
 }
 
 export const routeTree = rootRoute
@@ -116,18 +434,74 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/chat-demo",
+        "/components",
+        "/file-tree-test",
+        "/files",
+        "/files-explorer-test",
+        "/files-test",
+        "/seeds",
+        "/seeds-test",
+        "/sessions",
         "/settings",
-        "/c/$chatId"
+        "/test-sessions",
+        "/trace-graph-test",
+        "/trace-node-test",
+        "/c/$chatId",
+        "/chat/$sessionId",
+        "/trace/$sessionId"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
+    "/chat-demo": {
+      "filePath": "chat-demo.tsx"
+    },
+    "/components": {
+      "filePath": "components.tsx"
+    },
+    "/file-tree-test": {
+      "filePath": "file-tree-test.tsx"
+    },
+    "/files": {
+      "filePath": "files.tsx"
+    },
+    "/files-explorer-test": {
+      "filePath": "files-explorer-test.tsx"
+    },
+    "/files-test": {
+      "filePath": "files-test.tsx"
+    },
+    "/seeds": {
+      "filePath": "seeds.tsx"
+    },
+    "/seeds-test": {
+      "filePath": "seeds-test.tsx"
+    },
+    "/sessions": {
+      "filePath": "sessions.tsx"
+    },
     "/settings": {
       "filePath": "settings.tsx"
     },
+    "/test-sessions": {
+      "filePath": "test-sessions.tsx"
+    },
+    "/trace-graph-test": {
+      "filePath": "trace-graph-test.tsx"
+    },
+    "/trace-node-test": {
+      "filePath": "trace-node-test.tsx"
+    },
     "/c/$chatId": {
       "filePath": "c.$chatId.tsx"
+    },
+    "/chat/$sessionId": {
+      "filePath": "chat.$sessionId.tsx"
+    },
+    "/trace/$sessionId": {
+      "filePath": "trace.$sessionId.tsx"
     }
   }
 }

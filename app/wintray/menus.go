@@ -18,6 +18,7 @@ const (
 	_ = iota
 	openUIMenuID
 	settingsUIMenuID
+	checkForUpdatesMenuID
 	updateSeparatorMenuID
 	updateAvailableMenuID
 	updateMenuID
@@ -32,6 +33,9 @@ func (t *winTray) initMenus() error {
 		return fmt.Errorf("unable to create menu entries %w", err)
 	}
 	if err := t.addOrUpdateMenuItem(settingsUIMenuID, 0, settingsUIMenuTitle, false); err != nil {
+		return fmt.Errorf("unable to create menu entries %w", err)
+	}
+	if err := t.addOrUpdateMenuItem(checkForUpdatesMenuID, 0, checkForUpdatesMenuTitle, false); err != nil {
 		return fmt.Errorf("unable to create menu entries %w", err)
 	}
 	if err := t.addOrUpdateMenuItem(diagLogsMenuID, 0, diagLogsMenuTitle, false); err != nil {
@@ -90,7 +94,7 @@ func (t *winTray) UpdateAvailable(ver string) error {
 
 func (t *winTray) showLogs() error {
 	localAppData := os.Getenv("LOCALAPPDATA")
-	AppDataDir := filepath.Join(localAppData, "Ollama")
+	AppDataDir := filepath.Join(localAppData, "DojoGenesis")
 	cmd_path := "c:\\Windows\\system32\\cmd.exe"
 	slog.Debug(fmt.Sprintf("viewing logs with start %s", AppDataDir))
 	cmd := exec.Command(cmd_path, "/c", "start", AppDataDir)

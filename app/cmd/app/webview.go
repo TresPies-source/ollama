@@ -54,7 +54,7 @@ func (w *Webview) Run(path string) unsafe.Pointer {
 		wv := webview.New(debug)
 		// start the window hidden
 		hideWindow(wv.Window())
-		wv.SetTitle("Ollama")
+		wv.SetTitle("Dojo Genesis Desktop")
 
 		// TODO (jmorganca): this isn't working yet since it needs to be set
 		// on the first page load, ideally in an interstitial page like `/token`
@@ -458,10 +458,10 @@ func (w *Webview) Run(path string) unsafe.Pointer {
 			if width > 0 && height > 0 {
 				wv.SetSize(width, height, webview.HintNone)
 			} else {
-				wv.SetSize(800, 600, webview.HintNone)
+				wv.SetSize(1200, 800, webview.HintNone)
 			}
 		}
-		wv.SetSize(800, 600, webview.HintMin)
+		wv.SetSize(1200, 800, webview.HintMin)
 
 		w.webview = wv
 		w.webview.Navigate(url)

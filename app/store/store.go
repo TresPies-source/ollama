@@ -183,11 +183,11 @@ type Store struct {
 var defaultDBPath = func() string {
 	switch runtime.GOOS {
 	case "windows":
-		return filepath.Join(os.Getenv("LOCALAPPDATA"), "Ollama", "db.sqlite")
+		return filepath.Join(os.Getenv("LOCALAPPDATA"), "DojoGenesis", "db.sqlite")
 	case "darwin":
-		return filepath.Join(os.Getenv("HOME"), "Library", "Application Support", "Ollama", "db.sqlite")
+		return filepath.Join(os.Getenv("HOME"), "Library", "Application Support", "DojoGenesis", "db.sqlite")
 	default:
-		return filepath.Join(os.Getenv("HOME"), ".ollama", "db.sqlite")
+		return filepath.Join(os.Getenv("HOME"), ".dojogenesis", "db.sqlite")
 	}
 }()
 

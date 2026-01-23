@@ -28,6 +28,7 @@ import (
 
 var (
 	UpdateCheckURLBase      = "https://ollama.com/api/update"
+	UseGitHubReleases       = true // Use GitHub releases for Dojo Genesis Desktop
 	UpdateDownloaded        = false
 	UpdateCheckInterval     = 60 * 60 * time.Second
 	UpdateCheckInitialDelay = 3 * time.Second // 30 * time.Second
@@ -50,6 +51,18 @@ type UpdateResponse struct {
 func (u *Updater) checkForUpdate(ctx context.Context) (bool, UpdateResponse) {
 	var updateResp UpdateResponse
 
+	// Use GitHub releases API if enabled (for Dojo Genesis Desktop)
+	if UseGitHubReleases {
+		available, resp, err := CheckGitHubRelease(ctx)
+		if err != nil {
+			slog.Warn("failed to check GitHub releases", "error", err)
+			// Fall back to legacy update check if GitHub fails
+		} else {
+			return available, resp
+		}
+	}
+
+	// Legacy Ollama update check
 	requestURL, err := url.Parse(UpdateCheckURLBase)
 	if err != nil {
 		return false, updateResp
@@ -274,4 +287,29 @@ func (u *Updater) StartBackgroundUpdaterChecker(ctx context.Context, cb func(str
 			}
 		}
 	}()
+}
+
+// CheckForUpdateNow manually triggers an immediate update check.
+// This is called when the user clicks "Check for Updates" in the system tray menu.
+// It runs synchronously in the calling goroutine, so callers should wrap it in a goroutine
+// if they want to avoid blocking.
+func (u *Updater) CheckForUpdateNow(ctx context.Context, cb func(string) error) {
+	slog.Info("manual update check triggered")
+	available, resp := u.checkForUpdate(ctx)
+	if available {
+		slog.Info("update available", "version", resp.UpdateVersion)
+		err := u.DownloadNewRelease(ctx, resp)
+		if err != nil {
+			slog.Error("failed to download new release", "error", err)
+		} else {
+			if cb != nil {
+				err = cb(resp.UpdateVersion)
+				if err != nil {
+					slog.Warn("failed to register update available with tray", "error", err)
+				}
+			}
+		}
+	} else {
+		slog.Info("no updates available, already on latest version")
+	}
 }

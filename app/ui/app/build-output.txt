@@ -1,0 +1,24 @@
+
+> dojo-genesis-desktop@0.1.0 build
+> tsc -b && vite build
+
+src/components/trace/TraceControls.tsx(26,9): error TS2322: Type '{ children: Element; variant: string; size: string; onClick: () => void; title: string; className: string; }' is not assignable to type 'IntrinsicAttributes & (ButtonProps & RefAttributes<HTMLElement>)'.
+  Property 'variant' does not exist on type 'IntrinsicAttributes & (ButtonProps & RefAttributes<HTMLElement>)'.
+src/components/trace/TraceControls.tsx(48,9): error TS2322: Type '{ children: Element; variant: string; size: string; onClick: () => void; title: string; className: string; }' is not assignable to type 'IntrinsicAttributes & (ButtonProps & RefAttributes<HTMLElement>)'.
+  Property 'variant' does not exist on type 'IntrinsicAttributes & (ButtonProps & RefAttributes<HTMLElement>)'.
+src/components/trace/TraceControls.tsx(70,9): error TS2322: Type '{ children: Element; variant: string; size: string; onClick: () => void; title: string; className: string; }' is not assignable to type 'IntrinsicAttributes & (ButtonProps & RefAttributes<HTMLElement>)'.
+  Property 'variant' does not exist on type 'IntrinsicAttributes & (ButtonProps & RefAttributes<HTMLElement>)'.
+src/components/trace/TraceControls.tsx(92,9): error TS2322: Type '{ children: Element; variant: string; size: string; onClick: () => void; title: string; className: string; }' is not assignable to type 'IntrinsicAttributes & (ButtonProps & RefAttributes<HTMLElement>)'.
+  Property 'variant' does not exist on type 'IntrinsicAttributes & (ButtonProps & RefAttributes<HTMLElement>)'.
+src/components/trace/TraceGraph.tsx(10,8): error TS6133: 'Edge' is declared but its value is never read.
+src/components/trace/TraceGraph.tsx(12,8): error TS6133: 'OnNodesChange' is declared but its value is never read.
+src/components/trace/TraceGraph.tsx(13,8): error TS6133: 'OnEdgesChange' is declared but its value is never read.
+src/components/trace/TraceGraph.tsx(35,10): error TS6133: 'hoveredNodeId' is declared but its value is never read.
+src/components/trace/TraceGraph.tsx(146,13): error TS2353: Object literal may only specify known properties, and 'button' does not exist in type 'Properties<string | number, string & {}>'.
+src/components/trace/TraceNode.tsx(3,1): error TS6133: 'Node' is declared but its value is never read.
+src/routes/seeds.tsx(3,1): error TS6133: 'clsx' is declared but its value is never read.
+src/routes/trace-graph-test.tsx(14,7): error TS2322: Type 'null' is not assignable to type 'string | undefined'.
+src/routes/trace.$sessionId.tsx(41,13): error TS2322: Type '{ children: string; onClick: () => Promise<void>; variant: string; }' is not assignable to type 'IntrinsicAttributes & (ButtonProps & RefAttributes<HTMLElement>)'.
+  Property 'variant' does not exist on type 'IntrinsicAttributes & (ButtonProps & RefAttributes<HTMLElement>)'.
+src/routes/trace.$sessionId.tsx(66,13): error TS2322: Type '{ children: string; onClick: () => Promise<void>; variant: string; }' is not assignable to type 'IntrinsicAttributes & (ButtonProps & RefAttributes<HTMLElement>)'.
+  Property 'variant' does not exist on type 'IntrinsicAttributes & (ButtonProps & RefAttributes<HTMLElement>)'.

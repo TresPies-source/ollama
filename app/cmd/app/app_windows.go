@@ -3,6 +3,7 @@
 package main
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	"io"
@@ -86,6 +87,7 @@ func installSymlink() {}
 type appCallbacks struct {
 	t        wintray.TrayCallbacks
 	shutdown func()
+	ctx      context.Context
 }
 
 var app = &appCallbacks{}
@@ -136,6 +138,17 @@ func (app *appCallbacks) HandleURLScheme(urlScheme string) {
 	handleURLSchemeRequest(urlScheme)
 }
 
+// CheckForUpdates implements the AppCallbacks interface and triggers
+// a manual update check. It runs asynchronously in a goroutine to avoid
+// blocking the UI thread.
+func (app *appCallbacks) CheckForUpdates() {
+	if appUpdater != nil && app.ctx != nil {
+		go appUpdater.CheckForUpdateNow(app.ctx, UpdateAvailable)
+	} else {
+		slog.Warn("unable to check for updates: updater or context not initialized")
+	}
+}
+
 // handleURLSchemeRequest processes URL scheme requests from other instances
 func handleURLSchemeRequest(urlScheme string) {
 	isConnect, err := parseURLScheme(urlScheme)
@@ -157,9 +170,10 @@ func UpdateAvailable(ver string) error {
 	return app.t.UpdateAvailable(ver)
 }
 
-func osRun(shutdown func(), hasCompletedFirstRun, startHidden bool) {
+func osRun(shutdown func(), ctx context.Context, hasCompletedFirstRun, startHidden bool) {
 	var err error
 	app.shutdown = shutdown
+	app.ctx = ctx
 	app.t, err = wintray.NewTray(app)
 	if err != nil {
 		log.Fatalf("Failed to start: %s", err)

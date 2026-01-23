@@ -56,6 +56,31 @@ const styles = {
     // Icon
     "[--btn-icon:var(--color-zinc-500)] data-active:[--btn-icon:var(--color-zinc-700)] data-hover:[--btn-icon:var(--color-zinc-700)] dark:[--btn-icon:var(--color-zinc-500)] dark:data-active:[--btn-icon:var(--color-zinc-400)] dark:data-hover:[--btn-icon:var(--color-zinc-400)]",
   ],
+  primary: [
+    // Dojo Genesis Primary - Sunset gradient
+    "border-transparent text-white",
+    "bg-gradient-to-br from-dojo-accent-primary via-dojo-accent-secondary to-dojo-accent-tertiary",
+    "shadow-dojo-glow transition-all duration-300 ease-natural",
+    "data-hover:shadow-dojo-glow-strong data-hover:scale-105",
+    "data-active:scale-95",
+    "[--btn-icon:var(--color-white)]",
+  ],
+  secondary: [
+    // Dojo Genesis Secondary - Glass effect
+    "border-white/10 text-white",
+    "bg-[rgba(15,42,61,0.7)] backdrop-blur-dojo",
+    "shadow-dojo-md transition-all duration-300 ease-natural",
+    "data-hover:bg-[rgba(15,42,61,0.9)] data-hover:border-white/20 data-hover:shadow-dojo-lg",
+    "data-active:bg-[rgba(15,42,61,0.95)]",
+    "[--btn-icon:var(--color-white)]",
+  ],
+  ghost: [
+    // Dojo Genesis Ghost - Transparent
+    "border-transparent text-white",
+    "data-hover:bg-white/10",
+    "data-active:bg-white/5",
+    "[--btn-icon:var(--color-white)]",
+  ],
   colors: {
     "dark/zinc": [
       "text-white [--btn-bg:var(--color-zinc-900)] [--btn-border:var(--color-zinc-950)]/90 [--btn-hover-overlay:var(--color-white)]/10",
@@ -159,26 +184,87 @@ const styles = {
 };
 
 type ButtonProps = (
-  | { color?: keyof typeof styles.colors; outline?: never; plain?: never }
-  | { color?: never; outline: true; plain?: never }
-  | { color?: never; outline?: never; plain: true }
+  | {
+      color?: keyof typeof styles.colors;
+      outline?: never;
+      plain?: never;
+      primary?: never;
+      secondary?: never;
+      ghost?: never;
+    }
+  | {
+      color?: never;
+      outline: true;
+      plain?: never;
+      primary?: never;
+      secondary?: never;
+      ghost?: never;
+    }
+  | {
+      color?: never;
+      outline?: never;
+      plain: true;
+      primary?: never;
+      secondary?: never;
+      ghost?: never;
+    }
+  | {
+      color?: never;
+      outline?: never;
+      plain?: never;
+      primary: true;
+      secondary?: never;
+      ghost?: never;
+    }
+  | {
+      color?: never;
+      outline?: never;
+      plain?: never;
+      primary?: never;
+      secondary: true;
+      ghost?: never;
+    }
+  | {
+      color?: never;
+      outline?: never;
+      plain?: never;
+      primary?: never;
+      secondary?: never;
+      ghost: true;
+    }
 ) & { className?: string; children: React.ReactNode } & (
     | Omit<Headless.ButtonProps, "as" | "className">
     | Omit<React.ComponentPropsWithoutRef<typeof Link>, "className">
   );
 
 export const Button = forwardRef(function Button(
-  { color, outline, plain, className, children, ...props }: ButtonProps,
+  {
+    color,
+    outline,
+    plain,
+    primary,
+    secondary,
+    ghost,
+    className,
+    children,
+    ...props
+  }: ButtonProps,
   ref: React.ForwardedRef<HTMLElement>,
 ) {
-  let classes = clsx(
+  const classes = clsx(
     className,
     styles.base,
-    outline
-      ? styles.outline
-      : plain
-        ? styles.plain
-        : clsx(styles.solid, styles.colors[color ?? "dark/zinc"]),
+    primary
+      ? styles.primary
+      : secondary
+        ? styles.secondary
+        : ghost
+          ? styles.ghost
+          : outline
+            ? styles.outline
+            : plain
+              ? styles.plain
+              : clsx(styles.solid, styles.colors[color ?? "dark/zinc"]),
   );
 
   return "href" in props ? (

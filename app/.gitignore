@@ -9,3 +9,4 @@ ollama
 .env
 .DS_Store
 .claude
+ui/app/dist/

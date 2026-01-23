@@ -35,6 +35,7 @@ import (
 var (
 	wv           = &Webview{}
 	uiServerPort int
+	appUpdater   *updater.Updater
 )
 
 var debug = strings.EqualFold(os.Getenv("OLLAMA_DEBUG"), "true") || os.Getenv("OLLAMA_DEBUG") == "1"
@@ -284,8 +285,8 @@ func main() {
 		slog.Debug("background desktop server done")
 	}()
 
-	updater := &updater.Updater{Store: st}
-	updater.StartBackgroundUpdaterChecker(ctx, UpdateAvailable)
+	appUpdater = &updater.Updater{Store: st}
+	appUpdater.StartBackgroundUpdaterChecker(ctx, UpdateAvailable)
 
 	hasCompletedFirstRun, err := st.HasCompletedFirstRun()
 	if err != nil {
@@ -327,7 +328,7 @@ func main() {
 		}
 	}()
 
-	osRun(cancel, hasCompletedFirstRun, startHidden)
+	osRun(cancel, ctx, hasCompletedFirstRun, startHidden)
 
 	slog.Info("shutting down desktop server")
 	if err := srv.Close(); err != nil {

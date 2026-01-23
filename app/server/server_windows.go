@@ -15,8 +15,8 @@ import (
 )
 
 var (
-	pidFile       = filepath.Join(os.Getenv("LOCALAPPDATA"), "Ollama", "ollama.pid")
-	serverLogPath = filepath.Join(os.Getenv("LOCALAPPDATA"), "Ollama", "server.log")
+	pidFile       = filepath.Join(os.Getenv("LOCALAPPDATA"), "DojoGenesis", "dojogenesis.pid")
+	serverLogPath = filepath.Join(os.Getenv("LOCALAPPDATA"), "DojoGenesis", "server.log")
 )
 
 func commandContext(ctx context.Context, name string, arg ...string) *exec.Cmd {

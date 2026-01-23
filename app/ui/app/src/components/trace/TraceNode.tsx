@@ -69,33 +69,72 @@ function formatTimestamp(timestamp: string): string {
 }
 
 /**
- * Check if event type uses gradient border
+ * Tree metaphor node types
+ * - Supervisor (trunk): MODE_TRANSITION
+ * - Agent (branches): AGENT_ROUTING
+ * - Tool (leaves): TOOL_INVOCATION
  */
-function isGradientBorder(eventType: EventType): boolean {
-  return eventType === "MODE_TRANSITION";
+function getNodeMetaphor(eventType: EventType): "supervisor" | "agent" | "tool" | "other" {
+  switch (eventType) {
+    case "MODE_TRANSITION":
+      return "supervisor";
+    case "AGENT_ROUTING":
+      return "agent";
+    case "TOOL_INVOCATION":
+      return "tool";
+    default:
+      return "other";
+  }
 }
 
 /**
- * Get border classes and inline style based on event type
+ * Get node styling based on tree metaphor
  */
-function getBorderStyle(eventType: EventType): {
-  className?: string;
-  style?: React.CSSProperties;
+function getNodeStyle(eventType: EventType): {
+  backgroundClass: string;
+  borderClass: string;
+  shadowClass: string;
+  borderStyle?: React.CSSProperties;
 } {
-  const color = EVENT_TYPE_COLORS[eventType];
+  const metaphor = getNodeMetaphor(eventType);
 
-  if (isGradientBorder(eventType)) {
-    // Use class-based gradient border
-    return { className: "trace-node-gradient-border" };
+  switch (metaphor) {
+    case "supervisor":
+      // Supervisor (tree trunk) - Sunset gradient background
+      return {
+        backgroundClass: "bg-gradient-to-br from-dojo-accent-tertiary via-dojo-accent-primary to-dojo-accent-secondary",
+        borderClass: "border-2 border-dojo-accent-tertiary",
+        shadowClass: "shadow-dojo-glow-strong",
+      };
+    case "agent":
+      // Agent (branches) - Tertiary background with accent border
+      return {
+        backgroundClass: "bg-dojo-bg-tertiary/80 backdrop-blur-dojo",
+        borderClass: "border-2 border-dojo-accent-primary",
+        shadowClass: "shadow-dojo-glow",
+      };
+    case "tool":
+      // Tool (leaves) - Neutral dark background
+      return {
+        backgroundClass: "bg-dojo-neutral-dark/80 backdrop-blur-dojo",
+        borderClass: "border border-dojo-neutral-mid",
+        shadowClass: "shadow-dojo-md",
+      };
+    default: {
+      // Other event types - use color-coded borders
+      const color = EVENT_TYPE_COLORS[eventType];
+      return {
+        backgroundClass: "bg-[rgba(15,42,61,0.8)] backdrop-blur-dojo",
+        borderClass: "",
+        shadowClass: "shadow-dojo-md",
+        borderStyle: {
+          borderColor: color,
+          borderWidth: "2px",
+          borderStyle: "solid",
+        },
+      };
+    }
   }
-
-  return {
-    style: {
-      borderColor: color,
-      borderWidth: "2px",
-      borderStyle: "solid",
-    },
-  };
 }
 
 /**
@@ -114,7 +153,7 @@ export const TraceNode = memo(({ data, selected }: TraceNodeProps) => {
   const { event, summary, expanded } = data;
   const { event_type, timestamp, inputs, outputs } = event;
 
-  const borderStyle = getBorderStyle(event_type);
+  const nodeStyle = getNodeStyle(event_type);
   const relativeTime = formatTimestamp(timestamp);
   const badgeColor = EVENT_TYPE_BADGE_COLORS[event_type];
 
@@ -126,15 +165,15 @@ export const TraceNode = memo(({ data, selected }: TraceNodeProps) => {
       className={clsx(
         "relative min-w-[280px] max-w-[320px]",
         "rounded-dojo-lg",
-        "bg-[rgba(15,42,61,0.8)] backdrop-blur-dojo",
-        "shadow-dojo-md",
+        nodeStyle.backgroundClass,
+        nodeStyle.borderClass,
+        nodeStyle.shadowClass,
         "transition-all duration-300 ease-natural",
         selected && "shadow-dojo-xl ring-2 ring-white/20",
         "hover:shadow-dojo-lg hover:-translate-y-0.5",
         hasExpandableData && "cursor-pointer",
-        borderStyle.className,
       )}
-      style={borderStyle.style}
+      style={nodeStyle.borderStyle}
     >
       {/* Top handle */}
       <Handle

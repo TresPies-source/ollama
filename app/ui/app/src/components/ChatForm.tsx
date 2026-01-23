@@ -710,7 +710,7 @@ function ChatForm({
       {/* File upload error message */}
       {fileUploadError && <ErrorMessage error={fileUploadError} />}
       <div
-        className={`relative mx-auto flex bg-neutral-100 w-full max-w-[768px] flex-col items-center rounded-3xl pb-2 pt-4 dark:bg-neutral-800 dark:border-neutral-700 min-h-[88px] transition-opacity duration-200 ${isDisabled ? "opacity-50" : "opacity-100"}`}
+        className={`relative mx-auto flex bg-neutral-100 w-full max-w-[768px] flex-col items-center rounded-3xl pb-2 pt-4 dark:bg-neutral-800 dark:border-neutral-700 min-h-[88px] transition-opacity duration-300 ease-natural ${isDisabled ? "opacity-50" : "opacity-100"}`}
       >
         {isDisabled && (
           // overlay to block interaction
@@ -728,7 +728,7 @@ function ChatForm({
             {message.attachments.map((attachment, index) => (
               <div
                 key={attachment.id}
-                className="group flex items-center gap-2 py-2 px-3 rounded-lg bg-neutral-50 dark:bg-neutral-700/50 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors flex-shrink-0"
+                className="group flex items-center gap-2 py-2 px-3 rounded-lg bg-neutral-50 dark:bg-neutral-700/50 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-all duration-300 ease-natural flex-shrink-0"
               >
                 {isImageFile(attachment.filename) ? (
                   <ImageThumbnail
@@ -759,7 +759,7 @@ function ChatForm({
                 <button
                   type="button"
                   onClick={() => removeFile(index)}
-                  className="opacity-0 group-hover:opacity-100 transition-opacity text-neutral-400 hover:text-neutral-600 dark:text-neutral-500 dark:hover:text-neutral-300 -mr-1 cursor-pointer"
+                  className="opacity-0 group-hover:opacity-100 transition-all duration-300 ease-natural text-neutral-400 hover:text-neutral-600 dark:text-neutral-500 dark:hover:text-neutral-300 -mr-1 cursor-pointer"
                   aria-label={`Remove ${attachment.filename}`}
                 >
                   <svg
@@ -805,7 +805,7 @@ function ChatForm({
                 <button
                   type="button"
                   onClick={() => removeFileError(index)}
-                  className="opacity-0 group-hover:opacity-100 transition-opacity text-red-400 hover:text-red-600 dark:text-red-500 dark:hover:text-red-300 -mr-1 ml-auto"
+                  className="opacity-0 group-hover:opacity-100 transition-all duration-300 ease-natural text-red-400 hover:text-red-600 dark:text-red-500 dark:hover:text-red-300 -mr-1 ml-auto"
                   aria-label={`Remove ${fileError.filename}`}
                 >
                   <svg
@@ -834,7 +834,7 @@ function ChatForm({
             onChange={handleTextareaChange}
             placeholder="Send a message"
             disabled={isDisabled}
-            className={`allow-context-menu w-full overflow-y-auto text-neutral-700 outline-none resize-none border-none bg-transparent dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 min-h-[24px] leading-6 transition-opacity duration-300 ${
+            className={`allow-context-menu w-full overflow-y-auto text-neutral-700 outline-none resize-none border-none bg-transparent dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 min-h-[24px] leading-6 transition-opacity duration-300 ease-natural ${
               editingMessage ? "animate-fade-in" : ""
             }`}
             rows={1}

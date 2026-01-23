@@ -158,7 +158,7 @@ function BrowserToolResult({
     <div
       className={`flex flex-col w-full ${!isCollapsed ? "text-neutral-800 dark:text-neutral-200" : "text-neutral-600 dark:text-neutral-400"}
          hover:text-neutral-800
-        dark:hover:text-neutral-200 transition-colors`}
+        dark:hover:text-neutral-200 transition-all duration-300 ease-natural`}
     >
       <div
         className="flex cursor-pointer group/browser self-start relative"
@@ -282,7 +282,7 @@ function ToolRoleContent({
       )}
 
       {rawToolResult && (
-        <div className="flex flex-col w-full text-neutral-600 dark:text-neutral-400 relative select-text hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors">
+        <div className="flex flex-col w-full text-neutral-600 dark:text-neutral-400 relative select-text hover:text-neutral-800 dark:hover:text-neutral-200 transition-all duration-300 ease-natural">
           <div
             className="flex cursor-pointer group/browser self-start relative"
             onClick={() => setIsCollapsed(!isCollapsed)}
@@ -679,7 +679,7 @@ function ToolCallDisplay({
     <div
       className={`flex flex-col w-full ${!isCollapsed ? "text-neutral-800 dark:text-neutral-200" : "text-neutral-600 dark:text-neutral-400"}
          hover:text-neutral-800
-        dark:hover:text-neutral-200 transition-colors`}
+        dark:hover:text-neutral-200 transition-all duration-300 ease-natural`}
     >
       <div
         className="flex items-center cursor-pointer group/tool self-start relative"
@@ -828,7 +828,7 @@ function UserMessage({
                   .map((attachment: File, index: number) => (
                     <div
                       key={`file-attachment-${index}`}
-                      className="flex items-center gap-2 py-1 px-2 rounded-lg bg-neutral-50 dark:bg-neutral-600/50 transition-colors flex-shrink-0"
+                      className="flex items-center gap-2 py-1 px-2 rounded-lg bg-neutral-50 dark:bg-neutral-600/50 transition-all duration-300 ease-natural flex-shrink-0"
                     >
                       <svg
                         className="w-3 h-3 text-neutral-400 dark:text-neutral-500 flex-shrink-0"

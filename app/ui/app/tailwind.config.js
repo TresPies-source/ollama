@@ -16,15 +16,19 @@ export default {
           // Background & Structure
           "bg-primary": "#0a1e2e",
           "bg-secondary": "#0f2a3d",
-          "bg-tertiary": "#1a3647",
+          "bg-tertiary": "#143847",
           // Accent Colors
           "accent-primary": "#f4a261",
           "accent-secondary": "#e76f51",
           "accent-tertiary": "#ffd166",
+          // Neutral Tones
+          "neutral-dark": "#1a3a4a",
+          "neutral-mid": "#4a6a7a",
+          "neutral-light": "#8aa8b8",
           // Text Colors
           "text-primary": "#ffffff",
-          "text-secondary": "#b0c4de",
-          "text-tertiary": "#8a9fb8",
+          "text-secondary": "#d4e4ed",
+          "text-tertiary": "#8aa8b8",
           "text-accent": "#f4a261",
           // Semantic Colors
           success: "#10b981",
@@ -35,7 +39,20 @@ export default {
       },
       fontFamily: {
         sans: ["Inter", "ui-sans-serif", "system-ui", "Segoe UI", "sans-serif"],
+        accent: ["Outfit", "Inter", "sans-serif"],
+        brand: ["Outfit", "Inter", "sans-serif"],
         mono: ["JetBrains Mono", "ui-monospace", "Courier New", "monospace"],
+      },
+      fontSize: {
+        xs: "var(--text-xs)",
+        sm: "var(--text-sm)",
+        base: "var(--text-base)",
+        lg: "var(--text-lg)",
+        xl: "var(--text-xl)",
+        "2xl": "var(--text-2xl)",
+        "3xl": "var(--text-3xl)",
+        "4xl": "var(--text-4xl)",
+        "5xl": "var(--text-5xl)",
       },
       borderRadius: {
         "dojo-sm": "6px",

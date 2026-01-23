@@ -44,7 +44,7 @@ const renderWithLinks = (text: string) => {
 
 export const ErrorMessage = ({ error }: ErrorMessageProps) => {
   return (
-    <div className="flex flex-col w-full text-neutral-800 dark:text-neutral-200 transition-colors mb-8">
+    <div className="flex flex-col w-full text-neutral-800 dark:text-neutral-200 transition-all duration-300 ease-natural mb-8">
       <div className="flex items-center self-start relative">
         {/* Circled X icon */}
         <div className="flex-shrink-0 w-4 h-4 rounded-full border border-black dark:border-white flex items-center justify-center mr-3">

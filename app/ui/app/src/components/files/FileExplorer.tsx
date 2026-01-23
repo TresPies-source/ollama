@@ -104,7 +104,7 @@ export function FileExplorer({
         className={clsx(
           "w-1 cursor-col-resize",
           "bg-dojo-accent-primary/20 hover:bg-dojo-accent-primary/40",
-          "transition-colors duration-200",
+          "transition-all duration-300 ease-natural",
           "active:bg-dojo-accent-primary",
         )}
         onMouseDown={handleMouseDown}

@@ -10,7 +10,7 @@ function ComponentsPage() {
     <div className="min-h-screen bg-dojo-bg-primary p-8">
       <div className="max-w-6xl mx-auto space-y-12">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-white mb-4">
+          <h1 className="font-brand font-bold text-white mb-4">
             Dojo Genesis Design System
           </h1>
           <p className="text-dojo-text-secondary text-lg">
@@ -20,7 +20,7 @@ function ComponentsPage() {
 
         {/* Button Components */}
         <Card className="p-8">
-          <h2 className="text-2xl font-bold text-white mb-6">Buttons</h2>
+          <h2 className="font-bold text-white mb-6">Buttons</h2>
           <div className="space-y-6">
             <div>
               <h3 className="text-sm font-medium text-dojo-text-secondary mb-3">
@@ -73,7 +73,7 @@ function ComponentsPage() {
 
         {/* Input Components */}
         <Card className="p-8">
-          <h2 className="text-2xl font-bold text-white mb-6">Inputs</h2>
+          <h2 className="font-bold text-white mb-6">Inputs</h2>
           <div className="space-y-6 max-w-md">
             <div>
               <label className="block text-sm font-medium text-dojo-text-secondary mb-2">
@@ -100,7 +100,7 @@ function ComponentsPage() {
 
         {/* Card Components */}
         <Card className="p-8">
-          <h2 className="text-2xl font-bold text-white mb-6">Cards</h2>
+          <h2 className="font-bold text-white mb-6">Cards</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Card className="p-6">
               <h3 className="text-lg font-semibold text-white mb-2">
@@ -134,7 +134,7 @@ function ComponentsPage() {
 
         {/* Badge Components */}
         <Card className="p-8">
-          <h2 className="text-2xl font-bold text-white mb-6">Badges</h2>
+          <h2 className="font-bold text-white mb-6">Badges</h2>
           <div className="space-y-6">
             <div>
               <h3 className="text-sm font-medium text-dojo-text-secondary mb-3">
@@ -175,7 +175,7 @@ function ComponentsPage() {
 
         {/* Avatar Components */}
         <Card className="p-8">
-          <h2 className="text-2xl font-bold text-white mb-6">Avatars</h2>
+          <h2 className="font-bold text-white mb-6">Avatars</h2>
           <div className="space-y-6">
             <div>
               <h3 className="text-sm font-medium text-dojo-text-secondary mb-3">
@@ -216,7 +216,7 @@ function ComponentsPage() {
 
         {/* Design Tokens */}
         <Card className="p-8">
-          <h2 className="text-2xl font-bold text-white mb-6">Design Tokens</h2>
+          <h2 className="font-bold text-white mb-6">Design Tokens</h2>
           <div className="space-y-6">
             <div>
               <h3 className="text-sm font-medium text-dojo-text-secondary mb-3">

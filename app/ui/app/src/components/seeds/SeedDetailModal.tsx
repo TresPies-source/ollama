@@ -119,7 +119,7 @@ export function SeedDetailModal({
                   "flex-shrink-0 p-2 rounded-lg",
                   "text-dojo-text-tertiary hover:text-dojo-text-primary",
                   "hover:bg-white/5",
-                  "transition-all duration-200",
+                  "transition-all duration-300 ease-natural",
                 )}
                 aria-label="Close modal"
               >

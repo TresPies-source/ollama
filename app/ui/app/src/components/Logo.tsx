@@ -20,7 +20,7 @@ export default function Logo() {
           }
 
           .animate-float {
-            animation: float 3s ease-in-out infinite;
+            animation: float 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
           }
         `}</style>
       </div>

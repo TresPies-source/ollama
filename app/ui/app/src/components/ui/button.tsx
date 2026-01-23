@@ -57,9 +57,9 @@ const styles = {
     "[--btn-icon:var(--color-zinc-500)] data-active:[--btn-icon:var(--color-zinc-700)] data-hover:[--btn-icon:var(--color-zinc-700)] dark:[--btn-icon:var(--color-zinc-500)] dark:data-active:[--btn-icon:var(--color-zinc-400)] dark:data-hover:[--btn-icon:var(--color-zinc-400)]",
   ],
   primary: [
-    // Dojo Genesis Primary - Sunset gradient
+    // Dojo Genesis Primary - Sunset gradient (135deg: ffd166 -> f4a261 -> e76f51)
     "border-transparent text-white",
-    "bg-gradient-to-br from-dojo-accent-primary via-dojo-accent-secondary to-dojo-accent-tertiary",
+    "bg-gradient-to-br from-dojo-accent-tertiary via-dojo-accent-primary to-dojo-accent-secondary",
     "shadow-dojo-glow transition-all duration-300 ease-natural",
     "data-hover:shadow-dojo-glow-strong data-hover:scale-105",
     "data-active:scale-95",

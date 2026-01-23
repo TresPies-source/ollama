@@ -234,8 +234,8 @@ export function FileUpload({
       {/* Drop zone overlay */}
       {isDragging && (
         <div className="absolute inset-0 z-[9999] pointer-events-none">
-          <div className="absolute inset-0 bg-neutral-500/5 dark:bg-neutral-400/10 transition-opacity duration-200" />
-          <div className="absolute inset-0 bg-neutral-50 bg-opacity-90 dark:bg-neutral-900 dark:bg-opacity-30 flex items-center justify-center">
+          <div className="absolute inset-0 bg-neutral-500/5 dark:bg-neutral-400/10 transition-all duration-300 ease-natural" />
+          <div className="absolute inset-0 bg-neutral-50 bg-opacity-90 dark:bg-neutral-900 dark:bg-opacity-30 flex items-center justify-center transition-all duration-300 ease-natural">
             <div className="bg-white/90 dark:bg-neutral-900/90 backdrop-blur-xl rounded-2xl p-12 mx-4 max-w-sm text-center border border-neutral-200/50 dark:border-neutral-700/50 shadow-2xl">
               <DocumentPlusIcon className="w-8 h-8 mx-auto mb-2 text-black dark:text-white" />
               <p className="text-neutral-500 dark:text-neutral-400 text-sm font-medium leading-relaxed">

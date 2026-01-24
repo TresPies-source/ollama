@@ -1,6 +1,7 @@
 package api
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 	"os"
@@ -15,6 +16,7 @@ import (
 	"github.com/TresPies-source/dgd/llm"
 	"github.com/TresPies-source/dgd/tools"
 	"github.com/TresPies-source/dgd/trace"
+	"github.com/TresPies-source/dgd/version"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )
@@ -107,16 +109,18 @@ func (s *Server) ChatHandler(c *gin.Context) {
 	var response string
 	var agentType string
 	var mode string
+	var promptTokens int
+	var completionTokens int
 
 	switch intent.Type {
 	case supervisor.AgentDojo:
-		response, mode, err = s.handleDojoQuery(ctx, req.Message, req.Perspectives)
+		response, mode, promptTokens, completionTokens, err = s.handleDojoQuery(ctx, req.Message, req.Perspectives)
 		agentType = "dojo"
 	case supervisor.AgentLibrarian:
-		response, err = s.handleLibrarianQuery(c, session, req.Message)
+		response, promptTokens, completionTokens, err = s.handleLibrarianQuery(c, session, req.Message)
 		agentType = "librarian"
 	case supervisor.AgentBuilder:
-		response, err = s.handleBuilderQuery(ctx, session, req.Message)
+		response, promptTokens, completionTokens, err = s.handleBuilderQuery(ctx, session, req.Message)
 		agentType = "builder"
 	default:
 		response = fmt.Sprintf("[Unknown Agent] Cannot process query: %s", req.Message)
@@ -134,12 +138,14 @@ func (s *Server) ChatHandler(c *gin.Context) {
 	// Save assistant message to database
 	assistantMessageID := uuid.New().String()
 	assistantMessage := &database.Message{
-		ID:        assistantMessageID,
-		SessionID: req.SessionID,
-		Role:      "assistant",
-		Content:   response,
-		AgentType: agentType,
-		Mode:      mode,
+		ID:               assistantMessageID,
+		SessionID:        req.SessionID,
+		Role:             "assistant",
+		Content:          response,
+		AgentType:        agentType,
+		Mode:             mode,
+		PromptTokens:     promptTokens,
+		CompletionTokens: completionTokens,
 	}
 	if err := s.db.CreateMessage(assistantMessage); err != nil {
 		c.JSON(http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
@@ -161,10 +167,10 @@ func (s *Server) ChatHandler(c *gin.Context) {
 }
 
 // handleDojoQuery handles queries routed to the Dojo agent
-func (s *Server) handleDojoQuery(ctx context.Context, query string, perspectives []string) (string, string, error) {
+func (s *Server) handleDojoQuery(ctx context.Context, query string, perspectives []string) (string, string, int, int, error) {
 	// If no Dojo agent is configured, return placeholder
 	if s.dojoAgent == nil {
-		return fmt.Sprintf("[Dojo Agent] Processing query: %s", query), "", nil
+		return fmt.Sprintf("[Dojo Agent] Processing query: %s", query), "", 0, 0, nil
 	}
 
 	trace.LogEvent(ctx, trace.EventPerspectiveIntegration, map[string]interface{}{
@@ -180,7 +186,7 @@ func (s *Server) handleDojoQuery(ctx context.Context, query string, perspectives
 
 	dojoResp, err := s.dojoAgent.Process(ctx, dojoReq)
 	if err != nil {
-		return "", "", fmt.Errorf("dojo agent error: %w", err)
+		return "", "", 0, 0, fmt.Errorf("dojo agent error: %w", err)
 	}
 
 	trace.LogEvent(ctx, trace.EventModeTransition, nil, map[string]interface{}{
@@ -188,15 +194,17 @@ func (s *Server) handleDojoQuery(ctx context.Context, query string, perspectives
 		"content": dojoResp.Content,
 	}, nil)
 
-	return dojoResp.Content, string(dojoResp.Mode), nil
+	return dojoResp.Content, string(dojoResp.Mode), dojoResp.PromptTokens, dojoResp.CompletionTokens, nil
 }
 
 // handleLibrarianQuery handles queries routed to the Librarian agent
-func (s *Server) handleLibrarianQuery(c *gin.Context, session *database.Session, query string) (string, error) {
+// Returns: (response, promptTokens, completionTokens, error)
+// Note: Librarian doesn't use LLM, so tokens are always 0
+func (s *Server) handleLibrarianQuery(c *gin.Context, session *database.Session, query string) (string, int, int, error) {
 	// Get user home directory for seeds
 	homeDir, err := os.UserHomeDir()
 	if err != nil {
-		return "", fmt.Errorf("failed to get home directory: %w", err)
+		return "", 0, 0, fmt.Errorf("failed to get home directory: %w", err)
 	}
 	seedsDir := filepath.Join(homeDir, ".dgd", "seeds")
 
@@ -210,11 +218,11 @@ func (s *Server) handleLibrarianQuery(c *gin.Context, session *database.Session,
 		// File search query
 		results, err := lib.SearchFiles(c.Request.Context(), "*")
 		if err != nil {
-			return "", err
+			return "", 0, 0, err
 		}
 
 		if len(results) == 0 {
-			return "No files found in the working directory.", nil
+			return "No files found in the working directory.", 0, 0, nil
 		}
 
 		response := fmt.Sprintf("Found %d files:\n", len(results))
@@ -225,22 +233,22 @@ func (s *Server) handleLibrarianQuery(c *gin.Context, session *database.Session,
 			}
 			response += fmt.Sprintf("- %s (%d bytes)\n", result.Path, result.SizeBytes)
 		}
-		return response, nil
+		return response, 0, 0, nil
 
 	} else if containsAny(queryLower, []string{"read", "show", "display"}) {
 		// File read query - extract filename from query
 		// This is a simple implementation; can be improved with NLP
-		return "File reading functionality will be implemented in the next iteration.", nil
+		return "File reading functionality will be implemented in the next iteration.", 0, 0, nil
 
 	} else if containsAny(queryLower, []string{"seed", "knowledge"}) {
 		// Seed retrieval query
 		seeds, err := lib.ListSeeds(c.Request.Context())
 		if err != nil {
-			return "", err
+			return "", 0, 0, err
 		}
 
 		if len(seeds) == 0 {
-			return "No seeds found. Seeds should be placed in ~/.dgd/seeds/", nil
+			return "No seeds found. Seeds should be placed in ~/.dgd/seeds/", 0, 0, nil
 		}
 
 		response := fmt.Sprintf("Found %d seeds:\n", len(seeds))
@@ -251,16 +259,16 @@ func (s *Server) handleLibrarianQuery(c *gin.Context, session *database.Session,
 			}
 			response += fmt.Sprintf("- %s: %s\n", seed.Metadata.Name, seed.Metadata.Description)
 		}
-		return response, nil
+		return response, 0, 0, nil
 	}
 
-	return fmt.Sprintf("[Librarian Agent] Processing query: %s", query), nil
+	return fmt.Sprintf("[Librarian Agent] Processing query: %s", query), 0, 0, nil
 }
 
 // handleBuilderQuery handles queries routed to the Builder agent
-func (s *Server) handleBuilderQuery(ctx context.Context, session *database.Session, query string) (string, error) {
+func (s *Server) handleBuilderQuery(ctx context.Context, session *database.Session, query string) (string, int, int, error) {
 	if s.builderAgent == nil {
-		return "[Builder Agent] Not yet implemented. Coming soon!", nil
+		return "[Builder Agent] Not yet implemented. Coming soon!", 0, 0, nil
 	}
 
 	trace.LogEvent(ctx, trace.EventToolInvocation, map[string]interface{}{
@@ -276,7 +284,7 @@ func (s *Server) handleBuilderQuery(ctx context.Context, session *database.Sessi
 
 	builderResp, err := s.builderAgent.Process(ctx, builderReq)
 	if err != nil {
-		return "", fmt.Errorf("builder agent error: %w", err)
+		return "", 0, 0, fmt.Errorf("builder agent error: %w", err)
 	}
 
 	trace.LogEvent(ctx, trace.EventToolInvocation, nil, map[string]interface{}{
@@ -285,7 +293,7 @@ func (s *Server) handleBuilderQuery(ctx context.Context, session *database.Sessi
 		"success":       builderResp.Success,
 	}, nil)
 
-	return builderResp.Content, nil
+	return builderResp.Content, builderResp.PromptTokens, builderResp.CompletionTokens, nil
 }
 
 // GetTraceHandler returns the trace for a session
@@ -397,11 +405,40 @@ func (s *Server) GetSessionHandler(c *gin.Context) {
 	})
 }
 
+// DeleteSessionHandler handles session deletion
+func (s *Server) DeleteSessionHandler(c *gin.Context) {
+	sessionID := c.Param("id")
+
+	err := s.db.DeleteSession(sessionID)
+	if err != nil {
+		c.JSON(http.StatusNotFound, ErrorResponse{Error: fmt.Sprintf("session not found: %s", sessionID)})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "session deleted successfully",
+	})
+}
+
 // HealthHandler handles health check requests
 func (s *Server) HealthHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"status":  "ok",
-		"version": "0.0.4",
+		"version": version.Version,
+	})
+}
+
+// OllamaVersionHandler provides a stub for Ollama WebUI compatibility
+func (s *Server) OllamaVersionHandler(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{
+		"version": version.Version,
+	})
+}
+
+// OllamaTagsHandler provides a stub for Ollama WebUI compatibility
+func (s *Server) OllamaTagsHandler(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{
+		"models": []interface{}{},
 	})
 }
 

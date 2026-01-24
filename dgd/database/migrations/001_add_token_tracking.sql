@@ -1,0 +1,12 @@
+-- Migration 001: Add token tracking to messages table
+-- Adds prompt_tokens and completion_tokens columns to track LLM token usage
+--
+-- NOTE: This migration is handled programmatically by applyTokenTrackingMigration()
+-- in migrate.go to check for column existence before adding them (true idempotency).
+-- The SQL below is not executed directly - it's kept for documentation purposes.
+--
+-- For new databases (from schema.sql), columns already exist and this is a no-op.
+-- For existing databases, this adds the missing columns.
+
+-- ALTER TABLE messages ADD COLUMN prompt_tokens INTEGER DEFAULT 0;
+-- ALTER TABLE messages ADD COLUMN completion_tokens INTEGER DEFAULT 0;

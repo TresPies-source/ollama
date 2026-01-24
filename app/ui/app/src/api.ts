@@ -167,7 +167,8 @@ export async function getModels(query?: string): Promise<Model[]> {
 
     return models;
   } catch (err) {
-    throw new Error(`Failed to fetch models: ${err}`);
+    console.log("Models API not available (DGD mode):", err);
+    return [];
   }
 }
 
@@ -380,16 +381,20 @@ export async function* pullModel(
 }
 
 export async function getInferenceCompute(): Promise<InferenceCompute[]> {
-  const response = await fetch(`${API_BASE}/api/v1/inference-compute`);
-  if (!response.ok) {
-    throw new Error(
-      `Failed to fetch inference compute: ${response.statusText}`,
-    );
-  }
+  try {
+    const response = await fetch(`${API_BASE}/api/v1/inference-compute`);
+    if (!response.ok) {
+      console.log("Inference compute API not available (DGD mode)");
+      return [];
+    }
 
-  const data = await response.json();
-  const inferenceComputeResponse = new InferenceComputeResponse(data);
-  return inferenceComputeResponse.inferenceComputes || [];
+    const data = await response.json();
+    const inferenceComputeResponse = new InferenceComputeResponse(data);
+    return inferenceComputeResponse.inferenceComputes || [];
+  } catch (err) {
+    console.log("Inference compute API error (DGD mode):", err);
+    return [];
+  }
 }
 
 export async function fetchHealth(): Promise<boolean> {
@@ -413,4 +418,168 @@ export async function fetchHealth(): Promise<boolean> {
     console.error("Error checking health:", error);
     return false;
   }
+}
+
+// Usage tracking types
+export interface ModelUsage {
+  model: string;
+  prompt_tokens: number;
+  completion_tokens: number;
+  total_tokens: number;
+  message_count: number;
+  estimated_cost_usd: number;
+}
+
+export interface DayUsage {
+  date: string;
+  prompt_tokens: number;
+  completion_tokens: number;
+  total_tokens: number;
+  message_count: number;
+}
+
+export interface SessionUsage {
+  session_id: string;
+  session_title: string;
+  prompt_tokens: number;
+  completion_tokens: number;
+  total_tokens: number;
+  message_count: number;
+}
+
+export interface UsageStats {
+  total_prompt_tokens: number;
+  total_completion_tokens: number;
+  total_tokens: number;
+  total_messages: number;
+  estimated_cost_usd: number;
+  usage_by_model: ModelUsage[];
+  usage_by_day: DayUsage[];
+  usage_by_session: SessionUsage[];
+}
+
+// Fetch aggregated usage statistics
+export async function getUsageStats(): Promise<UsageStats> {
+  const response = await fetch(`${API_BASE}/api/usage`);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch usage stats: ${response.statusText}`);
+  }
+  return response.json();
+}
+
+// Fetch usage statistics for a specific session
+export async function getSessionUsage(
+  sessionId: string,
+): Promise<SessionUsage> {
+  const response = await fetch(`${API_BASE}/api/sessions/${sessionId}/usage`);
+  if (!response.ok) {
+    throw new Error(
+      `Failed to fetch session usage: ${response.statusText}`,
+    );
+  }
+  return response.json();
+}
+
+// Update checking and application types
+export interface UpdateCheckResponse {
+  update_available: boolean;
+  current_version: string;
+  latest_version?: string;
+  download_url?: string;
+  checksum?: string;
+}
+
+export interface UpdateApplyRequest {
+  version: string;
+  url: string;
+  checksum: string;
+}
+
+export interface UpdateApplyResponse {
+  success: boolean;
+  message: string;
+}
+
+// Check for available application updates
+export async function checkForUpdates(): Promise<UpdateCheckResponse> {
+  const response = await fetch(`${API_BASE}/api/update/check`);
+  if (!response.ok) {
+    throw new Error(`Failed to check for updates: ${response.statusText}`);
+  }
+  return response.json();
+}
+
+// Apply an available update
+export async function applyUpdate(
+  request: UpdateApplyRequest,
+): Promise<UpdateApplyResponse> {
+  const response = await fetch(`${API_BASE}/api/update/apply`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(request),
+  });
+  if (!response.ok) {
+    throw new Error(`Failed to apply update: ${response.statusText}`);
+  }
+  return response.json();
+}
+
+// Session export/import types
+export interface ImportSessionResponse {
+  session_id: string;
+  message: string;
+}
+
+// Export a session as a Markdown file
+export async function exportSession(sessionId: string): Promise<void> {
+  const response = await fetch(`${API_BASE}/api/sessions/${sessionId}/export`);
+  if (!response.ok) {
+    throw new Error(`Failed to export session: ${response.statusText}`);
+  }
+
+  // Get filename from Content-Disposition header
+  const contentDisposition = response.headers.get("Content-Disposition");
+  let filename = `session_${sessionId}.md`;
+  if (contentDisposition) {
+    const matches = /filename=([^;]+)/.exec(contentDisposition);
+    if (matches && matches[1]) {
+      filename = matches[1].replace(/['"]/g, "");
+    }
+  }
+
+  // Create blob and trigger download
+  const blob = await response.blob();
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  window.URL.revokeObjectURL(url);
+}
+
+// Import a session from a Markdown file
+export async function importSession(file: File): Promise<ImportSessionResponse> {
+  // Validate file type
+  if (!file.name.endsWith(".md") && !file.name.endsWith(".markdown")) {
+    throw new Error("File must be a markdown file (.md or .markdown)");
+  }
+
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const response = await fetch(`${API_BASE}/api/sessions/import`, {
+    method: "POST",
+    body: formData,
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error || `Failed to import session: ${response.statusText}`);
+  }
+
+  return response.json();
 }

@@ -1,0 +1,499 @@
+
+> dojo-genesis-desktop@0.1.0 test
+> vitest --run --reporter=verbose
+
+
+♻️  Generating routes...
+✅ Processed routes in 188ms
+
+[1m[46m RUN [49m[22m [36mv3.2.4 [39m[90mC:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app[39m
+
+ [32m✓[39m src/components/__tests__/session-header-tokens.test.tsx[2m > [22mSession Header Token Counting[2m > [22mshould calculate total tokens from messages correctly[32m 2[2mms[22m[39m
+ [32m✓[39m src/components/__tests__/session-header-tokens.test.tsx[2m > [22mSession Header Token Counting[2m > [22mshould handle messages without token data gracefully[32m 0[2mms[22m[39m
+ [32m✓[39m src/components/__tests__/session-header-tokens.test.tsx[2m > [22mSession Header Token Counting[2m > [22mshould format token count with locale formatting[32m 33[2mms[22m[39m
+ [32m✓[39m src/components/__tests__/session-header-tokens.test.tsx[2m > [22mSession Header Token Counting[2m > [22mshould handle empty messages array[32m 0[2mms[22m[39m
+ [32m✓[39m src/components/__tests__/session-header-tokens.test.tsx[2m > [22mSession Header Token Counting[2m > [22mshould calculate tokens for messages with partial token data[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/registry.test.ts[2m > [22mCommandRegistry[2m > [22mregister and get[2m > [22mshould register a command[32m 2[2mms[22m[39m
+ [32m✓[39m src/commands/registry.test.ts[2m > [22mCommandRegistry[2m > [22mregister and get[2m > [22mshould return undefined for non-existent command[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/registry.test.ts[2m > [22mCommandRegistry[2m > [22mregister and get[2m > [22mshould overwrite existing command with same id[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/registry.test.ts[2m > [22mCommandRegistry[2m > [22munregister[2m > [22mshould remove a command[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/registry.test.ts[2m > [22mCommandRegistry[2m > [22munregister[2m > [22mshould not throw when unregistering non-existent command[32m 1[2mms[22m[39m
+ [32m✓[39m src/commands/registry.test.ts[2m > [22mCommandRegistry[2m > [22mgetAll[2m > [22mshould return all registered commands[32m 1[2mms[22m[39m
+ [32m✓[39m src/commands/registry.test.ts[2m > [22mCommandRegistry[2m > [22mgetAll[2m > [22mshould return empty array when no commands registered[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/registry.test.ts[2m > [22mCommandRegistry[2m > [22mgetEnabled[2m > [22mshould return only enabled commands[32m 1[2mms[22m[39m
+ [32m✓[39m src/commands/registry.test.ts[2m > [22mCommandRegistry[2m > [22mgetByCategory[2m > [22mshould return commands filtered by category[32m 1[2mms[22m[39m
+ [32m✓[39m src/commands/registry.test.ts[2m > [22mCommandRegistry[2m > [22mgetByCategory[2m > [22mshould return empty array for category with no commands[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/registry.test.ts[2m > [22mCommandRegistry[2m > [22mexecute[2m > [22mshould execute command action[32m 2[2mms[22m[39m
+ [32m✓[39m src/commands/registry.test.ts[2m > [22mCommandRegistry[2m > [22mexecute[2m > [22mshould handle async actions[32m 20[2mms[22m[39m
+ [32m✓[39m src/commands/registry.test.ts[2m > [22mCommandRegistry[2m > [22mexecute[2m > [22mshould not execute disabled commands[32m 2[2mms[22m[39m
+ [32m✓[39m src/commands/registry.test.ts[2m > [22mCommandRegistry[2m > [22mexecute[2m > [22mshould handle errors in command execution[32m 9[2mms[22m[39m
+ [32m✓[39m src/commands/registry.test.ts[2m > [22mCommandRegistry[2m > [22mexecute[2m > [22mshould warn when executing non-existent command[32m 2[2mms[22m[39m
+ [32m✓[39m src/commands/registry.test.ts[2m > [22mCommandRegistry[2m > [22msetCallback[2m > [22mshould update command action[32m 1[2mms[22m[39m
+ [32m✓[39m src/commands/registry.test.ts[2m > [22mCommandRegistry[2m > [22msetCallback[2m > [22mshould not error when setting callback for non-existent command[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/registry.test.ts[2m > [22mCommandRegistry[2m > [22mclear[2m > [22mshould remove all commands[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/registry.test.ts[2m > [22mCommandRegistry[2m > [22mregisterDefaultCommands[2m > [22mshould register all default commands[32m 1[2mms[22m[39m
+ [32m✓[39m src/commands/registry.test.ts[2m > [22mCommandRegistry[2m > [22mregisterDefaultCommands[2m > [22mshould include keyboard shortcuts for appropriate commands[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/registry.test.ts[2m > [22mCommandRegistry[2m > [22mregisterDefaultCommands[2m > [22mshould include keywords for search[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/registry.test.ts[2m > [22mCommandRegistry[2m > [22mhelper functions[2m > [22mgetAllCommands should return all enabled commands[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/registry.test.ts[2m > [22mCommandRegistry[2m > [22mhelper functions[2m > [22mexecuteCommand should execute by id[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/registry.test.ts[2m > [22mCommandRegistry[2m > [22mhelper functions[2m > [22msetCommandAction should update action[32m 0[2mms[22m[39m
+[90mstdout[2m | src/config/shortcuts.test.ts
+[22m[39m✓ Shortcuts configuration valid (28 shortcuts loaded)
+
+ [32m✓[39m src/utils/fileValidation.test.ts[2m > [22mfileValidation[2m > [22mIMAGE_EXTENSIONS[2m > [22mshould include all supported image formats including WebP[32m 4[2mms[22m[39m
+ [32m✓[39m src/utils/fileValidation.test.ts[2m > [22mfileValidation[2m > [22mvalidateFile[2m > [22mshould accept WebP images when vision capability is enabled[32m 3[2mms[22m[39m
+ [32m✓[39m src/utils/fileValidation.test.ts[2m > [22mfileValidation[2m > [22mvalidateFile[2m > [22mshould reject WebP images when vision capability is disabled[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/fileValidation.test.ts[2m > [22mfileValidation[2m > [22mvalidateFile[2m > [22mshould accept PNG images when vision capability is enabled[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/fileValidation.test.ts[2m > [22mfileValidation[2m > [22mvalidateFile[2m > [22mshould accept JPEG images when vision capability is enabled[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/fileValidation.test.ts[2m > [22mfileValidation[2m > [22mvalidateFile[2m > [22mshould reject files that are too large[32m 10[2mms[22m[39m
+ [32m✓[39m src/utils/fileValidation.test.ts[2m > [22mfileValidation[2m > [22mvalidateFile[2m > [22mshould reject unsupported file types[32m 1[2mms[22m[39m
+ [32m✓[39m src/utils/fileValidation.test.ts[2m > [22mfileValidation[2m > [22mvalidateFile[2m > [22mshould respect custom validators[32m 0[2mms[22m[39m
+ [32m✓[39m src/api/update.test.ts[2m > [22mUpdate API[2m > [22mcheckForUpdates[2m > [22mshould return update available when new version exists[32m 7[2mms[22m[39m
+ [32m✓[39m src/api/update.test.ts[2m > [22mUpdate API[2m > [22mcheckForUpdates[2m > [22mshould return no update when on latest version[32m 1[2mms[22m[39m
+ [32m✓[39m src/api/update.test.ts[2m > [22mUpdate API[2m > [22mcheckForUpdates[2m > [22mshould throw error on failed request[32m 2[2mms[22m[39m
+ [32m✓[39m src/api/update.test.ts[2m > [22mUpdate API[2m > [22mcheckForUpdates[2m > [22mshould handle network errors[32m 1[2mms[22m[39m
+ [32m✓[39m src/api/update.test.ts[2m > [22mUpdate API[2m > [22mcheckForUpdates[2m > [22mshould return proper data structure when update available[32m 1[2mms[22m[39m
+ [32m✓[39m src/api/update.test.ts[2m > [22mUpdate API[2m > [22mcheckForUpdates[2m > [22mshould handle non-Error exceptions[32m 1[2mms[22m[39m
+ [32m✓[39m src/api/update.test.ts[2m > [22mUpdate API[2m > [22mapplyUpdate[2m > [22mshould apply update successfully[32m 2[2mms[22m[39m
+ [32m✓[39m src/api/update.test.ts[2m > [22mUpdate API[2m > [22mapplyUpdate[2m > [22mshould throw error on failed request[32m 1[2mms[22m[39m
+ [32m✓[39m src/api/update.test.ts[2m > [22mUpdate API[2m > [22mapplyUpdate[2m > [22mshould handle network errors[32m 2[2mms[22m[39m
+ [32m✓[39m src/api/update.test.ts[2m > [22mUpdate API[2m > [22mapplyUpdate[2m > [22mshould send correct request payload[32m 0[2mms[22m[39m
+ [32m✓[39m src/api/update.test.ts[2m > [22mUpdate API[2m > [22mapplyUpdate[2m > [22mshould return proper response structure[32m 0[2mms[22m[39m
+ [32m✓[39m src/api/update.test.ts[2m > [22mUpdate API[2m > [22mapplyUpdate[2m > [22mshould handle non-Error exceptions[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22mparseSeed[2m > [22mshould parse valid seed with all fields[32m 8[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22mparseSeed[2m > [22mshould parse seed with minimal fields[32m 1[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22mparseSeed[2m > [22mshould allow custom default category[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22mparseSeed[2m > [22mshould throw error for missing frontmatter[32m 1[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22mparseSeed[2m > [22mshould throw error for invalid YAML[32m 1[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22mparseSeed[2m > [22mshould throw error for missing required fields[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22mparseSeed[2m > [22mshould not throw error for missing required fields when validation disabled[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22mparseSeed[2m > [22mshould throw error for invalid field types[32m 1[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22mparseSeed[2m > [22mshould throw error for invalid tags type[32m 1[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22mparseSeed[2m > [22mshould handle empty tags array[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22mparseSeed[2m > [22mshould trim whitespace from content[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22mparseSeeds[2m > [22mshould parse multiple valid seeds[32m 1[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22mparseSeeds[2m > [22mshould skip invalid seeds and continue parsing[32m 10[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22misSeedFile[2m > [22mshould return true for .md files[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22misSeedFile[2m > [22mshould return true for .markdown files[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22misSeedFile[2m > [22mshould return false for other files[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22mfilterSeedsByCategory[2m > [22mshould filter seeds by category[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22mfilterSeedsByCategory[2m > [22mshould return empty array for non-existent category[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22mfilterSeedsByTag[2m > [22mshould filter seeds by tag[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22mfilterSeedsByTag[2m > [22mshould return empty array for non-existent tag[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22msearchSeeds[2m > [22mshould search by name[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22msearchSeeds[2m > [22mshould search by description[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22msearchSeeds[2m > [22mshould search by category[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22msearchSeeds[2m > [22mshould search by tags[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22msearchSeeds[2m > [22mshould search by content[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22msearchSeeds[2m > [22mshould be case-insensitive[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22msearchSeeds[2m > [22mshould return empty array for no matches[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22mgetAllCategories[2m > [22mshould return unique categories sorted[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/seedParser.test.ts[2m > [22mseedParser[2m > [22mgetAllTags[2m > [22mshould return unique tags sorted[32m 0[2mms[22m[39m
+ [32m✓[39m src/config/shortcuts.test.ts[2m > [22mShortcuts Configuration[2m > [22mloadDefaultShortcuts[2m > [22mshould load shortcuts configuration[32m 2[2mms[22m[39m
+ [32m✓[39m src/config/shortcuts.test.ts[2m > [22mShortcuts Configuration[2m > [22mloadDefaultShortcuts[2m > [22mshould have all required shortcuts[32m 1[2mms[22m[39m
+ [32m✓[39m src/config/shortcuts.test.ts[2m > [22mShortcuts Configuration[2m > [22mgetShortcutById[2m > [22mshould return shortcut by id[32m 0[2mms[22m[39m
+ [32m✓[39m src/config/shortcuts.test.ts[2m > [22mShortcuts Configuration[2m > [22mgetShortcutById[2m > [22mshould return undefined for non-existent shortcut[32m 0[2mms[22m[39m
+ [32m✓[39m src/config/shortcuts.test.ts[2m > [22mShortcuts Configuration[2m > [22mgetShortcutsByCategory[2m > [22mshould return shortcuts by category[32m 0[2mms[22m[39m
+ [32m✓[39m src/config/shortcuts.test.ts[2m > [22mShortcuts Configuration[2m > [22mgetShortcutsByCategory[2m > [22mshould return empty array for non-existent category[32m 0[2mms[22m[39m
+ [32m✓[39m src/config/shortcuts.test.ts[2m > [22mShortcuts Configuration[2m > [22mgetAllCategories[2m > [22mshould return all unique categories[32m 2[2mms[22m[39m
+ [32m✓[39m src/config/shortcuts.test.ts[2m > [22mShortcuts Configuration[2m > [22mgetAllCategories[2m > [22mshould return sorted categories[32m 1[2mms[22m[39m
+ [32m✓[39m src/config/shortcuts.test.ts[2m > [22mShortcuts Configuration[2m > [22mvalidateShortcuts[2m > [22mshould validate shortcuts configuration without errors[32m 0[2mms[22m[39m
+ [32m✓[39m src/config/shortcuts.test.ts[2m > [22mShortcuts Configuration[2m > [22mvalidateShortcuts[2m > [22mshould confirm configuration is valid[32m 0[2mms[22m[39m
+ [32m✓[39m src/config/shortcuts.test.ts[2m > [22mShortcuts Configuration[2m > [22mPlatform utilities[2m > [22mshould detect current platform[32m 0[2mms[22m[39m
+ [32m✓[39m src/config/shortcuts.test.ts[2m > [22mShortcuts Configuration[2m > [22mPlatform utilities[2m > [22mshould get shortcut for platform[32m 0[2mms[22m[39m
+ [32m✓[39m src/config/shortcuts.test.ts[2m > [22mShortcuts Configuration[2m > [22mPlatform utilities[2m > [22mshould format shortcut for display[32m 0[2mms[22m[39m
+ [32m✓[39m src/config/shortcuts.test.ts[2m > [22mShortcuts Configuration[2m > [22mPlatform utilities[2m > [22mshould parse shortcut to hotkey format[32m 0[2mms[22m[39m
+ [32m✓[39m src/config/shortcuts.test.ts[2m > [22mShortcuts Configuration[2m > [22mShortcut structure[2m > [22mshould have consistent structure for all shortcuts[32m 12[2mms[22m[39m
+ [32m✓[39m src/config/shortcuts.test.ts[2m > [22mShortcuts Configuration[2m > [22mShortcut structure[2m > [22mshould have no duplicate IDs[32m 0[2mms[22m[39m
+ [32m✓[39m src/config/shortcuts.test.ts[2m > [22mShortcuts Configuration[2m > [22mShortcut structure[2m > [22mshould have no duplicate keys per platform[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/mergeModels.test.ts[2m > [22mModel merging logic[2m > [22mshould handle cloud models with -cloud suffix[32m 19[2mms[22m[39m
+ [32m✓[39m src/utils/mergeModels.test.ts[2m > [22mModel merging logic[2m > [22mshould hide cloud models in airplane mode[32m 1[2mms[22m[39m
+ [32m✓[39m src/utils/mergeModels.test.ts[2m > [22mModel merging logic[2m > [22mshould handle empty input[32m 2[2mms[22m[39m
+ [32m✓[39m src/utils/mergeModels.test.ts[2m > [22mModel merging logic[2m > [22mshould sort models correctly[32m 2[2mms[22m[39m
+ [32m✓[39m src/api/usage.test.ts[2m > [22mUsage API[2m > [22mgetUsageStats[2m > [22mshould fetch usage statistics successfully[32m 6[2mms[22m[39m
+ [32m✓[39m src/api/usage.test.ts[2m > [22mUsage API[2m > [22mgetUsageStats[2m > [22mshould throw error on failed request[32m 3[2mms[22m[39m
+ [32m✓[39m src/api/usage.test.ts[2m > [22mUsage API[2m > [22mgetUsageStats[2m > [22mshould handle network errors[32m 1[2mms[22m[39m
+ [32m✓[39m src/api/usage.test.ts[2m > [22mUsage API[2m > [22mgetUsageStats[2m > [22mshould return proper data structure[32m 1[2mms[22m[39m
+ [32m✓[39m src/api/usage.test.ts[2m > [22mUsage API[2m > [22mgetSessionUsage[2m > [22mshould fetch session usage successfully[32m 1[2mms[22m[39m
+ [32m✓[39m src/api/usage.test.ts[2m > [22mUsage API[2m > [22mgetSessionUsage[2m > [22mshould throw error on failed request[32m 0[2mms[22m[39m
+ [32m✓[39m src/api/usage.test.ts[2m > [22mUsage API[2m > [22mgetSessionUsage[2m > [22mshould handle network errors[32m 0[2mms[22m[39m
+ [32m✓[39m src/api/usage.test.ts[2m > [22mUsage API[2m > [22mgetSessionUsage[2m > [22mshould return proper data structure[32m 1[2mms[22m[39m
+ [32m✓[39m src/api/usage.test.ts[2m > [22mUsage API[2m > [22mgetSessionUsage[2m > [22mshould use correct session ID in URL[32m 1[2mms[22m[39m
+ [32m✓[39m src/api/sessions.test.ts[2m > [22mSessions Export/Import API[2m > [22mexportSession[2m > [22mshould export session successfully with default filename[32m 16[2mms[22m[39m
+ [32m✓[39m src/api/sessions.test.ts[2m > [22mSessions Export/Import API[2m > [22mexportSession[2m > [22mshould export session with filename from Content-Disposition header[32m 3[2mms[22m[39m
+ [32m✓[39m src/api/sessions.test.ts[2m > [22mSessions Export/Import API[2m > [22mexportSession[2m > [22mshould throw error when export fails[32m 2[2mms[22m[39m
+ [32m✓[39m src/api/sessions.test.ts[2m > [22mSessions Export/Import API[2m > [22mexportSession[2m > [22mshould handle network errors[32m 1[2mms[22m[39m
+ [32m✓[39m src/api/sessions.test.ts[2m > [22mSessions Export/Import API[2m > [22mexportSession[2m > [22mshould strip quotes from filename[32m 2[2mms[22m[39m
+ [32m✓[39m src/api/sessions.test.ts[2m > [22mSessions Export/Import API[2m > [22mimportSession[2m > [22mshould import markdown file successfully[32m 4[2mms[22m[39m
+ [32m✓[39m src/api/sessions.test.ts[2m > [22mSessions Export/Import API[2m > [22mimportSession[2m > [22mshould reject non-markdown files[32m 1[2mms[22m[39m
+ [32m✓[39m src/api/sessions.test.ts[2m > [22mSessions Export/Import API[2m > [22mimportSession[2m > [22mshould accept .markdown extension[32m 1[2mms[22m[39m
+ [32m✓[39m src/api/sessions.test.ts[2m > [22mSessions Export/Import API[2m > [22mimportSession[2m > [22mshould throw error when import fails with error message[32m 1[2mms[22m[39m
+ [32m✓[39m src/api/sessions.test.ts[2m > [22mSessions Export/Import API[2m > [22mimportSession[2m > [22mshould throw error when import fails without error message[32m 1[2mms[22m[39m
+ [32m✓[39m src/api/sessions.test.ts[2m > [22mSessions Export/Import API[2m > [22mimportSession[2m > [22mshould handle network errors[32m 1[2mms[22m[39m
+ [32m✓[39m src/api/sessions.test.ts[2m > [22mSessions Export/Import API[2m > [22mimportSession[2m > [22mshould send FormData with file[32m 1[2mms[22m[39m
+ [32m✓[39m src/hooks/useCommandPalette.test.tsx[2m > [22museCommandPalette[2m > [22mshould return command palette context[32m 20[2mms[22m[39m
+ [32m✓[39m src/hooks/useCommandPalette.test.tsx[2m > [22museCommandPalette[2m > [22mshould throw error when used outside provider[32m 7[2mms[22m[39m
+ [32m✓[39m src/hooks/useCommandPalette.test.tsx[2m > [22museCommandPalette[2m > [22mshould provide same context as useCommandPaletteContext[32m 4[2mms[22m[39m
+[90mstdout[2m | src/contexts/CommandPaletteContext.test.tsx[2m > [22m[2mCommandPaletteContext[2m > [22m[2mExecute[2m > [22m[2mshould execute selected command and close palette
+[22m[39mNew session
+
+[90mstdout[2m | src/contexts/CommandPaletteContext.test.tsx[2m > [22m[2mCommandPaletteContext[2m > [22m[2mExecute[2m > [22m[2mshould execute command by ID
+[22m[39mOpen settings
+
+ [32m✓[39m src/contexts/CommandPaletteContext.test.tsx[2m > [22mCommandPaletteContext[2m > [22mInitialization[2m > [22mshould provide initial state[32m 24[2mms[22m[39m
+ [32m✓[39m src/contexts/CommandPaletteContext.test.tsx[2m > [22mCommandPaletteContext[2m > [22mInitialization[2m > [22mshould throw error when used outside provider[32m 8[2mms[22m[39m
+ [32m✓[39m src/contexts/CommandPaletteContext.test.tsx[2m > [22mCommandPaletteContext[2m > [22mOpen/Close[2m > [22mshould open the palette[32m 6[2mms[22m[39m
+ [32m✓[39m src/contexts/CommandPaletteContext.test.tsx[2m > [22mCommandPaletteContext[2m > [22mOpen/Close[2m > [22mshould close the palette[32m 6[2mms[22m[39m
+ [32m✓[39m src/contexts/CommandPaletteContext.test.tsx[2m > [22mCommandPaletteContext[2m > [22mOpen/Close[2m > [22mshould toggle the palette[32m 5[2mms[22m[39m
+ [32m✓[39m src/contexts/CommandPaletteContext.test.tsx[2m > [22mCommandPaletteContext[2m > [22mOpen/Close[2m > [22mshould reset query and selection when opening[32m 6[2mms[22m[39m
+ [32m✓[39m src/contexts/CommandPaletteContext.test.tsx[2m > [22mCommandPaletteContext[2m > [22mSearch[2m > [22mshould filter commands by title[32m 4[2mms[22m[39m
+ [32m✓[39m src/contexts/CommandPaletteContext.test.tsx[2m > [22mCommandPaletteContext[2m > [22mSearch[2m > [22mshould filter commands by keywords[32m 2[2mms[22m[39m
+ [32m✓[39m src/contexts/CommandPaletteContext.test.tsx[2m > [22mCommandPaletteContext[2m > [22mSearch[2m > [22mshould return all commands when query is empty[32m 2[2mms[22m[39m
+ [32m✓[39m src/contexts/CommandPaletteContext.test.tsx[2m > [22mCommandPaletteContext[2m > [22mSearch[2m > [22mshould reset selection index when searching[32m 2[2mms[22m[39m
+ [32m✓[39m src/contexts/CommandPaletteContext.test.tsx[2m > [22mCommandPaletteContext[2m > [22mSearch[2m > [22mshould perform fuzzy search[32m 2[2mms[22m[39m
+ [32m✓[39m src/contexts/CommandPaletteContext.test.tsx[2m > [22mCommandPaletteContext[2m > [22mSelection[2m > [22mshould select next command[32m 1[2mms[22m[39m
+ [32m✓[39m src/contexts/CommandPaletteContext.test.tsx[2m > [22mCommandPaletteContext[2m > [22mSelection[2m > [22mshould select previous command[32m 1[2mms[22m[39m
+ [32m✓[39m src/contexts/CommandPaletteContext.test.tsx[2m > [22mCommandPaletteContext[2m > [22mSelection[2m > [22mshould wrap selection at the end[32m 1[2mms[22m[39m
+ [32m✓[39m src/contexts/CommandPaletteContext.test.tsx[2m > [22mCommandPaletteContext[2m > [22mSelection[2m > [22mshould wrap selection at the beginning[32m 1[2mms[22m[39m
+ [32m✓[39m src/contexts/CommandPaletteContext.test.tsx[2m > [22mCommandPaletteContext[2m > [22mExecute[2m > [22mshould execute selected command and close palette[32m 3[2mms[22m[39m
+ [32m✓[39m src/contexts/CommandPaletteContext.test.tsx[2m > [22mCommandPaletteContext[2m > [22mExecute[2m > [22mshould execute command by ID[32m 2[2mms[22m[39m
+ [32m✓[39m src/contexts/CommandPaletteContext.test.tsx[2m > [22mCommandPaletteContext[2m > [22mExecute[2m > [22mshould handle invalid command ID gracefully[32m 2[2mms[22m[39m
+ [32m✓[39m src/contexts/CommandPaletteContext.test.tsx[2m > [22mCommandPaletteContext[2m > [22mResults[2m > [22mshould update results when query changes[32m 2[2mms[22m[39m
+ [32m✓[39m src/contexts/CommandPaletteContext.test.tsx[2m > [22mCommandPaletteContext[2m > [22mResults[2m > [22mshould return all enabled commands by default[32m 1[2mms[22m[39m
+ [32m✓[39m src/contexts/ShortcutsContext.test.tsx[2m > [22mShortcutsContext[2m > [22mloads default shortcuts on mount[32m 83[2mms[22m[39m
+ [32m✓[39m src/hooks/useShortcut.test.tsx[2m > [22museShortcut[2m > [22mreturns shortcut information[32m 84[2mms[22m[39m
+ [32m✓[39m src/hooks/useUsage.test.tsx[2m > [22museUsage[2m > [22mshould fetch usage statistics successfully[32m 94[2mms[22m[39m
+ [32m✓[39m src/hooks/useUpdateCheck.test.tsx[2m > [22museUpdateCheck[2m > [22mshould check for updates successfully when update is available[32m 77[2mms[22m[39m
+ [32m✓[39m src/hooks/useShortcut.test.tsx[2m > [22museShortcut[2m > [22mconverts Mac shortcuts correctly[32m 77[2mms[22m[39m
+ [32m✓[39m src/contexts/ShortcutsContext.test.tsx[2m > [22mShortcutsContext[2m > [22mmerges user overrides with defaults[32m 75[2mms[22m[39m
+ [32m✓[39m src/components/ShortcutsPanel.test.tsx[2m > [22mShortcutsPanel[2m > [22mrenders loading state[32m 32[2mms[22m[39m
+ [32m✓[39m src/components/ShortcutsPanel.test.tsx[2m > [22mShortcutsPanel[2m > [22mrenders shortcuts grouped by category[32m 56[2mms[22m[39m
+ [32m✓[39m src/components/CommandPalette.test.tsx[2m > [22mCommandPalette[2m > [22mRendering[2m > [22mshould not render when closed[32m 34[2mms[22m[39m
+ [32m✓[39m src/hooks/useAppSettings.test.tsx[2m > [22museAppSettings[2m > [22mshould fetch settings successfully[32m 109[2mms[22m[39m
+ [2m[90m↓[39m[22m src/hooks/useAppSettings.test.tsx[2m > [22museAppSettings[2m > [22mshould handle fetch errors
+ [32m✓[39m src/hooks/useAppSettings.test.tsx[2m > [22museAppSettings[2m > [22mshould update settings successfully[32m 70[2mms[22m[39m
+ [32m✓[39m src/contexts/ShortcutsContext.test.tsx[2m > [22mShortcutsContext[2m > [22mdetects platform correctly[32m 74[2mms[22m[39m
+ [32m✓[39m src/contexts/ShortcutsContext.test.tsx[2m > [22mShortcutsContext[2m > [22mprovides shortcut definitions[32m 79[2mms[22m[39m
+ [32m✓[39m src/hooks/useShortcut.test.tsx[2m > [22museShortcut[2m > [22mconverts Windows shortcuts correctly[32m 72[2mms[22m[39m
+ [32m✓[39m src/hooks/useShortcut.test.tsx[2m > [22museShortcut[2m > [22mdisables shortcut when loading[32m 77[2mms[22m[39m
+ [32m✓[39m src/hooks/useShortcut.test.tsx[2m > [22museShortcut[2m > [22mdisables shortcut when enabled option is false[32m 18[2mms[22m[39m
+ [32m✓[39m src/hooks/useUsage.test.tsx[2m > [22museUsage[2m > [22mshould use correct query key[32m 79[2mms[22m[39m
+ [32m✓[39m src/components/UpdateNotification.test.tsx[2m > [22mUpdateNotification[2m > [22mRendering States[2m > [22mshould not render when loading[32m 38[2mms[22m[39m
+ [32m✓[39m src/components/UpdateNotification.test.tsx[2m > [22mUpdateNotification[2m > [22mRendering States[2m > [22mshould not render when no update available[32m 3[2mms[22m[39m
+ [32m✓[39m src/hooks/useUpdateCheck.test.tsx[2m > [22museUpdateCheck[2m > [22mshould check for updates successfully when no update available[32m 79[2mms[22m[39m
+ [2m[90m↓[39m[22m src/hooks/useUpdateCheck.test.tsx[2m > [22museUpdateCheck[2m > [22mshould handle errors when checking for updates
+ [32m✓[39m src/components/CommandPalette.test.tsx[2m > [22mCommandPalette[2m > [22mRendering[2m > [22mshould render search input when opened[32m 217[2mms[22m[39m
+ [32m✓[39m src/components/CommandPalette.test.tsx[2m > [22mCommandPalette[2m > [22mRendering[2m > [22mshould render all commands by default[32m 25[2mms[22m[39m
+ [32m✓[39m src/components/CommandPalette.test.tsx[2m > [22mCommandPalette[2m > [22mRendering[2m > [22mshould group commands by category[32m 19[2mms[22m[39m
+ [32m✓[39m src/components/CommandPalette.test.tsx[2m > [22mCommandPalette[2m > [22mRendering[2m > [22mshould display shortcuts for commands[32m 17[2mms[22m[39m
+ [32m✓[39m src/components/CommandPalette.test.tsx[2m > [22mCommandPalette[2m > [22mKeyboard Navigation[2m > [22mshould open with Cmd+K on Mac[32m 19[2mms[22m[39m
+ [32m✓[39m src/components/ShortcutsPanel.test.tsx[2m > [22mShortcutsPanel[2m > [22mdisplays current shortcuts correctly[32m 21[2mms[22m[39m
+ [32m✓[39m src/components/ShortcutsPanel.test.tsx[2m > [22mShortcutsPanel[2m > [22mdisplays shortcut descriptions[32m 17[2mms[22m[39m
+ [2m[90m↓[39m[22m src/components/ShortcutsPanel.test.tsx[2m > [22mShortcutsPanel[2m > [22mstarts recording when customize button clicked
+ [2m[90m↓[39m[22m src/components/ShortcutsPanel.test.tsx[2m > [22mShortcutsPanel[2m > [22mcancels recording when cancel button clicked
+ [2m[90m↓[39m[22m src/components/ShortcutsPanel.test.tsx[2m > [22mShortcutsPanel[2m > [22mcancels recording when backdrop clicked
+ [2m[90m↓[39m[22m src/components/ShortcutsPanel.test.tsx[2m > [22mShortcutsPanel[2m > [22mrecords key combination correctly
+ [2m[90m↓[39m[22m src/components/ShortcutsPanel.test.tsx[2m > [22mShortcutsPanel[2m > [22msaves shortcut when save button clicked
+ [2m[90m↓[39m[22m src/components/ShortcutsPanel.test.tsx[2m > [22mShortcutsPanel[2m > [22mdisables save button when no keys recorded
+ [2m[90m↓[39m[22m src/components/ShortcutsPanel.test.tsx[2m > [22mShortcutsPanel[2m > [22mshows error when shortcut conflicts
+ [2m[90m↓[39m[22m src/components/ShortcutsPanel.test.tsx[2m > [22mShortcutsPanel[2m > [22mshows error when save fails
+ [32m✓[39m src/hooks/useAppSettings.test.tsx[2m > [22museAppSettings[2m > [22mshould handle update errors[32m 64[2mms[22m[39m
+ [32m✓[39m src/hooks/useUsage.test.tsx[2m > [22museSessionUsage[2m > [22mshould fetch session usage successfully[32m 71[2mms[22m[39m
+ [32m✓[39m src/hooks/useUsage.test.tsx[2m > [22museSessionUsage[2m > [22mshould not fetch when sessionId is empty[32m 13[2mms[22m[39m
+ [32m✓[39m src/hooks/useUsage.test.tsx[2m > [22museSessionUsage[2m > [22mshould not fetch when sessionId is 'new'[32m 17[2mms[22m[39m
+ [32m✓[39m src/hooks/useUsage.test.tsx[2m > [22museSessionUsage[2m > [22mshould use correct query key with sessionId[32m 83[2mms[22m[39m
+ [32m✓[39m src/hooks/useShortcut.test.tsx[2m > [22museShortcut[2m > [22mreturns null hotkey for non-existent shortcut[32m 70[2mms[22m[39m
+ [32m✓[39m src/components/UpdateNotification.test.tsx[2m > [22mUpdateNotification[2m > [22mRendering States[2m > [22mshould render notification when update available[32m 183[2mms[22m[39m
+ [32m✓[39m src/components/UpdateNotification.test.tsx[2m > [22mUpdateNotification[2m > [22mRendering States[2m > [22mshould render error state when update check fails[32m 20[2mms[22m[39m
+ [32m✓[39m src/components/UpdateNotification.test.tsx[2m > [22mUpdateNotification[2m > [22mRendering States[2m > [22mshould render installing state during update[32m 19[2mms[22m[39m
+ [32m✓[39m src/components/UpdateNotification.test.tsx[2m > [22mUpdateNotification[2m > [22mRendering States[2m > [22mshould render error state when update apply fails[32m 17[2mms[22m[39m
+ [32m✓[39m src/components/UpdateNotification.test.tsx[2m > [22mUpdateNotification[2m > [22mUser Interactions[2m > [22mshould call mutate when Install Now button is clicked[32m 20[2mms[22m[39m
+ [32m✓[39m src/components/UpdateNotification.test.tsx[2m > [22mUpdateNotification[2m > [22mUser Interactions[2m > [22mshould dismiss notification when Later button is clicked[32m 15[2mms[22m[39m
+ [32m✓[39m src/hooks/useShortcut.test.tsx[2m > [22museShortcuts[2m > [22mbinds multiple shortcuts[32m 78[2mms[22m[39m
+ [32m✓[39m src/hooks/useUpdateCheck.test.tsx[2m > [22museUpdateCheck[2m > [22mshould be disabled when enabled option is false[32m 116[2mms[22m[39m
+ [32m✓[39m src/hooks/useUpdateCheck.test.tsx[2m > [22museUpdateCheck[2m > [22mshould use custom refetch interval when provided[32m 84[2mms[22m[39m
+ [32m✓[39m src/contexts/ShortcutsContext.test.tsx[2m > [22mShortcutsContext[2m > [22mgetShortcut returns the correct shortcut key[32m 81[2mms[22m[39m
+ [32m✓[39m src/components/CommandPalette.test.tsx[2m > [22mCommandPalette[2m > [22mKeyboard Navigation[2m > [22mshould open with Ctrl+K on Windows[32m 21[2mms[22m[39m
+ [32m✓[39m src/components/CommandPalette.test.tsx[2m > [22mCommandPalette[2m > [22mKeyboard Navigation[2m > [22mshould close with Escape[32m 28[2mms[22m[39m
+ [32m✓[39m src/components/CommandPalette.test.tsx[2m > [22mCommandPalette[2m > [22mKeyboard Navigation[2m > [22mshould close when clicking backdrop[32m 48[2mms[22m[39m
+ [32m✓[39m src/components/UpdateNotification.test.tsx[2m > [22mUpdateNotification[2m > [22mUser Interactions[2m > [22mshould call refetch when Retry is clicked on check error[32m 17[2mms[22m[39m
+ [32m✓[39m src/components/UpdateNotification.test.tsx[2m > [22mUpdateNotification[2m > [22mUser Interactions[2m > [22mshould retry installation when Retry is clicked on apply error[32m 17[2mms[22m[39m
+ [32m✓[39m src/components/UpdateNotification.test.tsx[2m > [22mUpdateNotification[2m > [22mUser Interactions[2m > [22mshould dismiss error notification when dismiss button is clicked[32m 15[2mms[22m[39m
+ [32m✓[39m src/components/UpdateNotification.test.tsx[2m > [22mUpdateNotification[2m > [22mAccessibility[2m > [22mshould have proper ARIA attributes for status[32m 17[2mms[22m[39m
+ [32m✓[39m src/components/UpdateNotification.test.tsx[2m > [22mUpdateNotification[2m > [22mAccessibility[2m > [22mshould have proper ARIA attributes for alerts[32m 13[2mms[22m[39m
+ [32m✓[39m src/components/UpdateNotification.test.tsx[2m > [22mUpdateNotification[2m > [22mAccessibility[2m > [22mshould have accessible button labels[32m 5[2mms[22m[39m
+ [32m✓[39m src/components/UpdateNotification.test.tsx[2m > [22mUpdateNotification[2m > [22mEdge Cases[2m > [22mshould not call mutate if update data is incomplete[32m 8[2mms[22m[39m
+ [32m✓[39m src/components/UpdateNotification.test.tsx[2m > [22mUpdateNotification[2m > [22mEdge Cases[2m > [22mshould show fallback error message when error has no message[32m 4[2mms[22m[39m
+ [32m✓[39m src/hooks/useAppSettings.test.tsx[2m > [22museAppSettings[2m > [22mshould support optimistic updates[32m 130[2mms[22m[39m
+ [32m✓[39m src/hooks/useAppSettings.test.tsx[2m > [22museAppSettings[2m > [22mshould update multiple settings at once[32m 70[2mms[22m[39m
+ [32m✓[39m src/hooks/useUpdateCheck.test.tsx[2m > [22museUpdateCheck[2m > [22mshould have loading state initially[32m 4[2mms[22m[39m
+ [32m✓[39m src/hooks/useUpdateCheck.test.tsx[2m > [22museApplyUpdate[2m > [22mshould apply update successfully[32m 66[2mms[22m[39m
+ [2m[90m↓[39m[22m src/hooks/useUpdateCheck.test.tsx[2m > [22museApplyUpdate[2m > [22mshould handle errors when applying update
+ [32m✓[39m src/components/ShortcutsPanel.test.tsx[2m > [22mShortcutsPanel[2m > [22mresets all shortcuts when reset button clicked[32m 229[2mms[22m[39m
+ [32m✓[39m src/components/ShortcutsPanel.test.tsx[2m > [22mShortcutsPanel[2m > [22mdoes not reset shortcuts when confirmation cancelled[32m 35[2mms[22m[39m
+ [32m✓[39m src/contexts/ShortcutsContext.test.tsx[2m > [22mShortcutsContext[2m > [22mupdateShortcut updates the shortcut and saves to backend[32m 153[2mms[22m[39m
+ [32m✓[39m src/components/ShortcutsPanel.test.tsx[2m > [22mShortcutsPanel[2m > [22mshows error when reset fails[32m 64[2mms[22m[39m
+ [32m✓[39m src/components/ShortcutsPanel.test.tsx[2m > [22mShortcutsPanel[2m > [22mdisplays platform-specific shortcuts[32m 14[2mms[22m[39m
+ [32m✓[39m src/components/ShortcutsPanel.test.tsx[2m > [22mShortcutsPanel[2m > [22mgroups shortcuts correctly by category[32m 12[2mms[22m[39m
+ [2m[90m↓[39m[22m src/components/ShortcutsPanel.test.tsx[2m > [22mShortcutsPanel[2m > [22mshows recording state visually
+ [2m[90m↓[39m[22m src/components/ShortcutsPanel.test.tsx[2m > [22mShortcutsPanel[2m > [22mhandles modifier keys correctly
+ [2m[90m↓[39m[22m src/components/ShortcutsPanel.test.tsx[2m > [22mShortcutsPanel[2m > [22mnormalizes key display correctly
+ [2m[90m↓[39m[22m src/components/ShortcutsPanel.test.tsx[2m > [22mShortcutsPanel[2m > [22mhandles space key correctly
+ [2m[90m↓[39m[22m src/components/ShortcutsPanel.test.tsx[2m > [22mShortcutsPanel[2m > [22mdisables buttons while saving
+ [32m✓[39m src/components/ShortcutsPanel.test.tsx[2m > [22mShortcutsPanel[2m > [22mdisplays all table headers[32m 15[2mms[22m[39m
+ [32m✓[39m src/components/CommandPalette.test.tsx[2m > [22mCommandPalette[2m > [22mKeyboard Navigation[2m > [22mshould navigate down with ArrowDown[32m 55[2mms[22m[39m
+ [32m✓[39m src/components/CommandPalette.test.tsx[2m > [22mCommandPalette[2m > [22mKeyboard Navigation[2m > [22mshould navigate up with ArrowUp[32m 61[2mms[22m[39m
+ [32m✓[39m src/components/CommandPalette.test.tsx[2m > [22mCommandPalette[2m > [22mKeyboard Navigation[2m > [22mshould execute command with Enter[32m 33[2mms[22m[39m
+ [32m✓[39m src/hooks/useAppSettings.test.tsx[2m > [22museAppSettings[2m > [22mshould use correct query key[32m 63[2mms[22m[39m
+ [32m✓[39m src/hooks/useAppSettings.test.tsx[2m > [22museAppSettings[2m > [22mshould provide updateSettingsAsync for async operations[32m 68[2mms[22m[39m
+ [32m✓[39m src/hooks/useUpdateCheck.test.tsx[2m > [22museApplyUpdate[2m > [22mshould invalidate update check cache on success[32m 80[2mms[22m[39m
+ [32m✓[39m src/hooks/useUpdateCheck.test.tsx[2m > [22museApplyUpdate[2m > [22mshould have idle state initially[32m 3[2mms[22m[39m
+ [32m✓[39m src/hooks/useUpdateCheck.test.tsx[2m > [22museApplyUpdate[2m > [22mshould have pending state while mutation is in progress[32m 80[2mms[22m[39m
+ [32m✓[39m src/contexts/ShortcutsContext.test.tsx[2m > [22mShortcutsContext[2m > [22mupdateShortcut throws error for empty key[32m 70[2mms[22m[39m
+ [32m✓[39m src/contexts/ShortcutsContext.test.tsx[2m > [22mShortcutsContext[2m > [22mhasConflict detects conflicting shortcuts[32m 64[2mms[22m[39m
+ [32m✓[39m src/components/CommandPalette.test.tsx[2m > [22mCommandPalette[2m > [22mSearch[2m > [22mshould filter commands by query[32m 35[2mms[22m[39m
+ [32m✓[39m src/components/CommandPalette.test.tsx[2m > [22mCommandPalette[2m > [22mSearch[2m > [22mshould show empty state when no results[32m 22[2mms[22m[39m
+ [32m✓[39m src/components/CommandPalette.test.tsx[2m > [22mCommandPalette[2m > [22mSearch[2m > [22mshould search by keywords[32m 44[2mms[22m[39m
+ [32m✓[39m src/contexts/ShortcutsContext.test.tsx[2m > [22mShortcutsContext[2m > [22mhasConflict excludes the specified shortcut ID[32m 67[2mms[22m[39m
+ [32m✓[39m src/components/CommandPalette.test.tsx[2m > [22mCommandPalette[2m > [22mSearch[2m > [22mshould perform fuzzy search[32m 33[2mms[22m[39m
+ [32m✓[39m src/components/CommandPalette.test.tsx[2m > [22mCommandPalette[2m > [22mCommand Execution[2m > [22mshould execute command when clicked[32m 31[2mms[22m[39m
+ [32m✓[39m src/components/CommandPalette.test.tsx[2m > [22mCommandPalette[2m > [22mCommand Execution[2m > [22mshould close palette after execution[32m 32[2mms[22m[39m
+ [32m✓[39m src/components/CommandPalette.test.tsx[2m > [22mCommandPalette[2m > [22mAccessibility[2m > [22mshould have proper ARIA attributes[32m 20[2mms[22m[39m
+ [32m✓[39m src/components/CommandPalette.test.tsx[2m > [22mCommandPalette[2m > [22mAccessibility[2m > [22mshould have listbox role for results[32m 15[2mms[22m[39m
+ [32m✓[39m src/components/SettingsAppearance.test.tsx[2m > [22mSettingsAppearance[2m > [22mrenders loading state initially[32m 44[2mms[22m[39m
+ [32m✓[39m src/components/SettingsModels.test.tsx[2m > [22mSettingsModels[2m > [22mrenders loading state initially[32m 38[2mms[22m[39m
+ [32m✓[39m src/contexts/ShortcutsContext.test.tsx[2m > [22mShortcutsContext[2m > [22mresetShortcuts restores default shortcuts[32m 132[2mms[22m[39m
+ [32m✓[39m src/contexts/ShortcutsContext.test.tsx[2m > [22mShortcutsContext[2m > [22mhandles API errors gracefully when loading[32m 67[2mms[22m[39m
+ [32m✓[39m src/contexts/ShortcutsContext.test.tsx[2m > [22mShortcutsContext[2m > [22mthrows error when used outside provider[32m 5[2mms[22m[39m
+ [32m✓[39m src/components/CommandPalette.test.tsx[2m > [22mCommandPalette[2m > [22mAccessibility[2m > [22mshould have option role for commands[32m 21[2mms[22m[39m
+ [32m✓[39m src/components/CommandPalette.test.tsx[2m > [22mCommandPalette[2m > [22mAccessibility[2m > [22mshould indicate selected option with aria-selected[32m 29[2mms[22m[39m
+ [32m✓[39m src/components/CommandPalette.test.tsx[2m > [22mCommandPalette[2m > [22mStyling[2m > [22mshould apply glassmorphism styles[32m 15[2mms[22m[39m
+ [32m✓[39m src/components/CommandPalette.test.tsx[2m > [22mCommandPalette[2m > [22mStyling[2m > [22mshould highlight selected item[32m 27[2mms[22m[39m
+ [32m✓[39m src/components/SettingsAppearance.test.tsx[2m > [22mSettingsAppearance[2m > [22mrenders all appearance settings fields[32m 78[2mms[22m[39m
+ [32m✓[39m src/components/SettingsModels.test.tsx[2m > [22mSettingsModels[2m > [22mrenders all model settings fields[32m 90[2mms[22m[39m
+ [32m✓[39m src/components/SettingsAppearance.test.tsx[2m > [22mSettingsAppearance[2m > [22mdisplays theme dropdown with correct options[32m 190[2mms[22m[39m
+ [32m✓[39m src/components/SettingsAppearance.test.tsx[2m > [22mSettingsAppearance[2m > [22mloads initial values from settings[32m 61[2mms[22m[39m
+ [32m✓[39m src/components/SettingsModels.test.tsx[2m > [22mSettingsModels[2m > [22mdisplays models in dropdown[32m 203[2mms[22m[39m
+ [32m✓[39m src/components/SettingsModels.test.tsx[2m > [22mSettingsModels[2m > [22mloads initial values from settings[32m 73[2mms[22m[39m
+ [32m✓[39m src/components/SettingsAppearance.test.tsx[2m > [22mSettingsAppearance[2m > [22mupdates theme when changed[32m 129[2mms[22m[39m
+ [32m✓[39m src/components/SettingsModels.test.tsx[2m > [22mSettingsModels[2m > [22mupdates default model when changed[32m 138[2mms[22m[39m
+ [32m✓[39m src/components/SettingsAppearance.test.tsx[2m > [22mSettingsAppearance[2m > [22mapplies dark theme class when theme is dark[32m 134[2mms[22m[39m
+ [32m✓[39m src/components/SettingsModels.test.tsx[2m > [22mSettingsModels[2m > [22mupdates temperature when slider changed[32m 76[2mms[22m[39m
+ [32m✓[39m src/api/settings.test.ts[2m > [22mSettings API[2m > [22mfetchSettings[2m > [22mshould fetch settings successfully[32m 3[2mms[22m[39m
+ [32m✓[39m src/api/settings.test.ts[2m > [22mSettings API[2m > [22mfetchSettings[2m > [22mshould throw error when fetch fails[32m 2[2mms[22m[39m
+ [32m✓[39m src/api/settings.test.ts[2m > [22mSettings API[2m > [22mfetchSettings[2m > [22mshould handle network errors[32m 0[2mms[22m[39m
+ [32m✓[39m src/api/settings.test.ts[2m > [22mSettings API[2m > [22mfetchSettings[2m > [22mshould return empty object when no settings exist[32m 0[2mms[22m[39m
+ [32m✓[39m src/api/settings.test.ts[2m > [22mSettings API[2m > [22mupdateSettings[2m > [22mshould update settings successfully[32m 1[2mms[22m[39m
+ [32m✓[39m src/api/settings.test.ts[2m > [22mSettings API[2m > [22mupdateSettings[2m > [22mshould throw error when update fails[32m 0[2mms[22m[39m
+ [32m✓[39m src/api/settings.test.ts[2m > [22mSettings API[2m > [22mupdateSettings[2m > [22mshould handle network errors[32m 0[2mms[22m[39m
+ [32m✓[39m src/api/settings.test.ts[2m > [22mSettings API[2m > [22mupdateSettings[2m > [22mshould handle server errors with no error text[32m 0[2mms[22m[39m
+ [32m✓[39m src/api/settings.test.ts[2m > [22mSettings API[2m > [22mupdateSettings[2m > [22mshould update multiple settings at once[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/traceParser.test.ts[2m > [22mtraceParser[2m > [22mparseTraceToGraph[2m > [22mshould parse trace events into nodes and edges[32m 3[2mms[22m[39m
+ [32m✓[39m src/utils/traceParser.test.ts[2m > [22mtraceParser[2m > [22mparseTraceToGraph[2m > [22mshould create nodes with correct structure[32m 1[2mms[22m[39m
+ [32m✓[39m src/utils/traceParser.test.ts[2m > [22mtraceParser[2m > [22mparseTraceToGraph[2m > [22mshould assign correct colors based on event type[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/traceParser.test.ts[2m > [22mtraceParser[2m > [22mparseTraceToGraph[2m > [22mshould create edges from parent-child relationships[32m 1[2mms[22m[39m
+ [32m✓[39m src/utils/traceParser.test.ts[2m > [22mtraceParser[2m > [22mparseTraceToGraph[2m > [22mshould handle empty trace[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/traceParser.test.ts[2m > [22mtraceParser[2m > [22mparseTraceToGraph[2m > [22mshould calculate hierarchical positions[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/traceParser.test.ts[2m > [22mtraceParser[2m > [22mtoggleNodeExpansion[2m > [22mshould toggle node expanded state[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/traceParser.test.ts[2m > [22mtraceParser[2m > [22mtoggleNodeExpansion[2m > [22mshould only affect the specified node[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/traceParser.test.ts[2m > [22mtraceParser[2m > [22mgetAncestorIds[2m > [22mshould get all ancestor IDs[32m 1[2mms[22m[39m
+ [32m✓[39m src/utils/traceParser.test.ts[2m > [22mtraceParser[2m > [22mgetAncestorIds[2m > [22mshould return empty array for root node[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/traceParser.test.ts[2m > [22mtraceParser[2m > [22mgetAncestorIds[2m > [22mshould handle direct children[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/traceParser.test.ts[2m > [22mtraceParser[2m > [22mgetDescendantIds[2m > [22mshould get all descendant IDs[32m 1[2mms[22m[39m
+ [32m✓[39m src/utils/traceParser.test.ts[2m > [22mtraceParser[2m > [22mgetDescendantIds[2m > [22mshould return empty array for leaf node[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/traceParser.test.ts[2m > [22mtraceParser[2m > [22mgetDescendantIds[2m > [22mshould handle single-level descendants[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/traceParser.test.ts[2m > [22mtraceParser[2m > [22mfilterGraphByPath[2m > [22mshould highlight nodes in path[32m 1[2mms[22m[39m
+ [32m✓[39m src/utils/traceParser.test.ts[2m > [22mtraceParser[2m > [22mfilterGraphByPath[2m > [22mshould highlight edges in path[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/traceParser.test.ts[2m > [22mtraceParser[2m > [22mEVENT_TYPE_COLORS[2m > [22mshould have colors for all event types[32m 1[2mms[22m[39m
+ [32m✓[39m src/utils/traceParser.test.ts[2m > [22mtraceParser[2m > [22mEVENT_TYPE_COLORS[2m > [22mshould use sunset gradient for MODE_TRANSITION[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/traceParser.test.ts[2m > [22mtraceParser[2m > [22mEVENT_TYPE_COLORS[2m > [22mshould use red for ERROR[32m 0[2mms[22m[39m
+ [32m✓[39m src/components/SettingsAppearance.test.tsx[2m > [22mSettingsAppearance[2m > [22mapplies light theme class when theme is light[32m 115[2mms[22m[39m
+ [32m✓[39m src/components/UsageDashboard.test.tsx[2m > [22mUsageDashboard[2m > [22mLoading State[2m > [22mshould display loading skeleton while fetching data[32m 186[2mms[22m[39m
+ [2m[90m↓[39m[22m src/components/UsageDashboard.test.tsx[2m > [22mUsageDashboard[2m > [22mError State[2m > [22mshould display error message when fetch fails
+ [32m✓[39m src/components/UsageDashboard.test.tsx[2m > [22mUsageDashboard[2m > [22mEmpty State[2m > [22mshould display empty state when no usage data exists[32m 33[2mms[22m[39m
+ [32m✓[39m src/commands/types.test.ts[2m > [22mCommand Types[2m > [22mgetPlatform[2m > [22mshould detect macOS[32m 2[2mms[22m[39m
+ [32m✓[39m src/commands/types.test.ts[2m > [22mCommand Types[2m > [22mgetPlatform[2m > [22mshould detect Windows[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/types.test.ts[2m > [22mCommand Types[2m > [22mgetPlatform[2m > [22mshould default to linux for unknown platforms[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/types.test.ts[2m > [22mCommand Types[2m > [22mgetPlatform[2m > [22mshould be case insensitive[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/types.test.ts[2m > [22mCommand Types[2m > [22mgetShortcut[2m > [22mshould return platform-specific shortcut for mac[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/types.test.ts[2m > [22mCommand Types[2m > [22mgetShortcut[2m > [22mshould return platform-specific shortcut for windows[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/types.test.ts[2m > [22mCommand Types[2m > [22mgetShortcut[2m > [22mshould return platform-specific shortcut for linux[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/types.test.ts[2m > [22mCommand Types[2m > [22mgetShortcut[2m > [22mshould return undefined if command has no shortcut[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/types.test.ts[2m > [22mCommand Types[2m > [22mgetShortcut[2m > [22mshould return undefined if platform shortcut is missing[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/types.test.ts[2m > [22mCommand Types[2m > [22mformatShortcut[2m > [22mshould format shortcuts with symbols on mac[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/types.test.ts[2m > [22mCommand Types[2m > [22mformatShortcut[2m > [22mshould format multiple modifiers on mac[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/types.test.ts[2m > [22mCommand Types[2m > [22mformatShortcut[2m > [22mshould not format shortcuts on windows[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/types.test.ts[2m > [22mCommand Types[2m > [22mformatShortcut[2m > [22mshould not format shortcuts on linux[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/types.test.ts[2m > [22mCommand Types[2m > [22mformatShortcut[2m > [22mshould handle empty string[32m 0[2mms[22m[39m
+ [32m✓[39m src/commands/types.test.ts[2m > [22mCommand Types[2m > [22mformatShortcut[2m > [22mshould handle shortcuts without modifiers[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/vram.test.ts[2m > [22mVRAM Utilities[2m > [22mparseVRAM[2m > [22mshould parse GB (decimal) values correctly[32m 2[2mms[22m[39m
+ [32m✓[39m src/utils/vram.test.ts[2m > [22mVRAM Utilities[2m > [22mparseVRAM[2m > [22mshould parse GiB (binary) values correctly[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/vram.test.ts[2m > [22mVRAM Utilities[2m > [22mparseVRAM[2m > [22mshould convert MB (decimal) to GiB correctly[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/vram.test.ts[2m > [22mVRAM Utilities[2m > [22mparseVRAM[2m > [22mshould convert MiB (binary) to GiB correctly[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/vram.test.ts[2m > [22mVRAM Utilities[2m > [22mparseVRAM[2m > [22mshould handle case insensitive units[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/vram.test.ts[2m > [22mVRAM Utilities[2m > [22mparseVRAM[2m > [22mshould return null for invalid inputs[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/vram.test.ts[2m > [22mVRAM Utilities[2m > [22mparseVRAM[2m > [22mshould handle edge cases[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/vram.test.ts[2m > [22mVRAM Utilities[2m > [22mIntegration tests[2m > [22mshould parse various VRAM formats consistently[32m 1[2mms[22m[39m
+ [32m✓[39m src/utils/vram.test.ts[2m > [22mVRAM Utilities[2m > [22mgetTotalVRAM[2m > [22mshould sum VRAM values from multiple computes[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/vram.test.ts[2m > [22mVRAM Utilities[2m > [22mgetTotalVRAM[2m > [22mshould handle MB and MiB conversions correctly[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/vram.test.ts[2m > [22mVRAM Utilities[2m > [22mgetTotalVRAM[2m > [22mshould handle mixed units[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/vram.test.ts[2m > [22mVRAM Utilities[2m > [22mgetTotalVRAM[2m > [22mshould skip invalid VRAM strings[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/vram.test.ts[2m > [22mVRAM Utilities[2m > [22mgetTotalVRAM[2m > [22mshould handle empty array[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/vram.test.ts[2m > [22mVRAM Utilities[2m > [22mgetTotalVRAM[2m > [22mshould handle single compute[32m 0[2mms[22m[39m
+ [32m✓[39m src/utils/vram.test.ts[2m > [22mVRAM Utilities[2m > [22mgetTotalVRAM[2m > [22mshould handle decimal values[32m 0[2mms[22m[39m
+ [32m✓[39m src/components/SettingsAppearance.test.tsx[2m > [22mSettingsAppearance[2m > [22mapplies auto theme based on system preference[32m 86[2mms[22m[39m
+ [32m✓[39m src/components/SettingsAppearance.test.tsx[2m > [22mSettingsAppearance[2m > [22mupdates font size when slider changed[32m 92[2mms[22m[39m
+ [32m✓[39m src/components/SettingsModels.test.tsx[2m > [22mSettingsModels[2m > [22mupdates max tokens when input changed[32m 210[2mms[22m[39m
+ [32m✓[39m src/components/SettingsModels.test.tsx[2m > [22mSettingsModels[2m > [22mvalidates temperature range[32m 48[2mms[22m[39m
+ [32m✓[39m src/components/UsageDashboard.test.tsx[2m > [22mUsageDashboard[2m > [22mData Display[2m > [22mshould display total tokens stat card[32m 69[2mms[22m[39m
+ [32m✓[39m src/components/UsageDashboard.test.tsx[2m > [22mUsageDashboard[2m > [22mData Display[2m > [22mshould display total messages stat card[32m 31[2mms[22m[39m
+ [32m✓[39m src/components/UsageDashboard.test.tsx[2m > [22mUsageDashboard[2m > [22mData Display[2m > [22mshould display estimated cost stat card[32m 47[2mms[22m[39m
+ [32m✓[39m src/components/SettingsAppearance.test.tsx[2m > [22mSettingsAppearance[2m > [22mapplies font size to document root[32m 20[2mms[22m[39m
+ [32m✓[39m src/components/SettingsAppearance.test.tsx[2m > [22mSettingsAppearance[2m > [22mupdates glassmorphism intensity when slider changed[32m 82[2mms[22m[39m
+ [32m✓[39m src/components/UsageDashboard.test.tsx[2m > [22mUsageDashboard[2m > [22mData Display[2m > [22mshould display token usage over time chart[32m 34[2mms[22m[39m
+ [32m✓[39m src/components/UsageDashboard.test.tsx[2m > [22mUsageDashboard[2m > [22mData Display[2m > [22mshould display usage by model chart[32m 36[2mms[22m[39m
+ [32m✓[39m src/components/UsageDashboard.test.tsx[2m > [22mUsageDashboard[2m > [22mData Display[2m > [22mshould display top sessions[32m 34[2mms[22m[39m
+ [32m✓[39m src/components/SettingsData.test.tsx[2m > [22mSettingsData[2m > [22mrenders all data management options[32m 97[2mms[22m[39m
+ [32m✓[39m src/components/SettingsAppearance.test.tsx[2m > [22mSettingsAppearance[2m > [22mapplies glassmorphism intensity to CSS variables[32m 17[2mms[22m[39m
+ [32m✓[39m src/components/SettingsAppearance.test.tsx[2m > [22mSettingsAppearance[2m > [22mdisplays preview card[32m 18[2mms[22m[39m
+ [32m✓[39m src/components/SettingsAppearance.test.tsx[2m > [22mSettingsAppearance[2m > [22msyncs local state with settings prop changes[32m 52[2mms[22m[39m
+ [32m✓[39m src/components/SettingsAppearance.test.tsx[2m > [22mSettingsAppearance[2m > [22mcalculates correct glass opacity values[32m 15[2mms[22m[39m
+ [32m✓[39m src/components/UsageDashboard.test.tsx[2m > [22mUsageDashboard[2m > [22mData Display[2m > [22mshould format numbers with locale formatting[32m 33[2mms[22m[39m
+ [32m✓[39m src/components/UsageDashboard.test.tsx[2m > [22mUsageDashboard[2m > [22mData Display[2m > [22mshould format currency with appropriate decimal places[32m 28[2mms[22m[39m
+ [32m✓[39m src/components/UsageDashboard.test.tsx[2m > [22mUsageDashboard[2m > [22mData Display[2m > [22mshould display model details with token counts and costs[32m 31[2mms[22m[39m
+ [32m✓[39m src/components/SettingsModels.test.tsx[2m > [22mSettingsModels[2m > [22mvalidates max tokens range[32m 182[2mms[22m[39m
+ [32m✓[39m src/components/SettingsAppearance.test.tsx[2m > [22mSettingsAppearance[2m > [22mhandles settings with undefined values[32m 18[2mms[22m[39m
+ [32m✓[39m src/components/SettingsAppearance.test.tsx[2m > [22mSettingsAppearance[2m > [22mlistens for system theme changes in auto mode[32m 46[2mms[22m[39m
+ [32m✓[39m src/components/SettingsData.test.tsx[2m > [22mSettingsData[2m > [22mshows export button[32m 180[2mms[22m[39m
+ [32m✓[39m src/components/SettingsData.test.tsx[2m > [22mSettingsData[2m > [22mshows import button[32m 13[2mms[22m[39m
+ [32m✓[39m src/components/SettingsData.test.tsx[2m > [22mSettingsData[2m > [22mshows clear all button[32m 41[2mms[22m[39m
+ [32m✓[39m src/components/UsageDashboard.test.tsx[2m > [22mUsageDashboard[2m > [22mData Display[2m > [22mshould limit top sessions to 10 items[32m 44[2mms[22m[39m
+ [32m✓[39m src/components/UsageDashboard.test.tsx[2m > [22mUsageDashboard[2m > [22mData Display[2m > [22mshould handle sessions with no title[32m 26[2mms[22m[39m
+ [32m✓[39m src/components/UsageDashboard.test.tsx[2m > [22mUsageDashboard[2m > [22mResponsive Design[2m > [22mshould render charts in responsive containers[32m 37[2mms[22m[39m
+ [32m✓[39m src/components/UsageDashboard.test.tsx[2m > [22mUsageDashboard[2m > [22mDate Formatting[2m > [22mshould render the line chart container[32m 28[2mms[22m[39m
+ [32m✓[39m src/components/SettingsData.test.tsx[2m > [22mSettingsData[2m > [22mdisplays error when no sessions to export[32m 106[2mms[22m[39m
+ [32m✓[39m src/components/SettingsModels.test.tsx[2m > [22mSettingsModels[2m > [22mvalidates max tokens as integer[32m 216[2mms[22m[39m
+ [32m✓[39m src/components/SettingsModels.test.tsx[2m > [22mSettingsModels[2m > [22mhandles empty models list gracefully[32m 34[2mms[22m[39m
+ [32m✓[39m src/components/SettingsModels.test.tsx[2m > [22mSettingsModels[2m > [22msets first model as default when no default set[32m 33[2mms[22m[39m
+ [32m✓[39m src/components/SettingsModels.test.tsx[2m > [22mSettingsModels[2m > [22mdisplays error message for invalid temperature[32m 31[2mms[22m[39m
+ [32m✓[39m src/components/SettingsModels.test.tsx[2m > [22mSettingsModels[2m > [22msyncs local state with settings prop changes[32m 53[2mms[22m[39m
+ [32m✓[39m src/components/SettingsData.test.tsx[2m > [22mSettingsData[2m > [22mexports all sessions successfully[32m 99[2mms[22m[39m
+ [32m✓[39m src/components/SettingsData.test.tsx[2m > [22mSettingsData[2m > [22mopens confirmation dialog when clearing history[32m 110[2mms[22m[39m
+ [32m✓[39m src/components/SettingsData.test.tsx[2m > [22mSettingsData[2m > [22mcloses confirmation dialog when cancel is clicked[33m 479[2mms[22m[39m
+ [32m✓[39m src/components/SettingsData.test.tsx[2m > [22mSettingsData[2m > [22mclears all sessions when confirmed[32m 160[2mms[22m[39m
+ [32m✓[39m src/components/SettingsData.test.tsx[2m > [22mSettingsData[2m > [22mhandles import file selection[32m 66[2mms[22m[39m
+ [31m×[39m src/components/SettingsData.test.tsx[2m > [22mSettingsData[2m > [22mhandles non-markdown files on import gracefully[33m 2062[2mms[22m[39m
+[31m   → [2mexpect([22m[31mreceived[31m[2m).toBeInTheDocument()[22m
+
+[31mreceived[31m value must be an HTMLElement or an SVGElement.
+Received has type:  Null
+Received has value: [31mnull[31m
+
+Ignored nodes: comments, script, style
+[36m<html[31m
+  [33mstyle[31m=[32m""[31m
+[36m>[31m
+  [36m<head />[31m
+  [36m<body>[31m
+    [36m<div>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"space-y-3 p-4"[31m
+      [36m>[31m
+        [36m<div[31m
+          [33mclass[31m=[32m"[&>[data-slot=label]+[data-slot=control]]:mt-3 [&>[data-slot=label]+[data-slot=description]]:mt-1 [&>[data-slot=description]+[data-slot=control]]:mt-3 [&>[data-slot=control]+[data-slot=description]]:mt-3 [&>[data-slot=control]+[data-slot=error]]:mt-3 *:data-[slot=label]:font-medium"[31m
+          [33mdata-headlessui-state[31m=[32m""[31m
+        [36m>[31m
+          [36m<div[31m
+            [33mclass[31m=[32m"flex items-start justify-between gap-4"[31m
+          [36m>[31m
+            [36m<div[31m
+              [33mclass[31m=[32m"flex items-start space-x-3 flex-1"[31m
+            [36m>[31m
+              [36m<svg[31m
+                [33maria-hidden[31m=[32m"true"[31m
+                [33mclass[31m=[32m"mt-1 h-5 w-5 flex-shrink-0 text-dojo-accent-primary"[31m
+                [33mdata-slot[31m=[32m"icon"[31m
+                [33mfill[31m=[32m"currentColor"[31m
+                [33mviewBox[31m=[32m"0 0 20 20"[31m
+                [33mxmlns[31m=[32m"http://www.w3.org/2000/svg"[31m
+              [36m>[31m
+                [36m<path[31m
+                  [33md[31m=[32m"M10.75 2.75a.75.75 0 0 0-1.5 0v8.614L6.295 8.235a.75.75 0 1 0-1.09 1.03l4.25 4.5a.75.75 0 0 0 1.09 0l4.25-4.5a.75.75 0 0 0-1.09-1.03l-2.955 3.129V2.75Z"[31m
+                [36m/>[31m
+                [36m<path[31m
+                  [33md[31m=[32m"M3.5 12.75a.75.75 0 0 0-1.5 0v2.5A2.75 2.75 0 0 0 4.75 18h10.5A2.75 2.75 0 0 0 18 15.25v-2.5a.75.75 0 0 0-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5Z"[31m
+                [36m/>[31m
+              [36m</svg>[31m
+              [36m<div>[31m
+                [36m<label[31m
+                  [33mclass[31m=[32m"text-dojo-text-primary text-base/6 text-zinc-950 select-none data-disabled:opacity-50 sm:text-sm/6 dark:text-white"[31m
+                  [33mdata-headlessui-state[31m=[32m""[31m
+                  [33mdata-slot[31m=[32m"label"[31m
+                  [33mfor[31m=[32m"headlessui-control-«r3l»"[31m
+                  [33mid[31m=[32m"headlessui-label-«r3m»"[31m
+                [36m>[31m
+                  [0mExport all sessions[0m
+                [36m</label>[31m
+                [36m<p[31m
+                  [33mclass[31m=[32m"text-dojo-text-secondary text-base/6 text-zinc-500 data-disabled:opacity-50 sm:text-sm/6 dark:text-zinc-400"[31m
+                  [33mdata-headlessui-state[31m=[32m""[31m
+                  [33mdata-slot[31m=[32m"description"[31m
+                  [33mid[31m=[32m"headlessui-description-«r3n»"[31m
+                [36m>[31m
+                  [0mDownload all your conversations as Markdown files[0m
+                [36m</p>[31m
+              [36m</div>[31m
+            [36m</div>[31m
+            [36m<div[31m
+              [33mclass[31m=[32m"flex-shrink-0"[31m
+            [36m>[31m
+              [36m<button[31m
+                [33mclass[31m=[32m"px-3 py-2 text-sm relative isolate inline-flex items-baseline justify-center gap-x-2 rounded-lg border text-base/6 font-medium px-[calc(--spacing(3.5)-1px)] py-[calc(--spacing(2.5)-1px)] sm:px-[calc(--spacing(3)-1px)] sm:py-[calc(--spacing(1.5)-1px)] sm:text-sm/6 focus:not-data-focus:outline-hidden data-focus:outline-2 data-focus:outline-offset-2 data-focus:outline-blue-500 data-disabled:opacity-50 *:data-[slot=icon]:-mx-0.5 *:data-[slot=icon]:my-0.5 *:data-[slot=icon]:size-5 *:data-[slot=icon]:shrink-0 *:data-[slot=icon]:self-center *:data-[slot=icon]:text-(--btn-icon) sm:*:data-[slot=icon]:my-1 sm:*:data-[slot=icon]:size-4 forced-colors:[--btn-icon:ButtonText] forced-colors:data-hover:[--btn-icon:ButtonText] border-transparent bg-(--btn-border) dark:bg-(--btn-bg) before:absolute before:inset-0 before:-z-10 before:rounded-[calc(var(--radius-lg)-1px)] before:bg-(--btn-bg) before:shadow-sm dark:before:hidden dark:border-white/5 after:absolute after:inset-0 after:-z-10 after:rounded-[calc(var(--radius-lg)-1px)] after:shadow-[inset_0_1px_--theme(--color-white/15%)] data-active:after:bg-(--btn-hover-overlay) data-hover:after:bg-(--btn-hover-overlay) dark:after:-inset-px dark:after:rounded-lg data-disabled:before:shadow-none data-disabled:after:shadow-none text-zinc-950 [--btn-bg:white] [--btn-border:var(--color-zinc-950)]/10 [--btn-hover-overlay:var(--color-zinc-950)]/2.5 data-active:[--btn-border:var(--color-zinc-950)]/15 data-hover:[--btn-border:var(--color-zinc-950)]/15 dark:[--btn-hover-overlay:var(--color-zinc-950)]/5 [--btn-icon:var(--color-zinc-400)] data-active:[--btn-icon:var(--color-zinc-500)] data-hover:[--btn-icon:var(--color-zinc-500)] cursor-pointer"[31m
+                [33mdata-headlessui-state[31m=[32m""[31m
+                [33mtype[31m=[32m"button"[31m
+              [36m>[31m
+                [36m<span[31m
+                  [33maria-hidden[31m=[32m"true"[31m
+                  [33mclass[31m=[32m"absolute top-1/2 left-1/2 size-[max(100%,2.75rem)] -translate-x-1/2 -translate-y-1/2 pointer-fine:hidden"[31m
+                [36m/>[31m
+                [0mExport All[0m
+              [36m</button>[31m
+            [36m</div>[31m
+          [36m</div>[31m
+          [36m<span[31m
+            [33mhidden[31m=[32m""[31m
+            [33mstyle[31m=[32m"position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px; display: none;"[31m
+          [36m/>[31m
+        [36m</div>[31m
+        [36m<div[31m
+          [33mclass[31m=[32m"[&>[data-slot=label]+[data-slot=control]]:mt-3 [&>[data-slot=label]+[data-slot=description]]:mt-1 [&>[data-slot=description]+[data-slot=control]]:mt-3 [&>[data-slot=control]+[data-slot=description]]:mt-3 [&>[data-slot=control]+[data-slot=error]]:mt-3 *:data-[slot=label]:font-medium"[31m
+          [33mdata-headlessui-state[31m=[32m""[31m
+        [36m>[31m
+          [36m<div[31m
+            [33mclass[31m=[32m"flex items-start justify-between gap-4"[31m
+          [36m>[31m
+            [36m<div[31m
+              [33mclass[31m=[32m"flex items-start space-x-3 flex-1"[31m
+            [36m>[31m
+              [36m<svg[31m
+                [33maria-hidden[31m=[32m"true"[31m
+                [33mclass[31m=[32m"mt-1 h-5 w-5 flex-shrink-0 text-dojo-accent-primary"[31m
+                [33mdata-slot[31m=[32m"icon"[31m
+                [33mfill[31m=[32m"currentColor"[31m
+                [33mviewBox[31m=[32m"0 0 20 20"[31m
+                [33mxmlns[31m=[32m"http://www.w3.org/2000/svg"[31m
+              [36m>[31m
+                [36m<path[31m
+                  [33md[31m=[32m"M9.25 13.25a....[39m
+ [32m✓[39m src/components/SettingsData.test.tsx[2m > [22mSettingsData[2m > [22mshows loading state when exporting[32m 83[2mms[22m[39m
+ [32m✓[39m src/components/SettingsData.test.tsx[2m > [22mSettingsData[2m > [22mshows loading state when importing[32m 72[2mms[22m[39m
+ [32m✓[39m src/components/SettingsData.test.tsx[2m > [22mSettingsData[2m > [22mshows loading state when clearing[32m 165[2mms[22m[39m
+ [32m✓[39m src/components/SettingsData.test.tsx[2m > [22mSettingsData[2m > [22mhandles export API error gracefully[32m 85[2mms[22m[39m
+ [32m✓[39m src/components/SettingsData.test.tsx[2m > [22mSettingsData[2m > [22mhandles import API error gracefully[32m 64[2mms[22m[39m
+ [32m✓[39m src/components/SettingsData.test.tsx[2m > [22mSettingsData[2m > [22mhandles clear API error gracefully[32m 121[2mms[22m[39m
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m26 passed[39m[22m[90m (27)[39m
+[2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m354 passed[39m[22m[2m | [22m[33m17 skipped[39m[90m (372)[39m
+[2m   Start at [22m 10:47:45
+[2m   Duration [22m 9.06s[2m (transform 3.15s, setup 0ms, collect 18.66s, tests 12.54s, environment 54.30s, prepare 7.23s)[22m
+

@@ -1,0 +1,1 @@
+2026/01/23 18:42:56 Failed to open database:failed to enable foreign keys: Binary was compiled with 'CGO_ENABLED=0', go-sqlite3 requires cgo to work. This is a stub

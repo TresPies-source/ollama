@@ -20,6 +20,8 @@ CREATE TABLE IF NOT EXISTS messages (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     agent_type TEXT CHECK(agent_type IN ('supervisor', 'dojo', 'librarian', 'builder')),
     mode TEXT CHECK(mode IN ('mirror', 'scout', 'gardener', 'implementation')),
+    prompt_tokens INTEGER DEFAULT 0,
+    completion_tokens INTEGER DEFAULT 0,
     FOREIGN KEY (session_id) REFERENCES sessions(id) ON DELETE CASCADE
 );
 
@@ -89,6 +91,7 @@ CREATE TABLE IF NOT EXISTS tool_calls (
 -- Indexes for performance
 CREATE INDEX IF NOT EXISTS idx_messages_session ON messages(session_id);
 CREATE INDEX IF NOT EXISTS idx_messages_created ON messages(created_at);
+CREATE INDEX IF NOT EXISTS idx_messages_tokens ON messages(prompt_tokens, completion_tokens);
 CREATE INDEX IF NOT EXISTS idx_traces_session ON traces(session_id);
 CREATE INDEX IF NOT EXISTS idx_traces_message ON traces(message_id);
 CREATE INDEX IF NOT EXISTS idx_files_session ON files(session_id);

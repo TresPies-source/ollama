@@ -13,8 +13,22 @@ export default defineConfig((configEnv) =>
         },
       },
       test: {
-        environment: "node",
+        environment: "jsdom",
         globals: true,
+        coverage: {
+          provider: "v8",
+          reporter: ["text", "json", "html"],
+          exclude: [
+            "node_modules/**",
+            "dist/**",
+            "**/*.d.ts",
+            "**/*.config.*",
+            "**/mockData/**",
+            "**/*.test.*",
+            "**/__tests__/**",
+            "codegen/**",
+          ],
+        },
       },
     }),
   ),

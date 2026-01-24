@@ -28,10 +28,12 @@ type CompletionRequest struct {
 
 // CompletionResponse represents a response from text completion
 type CompletionResponse struct {
-	Content      string `json:"content"`
-	Model        string `json:"model"`
-	TokensUsed   int    `json:"tokens_used"`
-	FinishReason string `json:"finish_reason"`
+	Content          string `json:"content"`
+	Model            string `json:"model"`
+	TokensUsed       int    `json:"tokens_used"`
+	PromptTokens     int    `json:"prompt_tokens"`
+	CompletionTokens int    `json:"completion_tokens"`
+	FinishReason     string `json:"finish_reason"`
 }
 
 // StreamChunk represents a chunk of streaming response

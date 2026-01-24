@@ -5,10 +5,13 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"time"
 
 	"github.com/TresPies-source/dgd/api"
 	"github.com/TresPies-source/dgd/database"
 	"github.com/TresPies-source/dgd/llm"
+	"github.com/TresPies-source/dgd/updater"
+	"github.com/TresPies-source/dgd/version"
 	"github.com/gin-gonic/gin"
 )
 
@@ -28,6 +31,12 @@ func main() {
 		log.Fatal("Failed to open database:", err)
 	}
 	defer db.Close()
+
+	// Register shutdown callback for graceful restart
+	updater.RegisterShutdownCallback(func() error {
+		log.Println("Graceful shutdown: closing database...")
+		return db.Close()
+	})
 
 	log.Println("Database initialized at:", dbPath)
 
@@ -89,7 +98,47 @@ func main() {
 	router.POST("/api/sessions", server.CreateSessionHandler)
 	router.GET("/api/sessions", server.ListSessionsHandler)
 	router.GET("/api/sessions/:id", server.GetSessionHandler)
+	router.DELETE("/api/sessions/:id", server.DeleteSessionHandler)
+	router.GET("/api/sessions/:id/usage", server.GetSessionUsageHandler)
+	router.GET("/api/sessions/:id/export", server.ExportSessionHandler)
+	router.POST("/api/sessions/import", server.ImportSessionHandler)
 	router.GET("/api/trace/:id", server.GetTraceHandler)
+	router.GET("/api/usage", server.GetUsageHandler)
+	router.GET("/api/settings", server.GetSettingsHandler)
+	router.POST("/api/settings", server.UpdateSettingsHandler)
+	router.GET("/api/update/check", server.CheckUpdateHandler)
+	router.POST("/api/update/apply", server.ApplyUpdateHandler)
+	
+	// Ollama WebUI compatibility stubs
+	router.GET("/api/version", server.OllamaVersionHandler)
+	router.GET("/api/tags", server.OllamaTagsHandler)
+
+	// Start update checker in background (non-blocking)
+	go func() {
+		// Wait 5 seconds before checking for updates
+		time.Sleep(5 * time.Second)
+
+		updateURL := os.Getenv("UPDATE_URL")
+		if updateURL == "" {
+			// Default to GitHub releases
+			updateURL = "https://api.github.com/repos/TresPies-source/ollama/releases/latest"
+		}
+
+		checker := updater.NewUpdateChecker(updateURL)
+		latest, err := checker.CheckForUpdates(version.Version)
+		if err != nil {
+			log.Printf("Update check failed: %v", err)
+			return
+		}
+
+		if latest != nil {
+			log.Printf("Update available: %s (current: %s)", latest.Version, version.Version)
+			// In a real implementation, this would broadcast via WebSocket to notify the frontend
+			// For now, just log it
+		} else {
+			log.Printf("No updates available (current version: %s)", version.Version)
+		}
+	}()
 
 	// Start server
 	port := os.Getenv("PORT")

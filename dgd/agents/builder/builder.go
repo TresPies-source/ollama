@@ -25,11 +25,13 @@ type Request struct {
 
 // Response represents a response from the Builder agent
 type Response struct {
-	Content      string                   `json:"content"`
-	ToolsUsed    []string                 `json:"tools_used"`
-	FilesCreated []string                 `json:"files_created"`
-	Success      bool                     `json:"success"`
-	Data         map[string]interface{}   `json:"data,omitempty"`
+	Content          string                 `json:"content"`
+	ToolsUsed        []string               `json:"tools_used"`
+	FilesCreated     []string               `json:"files_created"`
+	Success          bool                   `json:"success"`
+	Data             map[string]interface{} `json:"data,omitempty"`
+	PromptTokens     int                    `json:"prompt_tokens"`
+	CompletionTokens int                    `json:"completion_tokens"`
 }
 
 // NewBuilder creates a new Builder agent
@@ -90,10 +92,12 @@ func (b *Builder) Process(ctx context.Context, req *Request) (*Response, error) 
 	}
 
 	return &Response{
-		Content:      content,
-		ToolsUsed:    toolsUsed,
-		FilesCreated: filesCreated,
-		Success:      true,
+		Content:          content,
+		ToolsUsed:        toolsUsed,
+		FilesCreated:     filesCreated,
+		Success:          true,
+		PromptTokens:     llmResp.PromptTokens,
+		CompletionTokens: llmResp.CompletionTokens,
 	}, nil
 }
 

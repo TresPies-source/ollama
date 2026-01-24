@@ -10,7 +10,7 @@ echo "=== Dojo Genesis Desktop Build Script ==="
 echo ""
 
 # Get version
-VERSION="0.1.0"
+VERSION="0.2.0"
 if git describe --tags --first-parent --abbrev=7 --long --dirty --always &>/dev/null; then
     GIT_VERSION=$(git describe --tags --first-parent --abbrev=7 --long --dirty --always 2>/dev/null || echo "")
     if [[ $GIT_VERSION =~ v(.+) ]]; then

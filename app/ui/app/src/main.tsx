@@ -5,6 +5,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { routeTree } from "./routeTree.gen";
 import { fetchUser } from "./api";
 import { StreamingProvider } from "./contexts/StreamingContext";
+import { CommandPaletteProvider } from "./contexts/CommandPaletteContext";
+import { ShortcutsProvider } from "./contexts/ShortcutsContext";
+import { CommandPalette } from "./components/CommandPalette";
+import { UpdateNotification } from "./components/UpdateNotification";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -17,11 +21,15 @@ const queryClient = new QueryClient({
   },
 });
 
-fetchUser().then((userData) => {
-  if (userData) {
-    queryClient.setQueryData(["user"], userData);
-  }
-});
+fetchUser()
+  .then((userData) => {
+    if (userData) {
+      queryClient.setQueryData(["user"], userData);
+    }
+  })
+  .catch((error) => {
+    console.log("User authentication not available:", error.message);
+  });
 
 const router = createRouter({
   routeTree,
@@ -42,7 +50,13 @@ if (!rootElement.innerHTML) {
     <StrictMode>
       <QueryClientProvider client={queryClient}>
         <StreamingProvider>
-          <RouterProvider router={router} />
+          <ShortcutsProvider>
+            <CommandPaletteProvider>
+              <RouterProvider router={router} />
+              <CommandPalette />
+              <UpdateNotification />
+            </CommandPaletteProvider>
+          </ShortcutsProvider>
         </StreamingProvider>
       </QueryClientProvider>
     </StrictMode>,

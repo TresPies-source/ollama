@@ -11,6 +11,7 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as UsageImport } from './routes/usage'
 import { Route as TraceNodeTestImport } from './routes/trace-node-test'
 import { Route as TraceGraphTestImport } from './routes/trace-graph-test'
 import { Route as TestSessionsImport } from './routes/test-sessions'
@@ -30,6 +31,12 @@ import { Route as ChatSessionIdImport } from './routes/chat.$sessionId'
 import { Route as CChatIdImport } from './routes/c.$chatId'
 
 // Create/Update Routes
+
+const UsageRoute = UsageImport.update({
+  id: '/usage',
+  path: '/usage',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const TraceNodeTestRoute = TraceNodeTestImport.update({
   id: '/trace-node-test',
@@ -235,6 +242,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TraceNodeTestImport
       parentRoute: typeof rootRoute
     }
+    '/usage': {
+      id: '/usage'
+      path: '/usage'
+      fullPath: '/usage'
+      preLoaderRoute: typeof UsageImport
+      parentRoute: typeof rootRoute
+    }
     '/c/$chatId': {
       id: '/c/$chatId'
       path: '/c/$chatId'
@@ -276,6 +290,7 @@ export interface FileRoutesByFullPath {
   '/test-sessions': typeof TestSessionsRoute
   '/trace-graph-test': typeof TraceGraphTestRoute
   '/trace-node-test': typeof TraceNodeTestRoute
+  '/usage': typeof UsageRoute
   '/c/$chatId': typeof CChatIdRoute
   '/chat/$sessionId': typeof ChatSessionIdRoute
   '/trace/$sessionId': typeof TraceSessionIdRoute
@@ -296,6 +311,7 @@ export interface FileRoutesByTo {
   '/test-sessions': typeof TestSessionsRoute
   '/trace-graph-test': typeof TraceGraphTestRoute
   '/trace-node-test': typeof TraceNodeTestRoute
+  '/usage': typeof UsageRoute
   '/c/$chatId': typeof CChatIdRoute
   '/chat/$sessionId': typeof ChatSessionIdRoute
   '/trace/$sessionId': typeof TraceSessionIdRoute
@@ -317,6 +333,7 @@ export interface FileRoutesById {
   '/test-sessions': typeof TestSessionsRoute
   '/trace-graph-test': typeof TraceGraphTestRoute
   '/trace-node-test': typeof TraceNodeTestRoute
+  '/usage': typeof UsageRoute
   '/c/$chatId': typeof CChatIdRoute
   '/chat/$sessionId': typeof ChatSessionIdRoute
   '/trace/$sessionId': typeof TraceSessionIdRoute
@@ -339,6 +356,7 @@ export interface FileRouteTypes {
     | '/test-sessions'
     | '/trace-graph-test'
     | '/trace-node-test'
+    | '/usage'
     | '/c/$chatId'
     | '/chat/$sessionId'
     | '/trace/$sessionId'
@@ -358,6 +376,7 @@ export interface FileRouteTypes {
     | '/test-sessions'
     | '/trace-graph-test'
     | '/trace-node-test'
+    | '/usage'
     | '/c/$chatId'
     | '/chat/$sessionId'
     | '/trace/$sessionId'
@@ -377,6 +396,7 @@ export interface FileRouteTypes {
     | '/test-sessions'
     | '/trace-graph-test'
     | '/trace-node-test'
+    | '/usage'
     | '/c/$chatId'
     | '/chat/$sessionId'
     | '/trace/$sessionId'
@@ -398,6 +418,7 @@ export interface RootRouteChildren {
   TestSessionsRoute: typeof TestSessionsRoute
   TraceGraphTestRoute: typeof TraceGraphTestRoute
   TraceNodeTestRoute: typeof TraceNodeTestRoute
+  UsageRoute: typeof UsageRoute
   CChatIdRoute: typeof CChatIdRoute
   ChatSessionIdRoute: typeof ChatSessionIdRoute
   TraceSessionIdRoute: typeof TraceSessionIdRoute
@@ -418,6 +439,7 @@ const rootRouteChildren: RootRouteChildren = {
   TestSessionsRoute: TestSessionsRoute,
   TraceGraphTestRoute: TraceGraphTestRoute,
   TraceNodeTestRoute: TraceNodeTestRoute,
+  UsageRoute: UsageRoute,
   CChatIdRoute: CChatIdRoute,
   ChatSessionIdRoute: ChatSessionIdRoute,
   TraceSessionIdRoute: TraceSessionIdRoute,
@@ -447,6 +469,7 @@ export const routeTree = rootRoute
         "/test-sessions",
         "/trace-graph-test",
         "/trace-node-test",
+        "/usage",
         "/c/$chatId",
         "/chat/$sessionId",
         "/trace/$sessionId"
@@ -493,6 +516,9 @@ export const routeTree = rootRoute
     },
     "/trace-node-test": {
       "filePath": "trace-node-test.tsx"
+    },
+    "/usage": {
+      "filePath": "usage.tsx"
     },
     "/c/$chatId": {
       "filePath": "c.$chatId.tsx"

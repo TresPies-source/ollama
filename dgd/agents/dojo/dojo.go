@@ -41,8 +41,10 @@ type Request struct {
 
 // Response represents a response from the Dojo agent
 type Response struct {
-	Content string `json:"content"`
-	Mode    Mode   `json:"mode"`
+	Content          string `json:"content"`
+	Mode             Mode   `json:"mode"`
+	PromptTokens     int    `json:"prompt_tokens"`
+	CompletionTokens int    `json:"completion_tokens"`
 }
 
 // Process processes a request using the appropriate mode
@@ -75,8 +77,10 @@ func (d *Dojo) Process(ctx context.Context, req *Request) (*Response, error) {
 	}
 
 	return &Response{
-		Content: llmResp.Content,
-		Mode:    mode,
+		Content:          llmResp.Content,
+		Mode:             mode,
+		PromptTokens:     llmResp.PromptTokens,
+		CompletionTokens: llmResp.CompletionTokens,
 	}, nil
 }
 

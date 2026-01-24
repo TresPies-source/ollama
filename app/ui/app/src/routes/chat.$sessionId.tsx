@@ -19,6 +19,12 @@ function ChatPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
+  const totalTokens = messages.reduce((sum, msg) => {
+    const promptTokens = msg.prompt_tokens || 0;
+    const completionTokens = msg.completion_tokens || 0;
+    return sum + promptTokens + completionTokens;
+  }, 0);
+
   const {
     sendMessage,
     isStreaming,
@@ -125,9 +131,16 @@ function ChatPage() {
             <h1 className="text-lg font-semibold text-dojo-text-primary">
               {sessionTitle || "Dojo Genesis"}
             </h1>
-            <p className="text-sm text-dojo-text-secondary">
-              {isStreaming ? "Thinking..." : "Ready"}
-            </p>
+            <div className="flex items-center gap-3">
+              <p className="text-sm text-dojo-text-secondary">
+                {isStreaming ? "Thinking..." : "Ready"}
+              </p>
+              {totalTokens > 0 && (
+                <span className="text-sm text-dojo-text-tertiary">
+                  {totalTokens.toLocaleString()} tokens
+                </span>
+              )}
+            </div>
           </div>
           <div className="ml-auto flex items-center gap-3">
             {streamError && (

@@ -1,0 +1,220 @@
+
+> dojo-genesis-desktop@0.1.0 test
+> vitest --run
+
+Browserslist: browsers data (caniuse-lite) is 8 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+
+♻️  Generating routes...
+✅ Processed routes in 192ms
+
+[1m[46m RUN [49m[22m [36mv3.2.4 [39m[90mC:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app[39m
+
+ [32m✓[39m src/components/__tests__/session-header-tokens.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 32[2mms[22m[39m
+[90mstdout[2m | src/config/shortcuts.test.ts
+[22m[39m✓ Shortcuts configuration valid (28 shortcuts loaded)
+
+ [32m✓[39m src/utils/fileValidation.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+[90mstderr[2m | src/utils/seedParser.test.ts[2m > [22m[2mseedParser[2m > [22m[2mparseSeeds[2m > [22m[2mshould skip invalid seeds and continue parsing
+[22m[39mFailed to parse 1 seed file(s): [
+  {
+    path: [32m'/test/invalid.md'[39m,
+    error: SeedParseError: No YAML frontmatter found in seed file: /test/invalid.md. Expected format: ---\n...metadata...\n---\n...content...
+        at parseSeed [90m(C:\Users\cruzr\.zenflow\worktrees\polish-usability-v0-2-0-75af\app\ui\app\[39msrc\utils\seedParser.ts:32:11[90m)[39m
+        at parseSeeds [90m(C:\Users\cruzr\.zenflow\worktrees\polish-usability-v0-2-0-75af\app\ui\app\[39msrc\utils\seedParser.ts:100:20[90m)[39m
+        at [90mC:\Users\cruzr\.zenflow\worktrees\polish-usability-v0-2-0-75af\app\ui\app\[39msrc\utils\seedParser.test.ts:229:21
+        at [90mfile:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:155:11
+        at [90mfile:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:752:26
+        at [90mfile:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1897:20
+        at new Promise (<anonymous>)
+        at runWithTimeout [90m(file:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1863:10[90m)[39m
+        at runTest [90m(file:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1574:12[90m)[39m
+    [90m    at processTicksAndRejections (node:internal/process/task_queues:105:5)[39m {
+      cause: [90mundefined[39m
+    }
+  }
+]
+
+[90mstderr[2m | src/commands/registry.test.ts[2m > [22m[2mCommandRegistry[2m > [22m[2mexecute[2m > [22m[2mshould not execute disabled commands
+[22m[39mCommand disabled: test.disabled
+
+ [32m✓[39m src/utils/seedParser.test.ts [2m([22m[2m29 tests[22m[2m)[22m[32m 34[2mms[22m[39m
+ [32m✓[39m src/api/update.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+[90mstderr[2m | src/commands/registry.test.ts[2m > [22m[2mCommandRegistry[2m > [22m[2mexecute[2m > [22m[2mshould handle errors in command execution
+[22m[39mError executing command test.error: Error: Command failed
+    at Object.errorAction [as action] [90m(C:\Users\cruzr\.zenflow\worktrees\polish-usability-v0-2-0-75af\app\ui\app\[39msrc\commands\registry.test.ts:240:15[90m)[39m
+    at CommandRegistry.execute [90m(C:\Users\cruzr\.zenflow\worktrees\polish-usability-v0-2-0-75af\app\ui\app\[39msrc\commands\registry.ts:78:21[90m)[39m
+    at [90mC:\Users\cruzr\.zenflow\worktrees\polish-usability-v0-2-0-75af\app\ui\app\[39msrc\commands\registry.test.ts:252:36
+    at [90mfile:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:155:11
+    at [90mfile:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:752:26
+    at [90mfile:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1897:20
+    at new Promise (<anonymous>)
+    at runWithTimeout [90m(file:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1863:10[90m)[39m
+    at runTest [90m(file:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1574:12[90m)[39m
+    at runSuite [90m(file:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1729:8[90m)[39m
+
+ [32m✓[39m src/commands/registry.test.ts [2m([22m[2m24 tests[22m[2m)[22m[32m 43[2mms[22m[39m
+ [32m✓[39m src/config/shortcuts.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+ [32m✓[39m src/api/usage.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+ [32m✓[39m src/utils/mergeModels.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+[90mstderr[2m | src/api/sessions.test.ts
+[22m[39mNot implemented: navigation to another Document
+
+[90mstderr[2m | src/api/sessions.test.ts
+[22m[39mNot implemented: navigation to another Document
+
+[90mstderr[2m | src/api/sessions.test.ts
+[22m[39mNot implemented: navigation to another Document
+
+ [32m✓[39m src/api/sessions.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 37[2mms[22m[39m
+ [32m✓[39m src/hooks/useCommandPalette.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 38[2mms[22m[39m
+[90mstdout[2m | src/contexts/CommandPaletteContext.test.tsx[2m > [22m[2mCommandPaletteContext[2m > [22m[2mExecute[2m > [22m[2mshould execute selected command and close palette
+[22m[39mNew session
+
+[90mstdout[2m | src/contexts/CommandPaletteContext.test.tsx[2m > [22m[2mCommandPaletteContext[2m > [22m[2mExecute[2m > [22m[2mshould execute command by ID
+[22m[39mOpen settings
+
+[90mstderr[2m | src/contexts/CommandPaletteContext.test.tsx[2m > [22m[2mCommandPaletteContext[2m > [22m[2mExecute[2m > [22m[2mshould handle invalid command ID gracefully
+[22m[39mNo command to execute
+
+ [32m✓[39m src/contexts/CommandPaletteContext.test.tsx [2m([22m[2m20 tests[22m[2m)[22m[32m 81[2mms[22m[39m
+ [32m✓[39m src/hooks/useShortcut.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[33m 392[2mms[22m[39m
+ [32m✓[39m src/hooks/useUsage.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[33m 378[2mms[22m[39m
+[90mstderr[2m | src/contexts/ShortcutsContext.test.tsx[2m > [22m[2mShortcutsContext[2m > [22m[2mupdateShortcut updates the shortcut and saves to backend
+[22m[39mAn update to ShortcutsProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+ [32m✓[39m src/components/UpdateNotification.test.tsx [2m([22m[2m16 tests[22m[2m)[22m[33m 355[2mms[22m[39m
+ [32m✓[39m src/components/ShortcutsPanel.test.tsx [2m([22m[2m23 tests[22m[2m | [22m[33m13 skipped[39m[2m)[22m[33m 532[2mms[22m[39m
+[90mstderr[2m | src/contexts/ShortcutsContext.test.tsx[2m > [22m[2mShortcutsContext[2m > [22m[2mupdateShortcut throws error for empty key
+[22m[39mAn update to ShortcutsProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to ShortcutsProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+[90mstderr[2m | src/contexts/ShortcutsContext.test.tsx[2m > [22m[2mShortcutsContext[2m > [22m[2mupdateShortcut throws error for empty key
+[22m[39mAn update to ShortcutsProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+An update to ShortcutsProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+ [32m✓[39m src/hooks/useAppSettings.test.tsx [2m([22m[2m8 tests[22m[2m | [22m[33m1 skipped[39m[2m)[22m[33m 630[2mms[22m[39m
+ [32m✓[39m src/hooks/useUpdateCheck.test.tsx [2m([22m[2m11 tests[22m[2m | [22m[33m2 skipped[39m[2m)[22m[33m 606[2mms[22m[39m
+[90mstderr[2m | src/contexts/ShortcutsContext.test.tsx[2m > [22m[2mShortcutsContext[2m > [22m[2mresetShortcuts restores default shortcuts
+[22m[39mAn update to ShortcutsProvider inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+
+ [32m✓[39m src/components/CommandPalette.test.tsx [2m([22m[2m24 tests[22m[2m)[22m[33m 992[2mms[22m[39m
+ [32m✓[39m src/contexts/ShortcutsContext.test.tsx [2m([22m[2m12 tests[22m[2m)[22m[33m 1009[2mms[22m[39m
+[90mstderr[2m | src/components/SettingsModels.test.tsx[2m > [22m[2mSettingsModels[2m > [22m[2mupdates max tokens when input changed
+[22m[39mReceived NaN for the `value` attribute. If this is expected, cast the value to a string.
+
+ [32m✓[39m src/utils/traceParser.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/api/settings.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/commands/types.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/utils/vram.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/components/SettingsAppearance.test.tsx [2m([22m[2m17 tests[22m[2m)[22m[33m 1236[2mms[22m[39m
+[90mstderr[2m | src/components/SettingsData.test.tsx[2m > [22m[2mSettingsData[2m > [22m[2mexports all sessions successfully
+[22m[39mNot implemented: navigation to another Document
+
+[90mstderr[2m | src/components/SettingsData.test.tsx[2m > [22m[2mSettingsData[2m > [22m[2mexports all sessions successfully
+[22m[39mNot implemented: navigation to another Document
+
+ [32m✓[39m src/components/UsageDashboard.test.tsx [2m([22m[2m16 tests[22m[2m | [22m[33m1 skipped[39m[2m)[22m[33m 637[2mms[22m[39m
+ [32m✓[39m src/components/SettingsModels.test.tsx [2m([22m[2m14 tests[22m[2m)[22m[33m 1417[2mms[22m[39m
+[90mstderr[2m | src/components/SettingsData.test.tsx[2m > [22m[2mSettingsData[2m > [22m[2mhandles export API error gracefully
+[22m[39mError exporting sessions: Error: Network error
+    at [90mC:\Users\cruzr\.zenflow\worktrees\polish-usability-v0-2-0-75af\app\ui\app\[39msrc\components\SettingsData.test.tsx:317:37
+    at [90mfile:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:155:11
+    at [90mfile:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:752:26
+    at [90mfile:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1897:20
+    at new Promise (<anonymous>)
+    at runWithTimeout [90m(file:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1863:10[90m)[39m
+    at runTest [90m(file:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1574:12[90m)[39m
+[90m    at runNextTicks (node:internal/process/task_queues:65:5)[39m
+[90m    at processTimers (node:internal/timers:520:9)[39m
+    at runSuite [90m(file:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1729:8[90m)[39m
+
+[90mstderr[2m | src/components/SettingsData.test.tsx[2m > [22m[2mSettingsData[2m > [22m[2mhandles import API error gracefully
+[22m[39mError importing session.md: Error: Network error
+    at [90mC:\Users\cruzr\.zenflow\worktrees\polish-usability-v0-2-0-75af\app\ui\app\[39msrc\components\SettingsData.test.tsx:331:37
+    at [90mfile:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:155:11
+    at [90mfile:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:752:26
+    at [90mfile:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1897:20
+    at new Promise (<anonymous>)
+    at runWithTimeout [90m(file:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1863:10[90m)[39m
+    at runTest [90m(file:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1574:12[90m)[39m
+    at runSuite [90m(file:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1729:8[90m)[39m
+    at runSuite [90m(file:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1729:8[90m)[39m
+    at runFiles [90m(file:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1787:3[90m)[39m
+
+[90mstderr[2m | src/components/SettingsData.test.tsx[2m > [22m[2mSettingsData[2m > [22m[2mhandles clear API error gracefully
+[22m[39mError deleting session 1: Error: Network error
+    at [90mC:\Users\cruzr\.zenflow\worktrees\polish-usability-v0-2-0-75af\app\ui\app\[39msrc\components\SettingsData.test.tsx:352:30
+    at [90mfile:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:155:11
+    at [90mfile:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:752:26
+    at [90mfile:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1897:20
+    at new Promise (<anonymous>)
+    at runWithTimeout [90m(file:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1863:10[90m)[39m
+    at runTest [90m(file:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1574:12[90m)[39m
+    at runSuite [90m(file:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1729:8[90m)[39m
+    at runSuite [90m(file:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1729:8[90m)[39m
+    at runFiles [90m(file:///C:/Users/cruzr/.zenflow/worktrees/polish-usability-v0-2-0-75af/app/ui/app/[39mnode_modules/[4m@vitest[24m/runner/dist/chunk-hooks.js:1787:3[90m)[39m
+
+ [32m✓[39m src/components/SettingsData.test.tsx [2m([22m[2m17 tests[22m[2m | [22m[33m1 skipped[39m[2m)[22m[33m 1989[2mms[22m[39m
+   [33m[2m✓[22m[39m SettingsData[2m > [22mcloses confirmation dialog when cancel is clicked [33m 514[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m27 passed[39m[22m[90m (27)[39m
+[2m      Tests [22m [1m[32m353 passed[39m[22m[2m | [22m[33m18 skipped[39m[90m (371)[39m
+[2m   Start at [22m 11:06:35
+[2m   Duration [22m 7.05s[2m (transform 3.12s, setup 0ms, collect 18.29s, tests 10.58s, environment 55.45s, prepare 7.67s)[22m
+

@@ -43,10 +43,12 @@ type ollamaOptions struct {
 
 // ollamaResponse represents the Ollama API response format
 type ollamaResponse struct {
-	Model     string  `json:"model"`
-	CreatedAt string  `json:"created_at"`
-	Message   Message `json:"message"`
-	Done      bool    `json:"done"`
+	Model           string  `json:"model"`
+	CreatedAt       string  `json:"created_at"`
+	Message         Message `json:"message"`
+	Done            bool    `json:"done"`
+	PromptEvalCount int     `json:"prompt_eval_count"`
+	EvalCount       int     `json:"eval_count"`
 }
 
 // Complete generates a completion using Ollama
@@ -91,10 +93,15 @@ func (c *OllamaClient) Complete(ctx context.Context, req *CompletionRequest) (*C
 		return nil, fmt.Errorf("failed to decode response: %w", err)
 	}
 
+	totalTokens := ollamaResp.PromptEvalCount + ollamaResp.EvalCount
+
 	return &CompletionResponse{
-		Content:      ollamaResp.Message.Content,
-		Model:        ollamaResp.Model,
-		FinishReason: "stop",
+		Content:          ollamaResp.Message.Content,
+		Model:            ollamaResp.Model,
+		TokensUsed:       totalTokens,
+		PromptTokens:     ollamaResp.PromptEvalCount,
+		CompletionTokens: ollamaResp.EvalCount,
+		FinishReason:     "stop",
 	}, nil
 }
 

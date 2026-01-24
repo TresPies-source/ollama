@@ -1,17 +1,14 @@
 package api
 
 import (
-	"context"
 	"encoding/json"
 	"fmt"
 	"net/http"
 
 	"github.com/TresPies-source/dgd/agents/builder"
 	"github.com/TresPies-source/dgd/agents/dojo"
-	"github.com/TresPies-source/dgd/agents/librarian"
 	"github.com/TresPies-source/dgd/agents/supervisor"
 	"github.com/TresPies-source/dgd/database"
-	"github.com/TresPies-source/dgd/llm"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )
@@ -144,7 +141,7 @@ func (s *Server) streamDojoResponse(c *gin.Context, query string, perspectives [
 
 func (s *Server) streamLibrarianResponse(c *gin.Context, session *database.Session, query string) (string, error) {
 	// Librarian responses are typically fast, so send as single chunk
-	response, err := s.handleLibrarianQuery(c, session, query)
+	response, _, _, err := s.handleLibrarianQuery(c, session, query)
 	if err != nil {
 		return "", err
 	}

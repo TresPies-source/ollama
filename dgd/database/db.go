@@ -2,7 +2,7 @@ package database
 
 import (
 	"database/sql"
-	"embed"
+	_ "embed"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -44,7 +44,15 @@ func Open(dbPath string) (*DB, error) {
 		return nil, fmt.Errorf("failed to initialize schema: %w", err)
 	}
 
-	return &DB{sqlDB}, nil
+	db := &DB{sqlDB}
+
+	// Run migrations
+	if err := db.RunMigrations(); err != nil {
+		sqlDB.Close()
+		return nil, fmt.Errorf("failed to run migrations: %w", err)
+	}
+
+	return db, nil
 }
 
 // Close closes the database connection

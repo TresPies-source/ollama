@@ -37,6 +37,8 @@ export interface Message {
   created_at: string;
   agent_type?: string;
   mode?: string;
+  prompt_tokens?: number;
+  completion_tokens?: number;
 }
 
 // Chat Types

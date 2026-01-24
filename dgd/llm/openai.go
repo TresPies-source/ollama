@@ -96,10 +96,12 @@ func (c *OpenAIClient) Complete(ctx context.Context, req *CompletionRequest) (*C
 	}
 
 	return &CompletionResponse{
-		Content:      openaiResp.Choices[0].Message.Content,
-		Model:        openaiResp.Model,
-		TokensUsed:   openaiResp.Usage.TotalTokens,
-		FinishReason: openaiResp.Choices[0].FinishReason,
+		Content:          openaiResp.Choices[0].Message.Content,
+		Model:            openaiResp.Model,
+		TokensUsed:       openaiResp.Usage.TotalTokens,
+		PromptTokens:     openaiResp.Usage.PromptTokens,
+		CompletionTokens: openaiResp.Usage.CompletionTokens,
+		FinishReason:     openaiResp.Choices[0].FinishReason,
 	}, nil
 }
 

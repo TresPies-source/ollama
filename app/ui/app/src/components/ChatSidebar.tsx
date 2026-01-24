@@ -2,11 +2,12 @@ import { useChats } from "@/hooks/useChats";
 import { useRenameChat } from "@/hooks/useRenameChat";
 import { useDeleteChat } from "@/hooks/useDeleteChat";
 import { useQueryClient } from "@tanstack/react-query";
-import { getChat } from "@/api";
+import { getChat, exportSession, importSession } from "@/api";
 import { Link } from "@/components/ui/link";
 import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { ChatsResponse } from "@/gotypes";
 import { CogIcon } from "@heroicons/react/24/outline";
+import { useNavigate } from "@tanstack/react-router";
 
 // there's a hidden debug feature to copy a chat's data to the clipboard by
 // holding shift and clicking this many times within this many seconds
@@ -22,11 +23,15 @@ export function ChatSidebar({ currentChatId }: ChatSidebarProps) {
   const queryClient = useQueryClient();
   const renameMutation = useRenameChat();
   const deleteMutation = useDeleteChat();
+  const navigate = useNavigate();
   const [editingChatId, setEditingChatId] = useState<string | null>(null);
   const [editValue, setEditValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [shiftClicks, setShiftClicks] = useState<Record<string, number[]>>({});
   const [copiedChatId, setCopiedChatId] = useState<string | null>(null);
+  const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
+  const [isImporting, setIsImporting] = useState(false);
 
   const handleMouseEnter = useCallback(
     (chatId: string) => {
@@ -180,6 +185,57 @@ export function ChatSidebar({ currentChatId }: ChatSidebarProps) {
     [deleteMutation],
   );
 
+  const handleExportChat = useCallback(
+    async (chatId: string) => {
+      setMessage(null);
+      try {
+        await exportSession(chatId);
+        setMessage({ type: "success", text: "Session exported successfully" });
+        setTimeout(() => setMessage(null), 3000);
+      } catch (error) {
+        console.error("Failed to export session:", error);
+        setMessage({ type: "error", text: error instanceof Error ? error.message : "Failed to export session" });
+        setTimeout(() => setMessage(null), 5000);
+      }
+    },
+    [],
+  );
+
+  const handleImportChat = useCallback(
+    async (event: React.ChangeEvent<HTMLInputElement>) => {
+      const files = event.target.files;
+      if (!files || files.length === 0) return;
+
+      setIsImporting(true);
+      setMessage(null);
+
+      try {
+        const file = files[0];
+        const result = await importSession(file);
+        
+        queryClient.invalidateQueries({ queryKey: ["chats"] });
+        
+        setMessage({ type: "success", text: result.message });
+        
+        setTimeout(() => {
+          navigate({ to: "/c/$chatId", params: { chatId: result.session_id } });
+        }, 1000);
+      } catch (error) {
+        console.error("Failed to import session:", error);
+        setMessage({ type: "error", text: error instanceof Error ? error.message : "Failed to import session" });
+        setTimeout(() => setMessage(null), 5000);
+      } finally {
+        setIsImporting(false);
+        event.target.value = "";
+      }
+    },
+    [queryClient, navigate],
+  );
+
+  const triggerImport = useCallback(() => {
+    fileInputRef.current?.click();
+  }, []);
+
   // implementation of the hidden debug feature to copy a chat's data to the clipboard
   const handleShiftClick = useCallback(
     async (e: React.MouseEvent, chatId: string) => {
@@ -227,16 +283,22 @@ export function ChatSidebar({ currentChatId }: ChatSidebarProps) {
     async (_: React.MouseEvent, chatId: string, chatTitle: string) => {
       const selectedAction = await window.menu([
         { label: "Rename", enabled: true },
+        { label: "Export Session", enabled: true },
+        { label: "Import Session", enabled: true },
         { label: "Delete", enabled: true },
       ]);
 
       if (selectedAction === "Rename") {
         startEditing(chatId, chatTitle);
+      } else if (selectedAction === "Export Session") {
+        handleExportChat(chatId);
+      } else if (selectedAction === "Import Session") {
+        triggerImport();
       } else if (selectedAction === "Delete") {
         handleDeleteChat(chatId);
       }
     },
-    [startEditing, handleDeleteChat],
+    [startEditing, handleDeleteChat, handleExportChat, triggerImport],
   );
 
   if (isLoading) {
@@ -263,6 +325,29 @@ export function ChatSidebar({ currentChatId }: ChatSidebarProps) {
 
   return (
     <nav className="flex flex-1 flex-col min-h-0 select-none">
+      {/* Hidden file input for import */}
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept=".md,.markdown"
+        onChange={handleImportChat}
+        className="hidden"
+        disabled={isImporting}
+      />
+      
+      {/* Status Message */}
+      {message && (
+        <div
+          className={`mx-4 mt-2 p-2 rounded-lg border text-sm ${
+            message.type === "success"
+              ? "bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 text-green-800 dark:text-green-200"
+              : "bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 text-red-800 dark:text-red-200"
+          }`}
+        >
+          {message.text}
+        </div>
+      )}
+      
       <header className="flex flex-col gap-0.5 px-4 pb-2">
         <Link
           href="/c/new"

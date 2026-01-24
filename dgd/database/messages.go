@@ -8,20 +8,22 @@ import (
 
 // Message represents a chat message
 type Message struct {
-	ID        string
-	SessionID string
-	Role      string
-	Content   string
-	CreatedAt time.Time
-	AgentType string
-	Mode      string
+	ID               string
+	SessionID        string
+	Role             string
+	Content          string
+	CreatedAt        time.Time
+	AgentType        string
+	Mode             string
+	PromptTokens     int
+	CompletionTokens int
 }
 
 // CreateMessage creates a new message in the database
 func (db *DB) CreateMessage(message *Message) error {
 	query := `
-		INSERT INTO messages (id, session_id, role, content, created_at, agent_type, mode)
-		VALUES (?, ?, ?, ?, ?, ?, ?)
+		INSERT INTO messages (id, session_id, role, content, created_at, agent_type, mode, prompt_tokens, completion_tokens)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 	`
 	
 	message.CreatedAt = time.Now()
@@ -34,6 +36,8 @@ func (db *DB) CreateMessage(message *Message) error {
 		message.CreatedAt,
 		nullString(message.AgentType),
 		nullString(message.Mode),
+		message.PromptTokens,
+		message.CompletionTokens,
 	)
 	
 	if err != nil {
@@ -52,7 +56,7 @@ func (db *DB) CreateMessage(message *Message) error {
 // GetMessage retrieves a message by ID
 func (db *DB) GetMessage(id string) (*Message, error) {
 	query := `
-		SELECT id, session_id, role, content, created_at, agent_type, mode
+		SELECT id, session_id, role, content, created_at, agent_type, mode, prompt_tokens, completion_tokens
 		FROM messages
 		WHERE id = ?
 	`
@@ -68,6 +72,8 @@ func (db *DB) GetMessage(id string) (*Message, error) {
 		&message.CreatedAt,
 		&agentType,
 		&mode,
+		&message.PromptTokens,
+		&message.CompletionTokens,
 	)
 	
 	if err == sql.ErrNoRows {
@@ -86,7 +92,7 @@ func (db *DB) GetMessage(id string) (*Message, error) {
 // ListMessages retrieves all messages for a session
 func (db *DB) ListMessages(sessionID string) ([]Message, error) {
 	query := `
-		SELECT id, session_id, role, content, created_at, agent_type, mode
+		SELECT id, session_id, role, content, created_at, agent_type, mode, prompt_tokens, completion_tokens
 		FROM messages
 		WHERE session_id = ?
 		ORDER BY created_at ASC
@@ -111,6 +117,8 @@ func (db *DB) ListMessages(sessionID string) ([]Message, error) {
 			&message.CreatedAt,
 			&agentType,
 			&mode,
+			&message.PromptTokens,
+			&message.CompletionTokens,
 		)
 		if err != nil {
 			return nil, fmt.Errorf("failed to scan message: %w", err)

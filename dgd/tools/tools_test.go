@@ -4,6 +4,7 @@ import (
 	"context"
 	"os"
 	"path/filepath"
+	"runtime"
 	"testing"
 )
 
@@ -180,9 +181,19 @@ func TestExecuteCommandTool(t *testing.T) {
 
 	tool := NewExecuteCommandTool(tmpDir)
 
-	// Test safe command
+	// Test safe command (platform-specific)
+	var safeCommand string
+	var dangerousCommand string
+	if runtime.GOOS == "windows" {
+		safeCommand = "echo Hello"
+		dangerousCommand = "rd /s /q C:\\"
+	} else {
+		safeCommand = "echo 'Hello'"
+		dangerousCommand = "rm -rf /"
+	}
+
 	result, err := tool.Execute(context.Background(), map[string]interface{}{
-		"command": "echo 'Hello'",
+		"command": safeCommand,
 	})
 
 	if err != nil {
@@ -195,7 +206,7 @@ func TestExecuteCommandTool(t *testing.T) {
 
 	// Test dangerous command (should be blocked)
 	result, err = tool.Execute(context.Background(), map[string]interface{}{
-		"command": "rm -rf /",
+		"command": dangerousCommand,
 	})
 
 	if err != nil {

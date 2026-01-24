@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"os/exec"
+	"runtime"
 	"strings"
 	"time"
 )
@@ -48,8 +49,11 @@ func (t *ExecuteCommandTool) Execute(ctx context.Context, params map[string]inte
 		return &Result{Success: false, Error: "command parameter required"}, nil
 	}
 
-	// Security: block dangerous commands
-	dangerous := []string{"rm -rf", "dd if=", "mkfs", ":(){ :|:& };:", "> /dev/"}
+	// Security: block dangerous commands (Unix and Windows)
+	dangerous := []string{
+		"rm -rf", "dd if=", "mkfs", ":(){ :|:& };:", "> /dev/", // Unix
+		"rd /s /q", "format ", "del /f /q", "rmdir /s /q", // Windows
+	}
 	for _, pattern := range dangerous {
 		if strings.Contains(command, pattern) {
 			return &Result{Success: false, Error: "dangerous command blocked"}, nil
@@ -60,8 +64,13 @@ func (t *ExecuteCommandTool) Execute(ctx context.Context, params map[string]inte
 	execCtx, cancel := context.WithTimeout(ctx, t.timeout)
 	defer cancel()
 
-	// Execute command
-	cmd := exec.CommandContext(execCtx, "sh", "-c", command)
+	// Execute command (platform-specific shell)
+	var cmd *exec.Cmd
+	if runtime.GOOS == "windows" {
+		cmd = exec.CommandContext(execCtx, "cmd", "/c", command)
+	} else {
+		cmd = exec.CommandContext(execCtx, "sh", "-c", command)
+	}
 	cmd.Dir = t.workingDir
 
 	output, err := cmd.CombinedOutput()
@@ -232,7 +241,6 @@ func (t *CalculateTool) Execute(ctx context.Context, params map[string]interface
 	}
 
 	var result float64
-	var err error
 
 	switch operation {
 	case "add":

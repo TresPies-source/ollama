@@ -1,0 +1,314 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": "1.0.0",
+  "shortcuts": [
+    {
+      "id": "new-session",
+      "name": "New Session",
+      "description": "Create a new chat session",
+      "category": "Session",
+      "keys": {
+        "mac": "Cmd+N",
+        "windows": "Ctrl+N",
+        "linux": "Ctrl+N"
+      }
+    },
+    {
+      "id": "open-settings",
+      "name": "Open Settings",
+      "description": "Open application settings",
+      "category": "Settings",
+      "keys": {
+        "mac": "Cmd+,",
+        "windows": "Ctrl+,",
+        "linux": "Ctrl+,"
+      }
+    },
+    {
+      "id": "command-palette",
+      "name": "Command Palette",
+      "description": "Open the command palette for quick actions",
+      "category": "View",
+      "keys": {
+        "mac": "Cmd+K",
+        "windows": "Ctrl+K",
+        "linux": "Ctrl+K"
+      }
+    },
+    {
+      "id": "close-session",
+      "name": "Close Session",
+      "description": "Close the current session",
+      "category": "Session",
+      "keys": {
+        "mac": "Cmd+W",
+        "windows": "Ctrl+W",
+        "linux": "Ctrl+W"
+      }
+    },
+    {
+      "id": "quit",
+      "name": "Quit Application",
+      "description": "Exit the application",
+      "category": "Application",
+      "keys": {
+        "mac": "Cmd+Q",
+        "windows": "Alt+F4",
+        "linux": "Ctrl+Q"
+      }
+    },
+    {
+      "id": "next-session",
+      "name": "Next Session",
+      "description": "Switch to the next session",
+      "category": "Navigation",
+      "keys": {
+        "mac": "Cmd+]",
+        "windows": "Ctrl+]",
+        "linux": "Ctrl+]"
+      }
+    },
+    {
+      "id": "prev-session",
+      "name": "Previous Session",
+      "description": "Switch to the previous session",
+      "category": "Navigation",
+      "keys": {
+        "mac": "Cmd+[",
+        "windows": "Ctrl+[",
+        "linux": "Ctrl+["
+      }
+    },
+    {
+      "id": "toggle-sidebar",
+      "name": "Toggle Sidebar",
+      "description": "Show or hide the sidebar",
+      "category": "View",
+      "keys": {
+        "mac": "Cmd+B",
+        "windows": "Ctrl+B",
+        "linux": "Ctrl+B"
+      }
+    },
+    {
+      "id": "export-session",
+      "name": "Export Session",
+      "description": "Export the current session to Markdown",
+      "category": "Session",
+      "keys": {
+        "mac": "Cmd+E",
+        "windows": "Ctrl+E",
+        "linux": "Ctrl+E"
+      }
+    },
+    {
+      "id": "import-session",
+      "name": "Import Session",
+      "description": "Import a session from a Markdown file",
+      "category": "Session",
+      "keys": {
+        "mac": "Cmd+I",
+        "windows": "Ctrl+I",
+        "linux": "Ctrl+I"
+      }
+    },
+    {
+      "id": "go-to-sessions",
+      "name": "Go to Sessions",
+      "description": "Navigate to the sessions page",
+      "category": "Navigation",
+      "keys": {
+        "mac": "Cmd+1",
+        "windows": "Ctrl+1",
+        "linux": "Ctrl+1"
+      }
+    },
+    {
+      "id": "go-to-files",
+      "name": "Go to Files",
+      "description": "Navigate to the files explorer",
+      "category": "Navigation",
+      "keys": {
+        "mac": "Cmd+2",
+        "windows": "Ctrl+2",
+        "linux": "Ctrl+2"
+      }
+    },
+    {
+      "id": "go-to-seeds",
+      "name": "Go to Seeds",
+      "description": "Navigate to the seeds library",
+      "category": "Navigation",
+      "keys": {
+        "mac": "Cmd+3",
+        "windows": "Ctrl+3",
+        "linux": "Ctrl+3"
+      }
+    },
+    {
+      "id": "search",
+      "name": "Search",
+      "description": "Search across sessions and messages",
+      "category": "View",
+      "keys": {
+        "mac": "Cmd+F",
+        "windows": "Ctrl+F",
+        "linux": "Ctrl+F"
+      }
+    },
+    {
+      "id": "refresh",
+      "name": "Refresh",
+      "description": "Refresh the current view",
+      "category": "View",
+      "keys": {
+        "mac": "Cmd+R",
+        "windows": "Ctrl+R",
+        "linux": "Ctrl+R"
+      }
+    },
+    {
+      "id": "focus-input",
+      "name": "Focus Message Input",
+      "description": "Focus the message input field",
+      "category": "Edit",
+      "keys": {
+        "mac": "Escape",
+        "windows": "Escape",
+        "linux": "Escape"
+      }
+    },
+    {
+      "id": "send-message",
+      "name": "Send Message",
+      "description": "Send the current message",
+      "category": "Edit",
+      "keys": {
+        "mac": "Cmd+Enter",
+        "windows": "Ctrl+Enter",
+        "linux": "Ctrl+Enter"
+      }
+    },
+    {
+      "id": "cancel-generation",
+      "name": "Cancel Generation",
+      "description": "Stop the current AI response generation",
+      "category": "Edit",
+      "keys": {
+        "mac": "Cmd+.",
+        "windows": "Ctrl+.",
+        "linux": "Ctrl+."
+      }
+    },
+    {
+      "id": "copy-message",
+      "name": "Copy Message",
+      "description": "Copy the selected message to clipboard",
+      "category": "Edit",
+      "keys": {
+        "mac": "Cmd+C",
+        "windows": "Ctrl+C",
+        "linux": "Ctrl+C"
+      }
+    },
+    {
+      "id": "delete-message",
+      "name": "Delete Message",
+      "description": "Delete the selected message",
+      "category": "Edit",
+      "keys": {
+        "mac": "Cmd+Backspace",
+        "windows": "Ctrl+Delete",
+        "linux": "Ctrl+Delete"
+      }
+    },
+    {
+      "id": "undo",
+      "name": "Undo",
+      "description": "Undo the last action",
+      "category": "Edit",
+      "keys": {
+        "mac": "Cmd+Z",
+        "windows": "Ctrl+Z",
+        "linux": "Ctrl+Z"
+      }
+    },
+    {
+      "id": "redo",
+      "name": "Redo",
+      "description": "Redo the last undone action",
+      "category": "Edit",
+      "keys": {
+        "mac": "Cmd+Shift+Z",
+        "windows": "Ctrl+Y",
+        "linux": "Ctrl+Y"
+      }
+    },
+    {
+      "id": "zoom-in",
+      "name": "Zoom In",
+      "description": "Increase the font size",
+      "category": "View",
+      "keys": {
+        "mac": "Cmd+=",
+        "windows": "Ctrl+=",
+        "linux": "Ctrl+="
+      }
+    },
+    {
+      "id": "zoom-out",
+      "name": "Zoom Out",
+      "description": "Decrease the font size",
+      "category": "View",
+      "keys": {
+        "mac": "Cmd+-",
+        "windows": "Ctrl+-",
+        "linux": "Ctrl+-"
+      }
+    },
+    {
+      "id": "zoom-reset",
+      "name": "Reset Zoom",
+      "description": "Reset the font size to default",
+      "category": "View",
+      "keys": {
+        "mac": "Cmd+0",
+        "windows": "Ctrl+0",
+        "linux": "Ctrl+0"
+      }
+    },
+    {
+      "id": "toggle-fullscreen",
+      "name": "Toggle Fullscreen",
+      "description": "Enter or exit fullscreen mode",
+      "category": "View",
+      "keys": {
+        "mac": "Cmd+Ctrl+F",
+        "windows": "F11",
+        "linux": "F11"
+      }
+    },
+    {
+      "id": "help",
+      "name": "Help",
+      "description": "Open help documentation",
+      "category": "Application",
+      "keys": {
+        "mac": "Cmd+?",
+        "windows": "F1",
+        "linux": "F1"
+      }
+    },
+    {
+      "id": "dev-tools",
+      "name": "Developer Tools",
+      "description": "Open developer tools",
+      "category": "Application",
+      "keys": {
+        "mac": "Cmd+Option+I",
+        "windows": "Ctrl+Shift+I",
+        "linux": "Ctrl+Shift+I"
+      }
+    }
+  ]
+}

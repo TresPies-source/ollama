@@ -1,0 +1,4 @@
+package version
+
+// Version is the current version of Dojo Genesis Desktop
+const Version = "0.2.0"

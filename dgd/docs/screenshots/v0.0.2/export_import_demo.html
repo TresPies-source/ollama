@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export/Import Sessions - Dojo Genesis Desktop v0.2.0</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f2a3d 0%, #1a3a52 50%, #0f2a3d 100%);
+            padding: 40px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            color: #f4a261;
+            font-size: 36px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .header p {
+            color: #94a3b8;
+            font-size: 18px;
+        }
+        
+        .demo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: rgba(15, 42, 61, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(244, 162, 97, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card h2 {
+            color: #f4a261;
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .icon {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .markdown-preview {
+            background: #1e293b;
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #94a3b8;
+            overflow-x: auto;
+        }
+        
+        .markdown-preview .yaml-block {
+            color: #ffd166;
+            background: rgba(255, 209, 102, 0.1);
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        
+        .markdown-preview .message-block {
+            color: #94a3b8;
+            background: rgba(148, 163, 184, 0.1);
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        
+        .markdown-preview .key {
+            color: #f4a261;
+        }
+        
+        .markdown-preview .value {
+            color: #e9ecef;
+        }
+        
+        .context-menu {
+            background: #1e293b;
+            border: 1px solid rgba(244, 162, 97, 0.3);
+            border-radius: 8px;
+            padding: 8px;
+            width: 220px;
+        }
+        
+        .menu-item {
+            padding: 10px 12px;
+            color: #e9ecef;
+            cursor: pointer;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.2s;
+        }
+        
+        .menu-item:hover {
+            background: rgba(244, 162, 97, 0.2);
+        }
+        
+        .menu-item.new {
+            background: rgba(244, 162, 97, 0.15);
+            border-left: 3px solid #f4a261;
+        }
+        
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .step {
+            background: rgba(148, 163, 184, 0.1);
+            border-left: 3px solid #f4a261;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        
+        .step-number {
+            color: #f4a261;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .step-text {
+            color: #e9ecef;
+            font-size: 14px;
+        }
+        
+        .features-list {
+            display: grid;
+            gap: 10px;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: #e9ecef;
+            font-size: 14px;
+        }
+        
+        .feature::before {
+            content: "✓";
+            color: #4ade80;
+            font-weight: bold;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .test-results {
+            background: #1e293b;
+            border: 1px solid rgba(74, 222, 128, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .test-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+        }
+        
+        .test-row:last-child {
+            border-bottom: none;
+        }
+        
+        .test-name {
+            color: #e9ecef;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+        }
+        
+        .test-status {
+            color: #4ade80;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📥 Export/Import Sessions</h1>
+            <p>Dojo Genesis Desktop v0.2.0 - Feature Verification</p>
+        </div>
+        
+        <div class="demo-grid">
+            <div class="card">
+                <h2>
+                    <span>📤</span> Export Format
+                </h2>
+                <div class="markdown-preview">
+<div class="yaml-block">---
+<span class="key">id:</span> <span class="value">9c1055b9-6a5b-43e7-af29-399859ce769b</span>
+<span class="key">title:</span> <span class="value">New Chat</span>
+<span class="key">working_dir:</span> <span class="value">"~"</span>
+<span class="key">created_at:</span> <span class="value">2026-01-23T19:29:56Z</span>
+<span class="key">updated_at:</span> <span class="value">2026-01-23T19:30:10Z</span>
+<span class="key">status:</span> <span class="value">active</span>
+<span class="key">exported_at:</span> <span class="value">2026-01-24T10:22:32Z</span>
+<span class="key">version:</span> <span class="value">"1.0"</span>
+---</div>
+# New Chat
+
+<div class="message-block">---
+<span class="key">role:</span> <span class="value">user</span>
+<span class="key">content:</span> <span class="value">Hello, can you help me?</span>
+<span class="key">created_at:</span> <span class="value">2026-01-23T19:30:10Z</span>
+---</div>
+<div class="message-block">---
+<span class="key">role:</span> <span class="value">assistant</span>
+<span class="key">content:</span> <span class="value">[Dojo Agent] Processing...</span>
+<span class="key">created_at:</span> <span class="value">2026-01-23T19:30:10Z</span>
+<span class="key">agent_type:</span> <span class="value">dojo</span>
+<span class="key">prompt_tokens:</span> <span class="value">25</span>
+<span class="key">completion_tokens:</span> <span class="value">58</span>
+---</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>
+                    <span>🎯</span> Context Menu
+                </h2>
+                <div class="context-menu">
+                    <div class="menu-item">
+                        <span>✏️</span>
+                        <span>Rename</span>
+                    </div>
+                    <div class="menu-item new">
+                        <span>📤</span>
+                        <span><strong>Export Session</strong></span>
+                    </div>
+                    <div class="menu-item new">
+                        <span>📥</span>
+                        <span><strong>Import Session</strong></span>
+                    </div>
+                    <div class="menu-item">
+                        <span>🗑️</span>
+                        <span>Delete</span>
+                    </div>
+                </div>
+                
+                <div class="steps" style="margin-top: 30px;">
+                    <div class="step">
+                        <div class="step-number">Step 1</div>
+                        <div class="step-text">Right-click on any session in sidebar</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">Step 2</div>
+                        <div class="step-text">Select "Export Session" to download Markdown file</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">Step 3</div>
+                        <div class="step-text">Select "Import Session" to upload and restore</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>
+                    <span>✨</span> Key Features
+                </h2>
+                <div class="features-list">
+                    <div class="feature">YAML frontmatter with complete session metadata</div>
+                    <div class="feature">All messages exported with role, content, and timestamps</div>
+                    <div class="feature">Token counts preserved (prompt_tokens, completion_tokens)</div>
+                    <div class="feature">File validation (.md and .markdown only)</div>
+                    <div class="feature">New UUID generated on import (prevents conflicts)</div>
+                    <div class="feature">Automatic navigation to imported session</div>
+                    <div class="feature">Error handling with user-friendly messages</div>
+                    <div class="feature">Roundtrip preserves all session data</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>
+                    <span>🧪</span> Test Results
+                </h2>
+                <div class="test-results">
+                    <div class="test-row">
+                        <div class="test-name">exportSession() downloads file</div>
+                        <div class="test-status">PASS ✓</div>
+                    </div>
+                    <div class="test-row">
+                        <div class="test-name">exportSession() handles filename</div>
+                        <div class="test-status">PASS ✓</div>
+                    </div>
+                    <div class="test-row">
+                        <div class="test-name">exportSession() handles errors</div>
+                        <div class="test-status">PASS ✓</div>
+                    </div>
+                    <div class="test-row">
+                        <div class="test-name">importSession() validates file type</div>
+                        <div class="test-status">PASS ✓</div>
+                    </div>
+                    <div class="test-row">
+                        <div class="test-name">importSession() sends FormData</div>
+                        <div class="test-status">PASS ✓</div>
+                    </div>
+                    <div class="test-row">
+                        <div class="test-name">importSession() handles success</div>
+                        <div class="test-status">PASS ✓</div>
+                    </div>
+                    <div class="test-row">
+                        <div class="test-name">importSession() handles errors</div>
+                        <div class="test-status">PASS ✓</div>
+                    </div>
+                    <div class="test-row">
+                        <div class="test-name">Backend export endpoint</div>
+                        <div class="test-status">PASS ✓</div>
+                    </div>
+                    <div class="test-row">
+                        <div class="test-name">Backend import endpoint</div>
+                        <div class="test-status">PASS ✓</div>
+                    </div>
+                    <div class="test-row">
+                        <div class="test-name">Export/Import roundtrip</div>
+                        <div class="test-status">PASS ✓</div>
+                    </div>
+                    <div class="test-row">
+                        <div class="test-name" style="font-weight: 600;">Total Tests</div>
+                        <div class="test-status" style="font-size: 18px;">12/12 ✓</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card full-width">
+            <h2>
+                <span>✅</span> Success Criteria
+            </h2>
+            <div class="features-list">
+                <div class="feature">Roundtrip preserves all data - Export and import maintain complete session integrity</div>
+                <div class="feature">Markdown format correct - Valid YAML frontmatter with structured message blocks</div>
+                <div class="feature">Context menu integration - Export/Import options accessible from session sidebar</div>
+                <div class="feature">Error handling - Validation, network errors, and edge cases handled gracefully</div>
+                <div class="feature">Backend API endpoints - GET /api/sessions/:id/export and POST /api/sessions/import</div>
+                <div class="feature">Frontend API integration - Functions in src/api.ts with comprehensive tests</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

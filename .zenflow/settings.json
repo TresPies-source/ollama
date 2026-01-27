@@ -1,0 +1,6 @@
+{
+  "setup_script": "go mod download && cd dgd && go mod download && cd ../app/ui/app && npm install",
+  "dev_script": "cd dgd && go run cmd/dgd/main.go",
+  "verification_script": "cd dgd && go build ./...",
+  "copy_files": ["app/ui/app/.env"]
+}
